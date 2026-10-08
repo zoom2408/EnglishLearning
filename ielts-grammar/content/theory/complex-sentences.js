@@ -1,0 +1,60 @@
+/* content/theory/complex.js: lesson data for this module (edit freely) */
+(() => {
+const CXV=[
+ R_("cx-contrast","01","Contrast","Tương phản: although, despite, whereas","although · despite · whereas",
+  "Nối hai ý <strong>trái ngược</strong>. Điểm mấu chốt: although đi với <strong>mệnh đề</strong>, despite đi với <strong>danh từ hoặc V-ing</strong>.",
+  [["+cl","Although / Even though / Though + S + V, S + V","<mark>Although</mark> it rained, we went out."],["+N","Despite / In spite of + N / V-ing","<mark>Despite</mark> the rain, we went out."],["+cl","Despite the fact that + S + V","<mark>Despite the fact that</mark> it rained, …"],["⇄","S + V, whereas / while + S + V (so sánh hai vế)","Cities are noisy, <mark>whereas</mark> villages are quiet."]],
+  [["Writing Task 2: nêu hai mặt","<mark>Although</mark> technology saves time, it can isolate people."],["Task 1: so sánh hai số liệu","Sales rose in May, <mark>whereas</mark> they fell in June."]],
+  ["although","even though","despite","in spite of","whereas","while"],4,5,"Rất cần cho Task 2. Band 7 cần chuyển đổi linh hoạt giữa although và despite.",
+  ["Although it rained, but we went out.","Although it rained, we went out.","Tiếng Việt nói “tuy… nhưng”, tiếng Anh chỉ dùng một từ nối."],
+  X_("Hai câu","Một câu","{1:It rained}. {2:We went out}.","{3:Although} {1:it rained}, {2:we went out}.","Có thể viết lại: Despite the rain, we went out.")),
+ R_("cx-reason","02","Reason & result","Nguyên nhân và kết quả","because · due to · so… that",
+  "Nguyên nhân: because, since, as (+ mệnh đề); because of, due to, owing to (+ danh từ). Kết quả: so, therefore, <strong>so… that / such… that</strong>.",
+  [["why","because / since / as + S + V","<mark>Since</mark> it was late, we left."],["why","because of / due to / owing to + N","The flight was delayed <mark>due to</mark> fog."],["→","so + adj/adv + that + S + V","It was <mark>so hot that</mark> we stayed in."],["→","such + (a/an) + adj + N + that + S + V","It was <mark>such a hot day that</mark> we stayed in."],["→","Therefore, / As a result, / Consequently, + câu mới","Prices rose. <mark>As a result,</mark> sales fell."]],
+  [["Giải thích nguyên nhân trong Task 2","Many people move to cities <mark>because</mark> jobs are easier to find."],["Nêu hậu quả","Traffic is heavy. <mark>Consequently,</mark> pollution is rising."]],
+  ["because","since","due to","owing to","so… that","such… that","therefore"],5,5,"due to và consequently hợp văn viết; because, so tự nhiên khi nói.",
+  ["Because of it rained, we stayed home.","Because it rained, we stayed home. / Because of the rain, …","because of đi với danh từ, không đi với mệnh đề."],
+  X_("Hai câu","Một câu","{1:It was very hot}. {2:We stayed in}.","It was {1:so hot} that {2:we stayed in}.")),
+ R_("cx-purpose","03","Purpose","Mục đích: to, in order to, so that","to V · in order to · so that",
+  "Nói <strong>để làm gì</strong>. Cùng chủ ngữ dùng to V; khác chủ ngữ hoặc có modal thì dùng so that.",
+  [["to","to V / in order to V / so as to V","I study hard <mark>in order to</mark> get a scholarship."],["not","in order not to / so as not to + V","He left early <mark>so as not to</mark> miss the bus."],["that","so that + S + can / will / could + V","I'll explain again <mark>so that</mark> everyone <mark>can</mark> understand."]],
+  [["Task 2: đề xuất giải pháp","Governments should invest in buses <mark>so that</mark> people drive less."],["Speaking: lý do làm việc gì","I'm learning English <mark>to</mark> work abroad."]],
+  ["to","in order to","so as to","so that"],5,5,"in order to và so that giúp câu rõ ý hơn trong bài viết.",
+  ["I study hard for pass the exam.","I study hard to pass the exam.","Mục đích dùng to V, không dùng for + V."],
+  X_("Hai câu","Một câu","{1:I save money}. {2:I want to buy a car}.","{1:I save money} {3:so that} {2:I can buy a car}.")),
+ R_("cx-time","04","Time clauses","Mệnh đề thời gian","when · until · as soon as",
+  "when, while, as soon as, until, before, after, by the time. Lưu ý: nói về tương lai thì <strong>vế thời gian dùng hiện tại</strong>.",
+  [["⏱","when / while / as soon as / until + S + V","Call me <mark>as soon as</mark> you arrive."],["fut","Tương lai: mệnh đề thời gian dùng hiện tại đơn / HTHT","I'll tell him <mark>when he comes</mark>."],["ing","before / after + V-ing","<mark>After finishing</mark> work, I went home."]],
+  [["Kể trình tự","<mark>While</mark> I was cooking, the phone rang."],["Kế hoạch tương lai","I'll call you <mark>after I've finished</mark> the report."]],
+  ["when","while","as soon as","until","by the time","before","after"],5,4,"Lỗi dùng will trong mệnh đề thời gian rất phổ biến, ảnh hưởng điểm Accuracy.",
+  ["I'll call you when I will arrive.","I'll call you when I arrive.","Mệnh đề thời gian không dùng will."],
+  X_("Hai câu","Một câu","{1:You will arrive}. Then {2:call me}.","{2:Call me} as soon as {1:you arrive}.")),
+ R_("cx-noun","05","Noun clauses","Mệnh đề danh từ","what · that · whether",
+  "Một mệnh đề đóng vai <strong>danh từ</strong>: làm chủ ngữ, tân ngữ hoặc bổ ngữ. Trong mệnh đề danh từ, <strong>không đảo ngữ</strong>.",
+  [["S","What / That / Whether + S + V làm chủ ngữ","<mark>What I need</mark> is more time."],["O","S + V + that / wh- / if + S + V","I don't know <mark>where he lives</mark>."],["fact","The fact that + S + V","<mark>The fact that</mark> prices are rising worries many people."],["It","It is + adj + that + S + V","<mark>It is clear that</mark> education matters."]],
+  [["Mở bài Task 2","<mark>It is often argued that</mark> university should be free."],["Nêu quan điểm khi nói","<mark>What I like most about my job</mark> is the people."]],
+  ["what","that","whether","if","the fact that","It is clear that"],4,5,"Giám khảo đánh giá cao mệnh đề danh từ làm chủ ngữ vì đây là cấu trúc phức thật sự.",
+  ["I don't know where does he live.","I don't know where he lives.","Mệnh đề danh từ giữ trật tự câu kể."],
+  X_("Câu đơn","Mệnh đề danh từ","{1:I need} {2:more time}.","What {1:I need} is {2:more time}.")),
+ R_("cx-participle","06","Participle clauses","Rút gọn mệnh đề trạng ngữ","V-ing · Having V3 · V3",
+  "Khi hai vế <strong>cùng chủ ngữ</strong>, có thể rút gọn vế phụ thành V-ing, Having V3 hoặc V3 để câu gọn và học thuật hơn.",
+  [["ing","V-ing, S + V (chủ động, cùng lúc)","<mark>Walking</mark> home, I met an old friend."],["had","Having + V3, S + V (xảy ra trước)","<mark>Having finished</mark> the report, she went home."],["V3","V3, S + V (bị động)","<mark>Built</mark> in 1990, the bridge is still strong."],["conj","When / While / After + V-ing","<mark>When asked</mark>, he refused to comment."]],
+  [["Viết gọn trong Task 2","<mark>Faced with</mark> rising costs, many families move out of cities."],["Kể chuyện","<mark>Having lost</mark> my keys, I had to wait outside."]],
+  ["V-ing,","Having V3,","When asked,","Faced with"],2,5,"Gần như chỉ dùng trong văn viết. Một hai câu rút gọn đúng chỗ giúp bài viết nghe tự nhiên ở band 7.",
+  ["Walking home, the rain started.","Walking home, I got caught in the rain.","Chủ ngữ của vế chính phải là người làm hành động ở vế rút gọn."],
+  X_("Đầy đủ","Rút gọn","{1:After she had finished} the report, {2:she} went home.","{1:Having finished} the report, {2:she} went home.")),
+ R_("cx-linkers","07","Linking words","Từ nối cho bài viết","However · Moreover · Therefore",
+  "Từ nối nối các <strong>câu và đoạn</strong> với nhau. Chú ý dấu câu: However, Therefore… đứng đầu câu và có dấu phẩy, không dùng để nối hai mệnh đề bằng dấu phẩy.",
+  [["+","Moreover, / Furthermore, / In addition,","<mark>Moreover,</mark> it reduces costs."],["≠","However, / Nevertheless, / On the other hand,","<mark>However,</mark> there are drawbacks."],["→","Therefore, / As a result, / Consequently,","<mark>As a result,</mark> pollution has fallen."],["e.g.","For example, / For instance, / such as + N","<mark>For instance,</mark> many people cycle to work."],["end","In conclusion, / Overall, / To sum up,","<mark>In conclusion,</mark> both sides have merit."]],
+  [["Mở đầu đoạn thân bài","<mark>On the one hand,</mark> … <mark>On the other hand,</mark> …"],["Task 1 tổng quan","<mark>Overall,</mark> sales increased over the period."]],
+  ["However","Moreover","Therefore","For instance","In conclusion","Overall"],3,5,"Đừng nhồi quá nhiều từ nối: band 7 dùng từ nối tự nhiên và đa dạng, không phải nhiều nhất.",
+  ["It is cheap, however it is slow.","It is cheap; however, it is slow. / It is cheap. However, it is slow.","However không nối hai mệnh đề bằng dấu phẩy."],
+  {big:"However · Moreover · Therefore · For instance"}),
+];
+
+
+CXV[3].tensesLabel="Thì trong vế thời gian"; CXV[3].tenses=[["Tương lai dùng","ps"],["Hoặc","pp"]];
+
+registerRows("complex", CXV);
+GRAMMAR.theory["complex"] = { rows: CXV, first: "cx-contrast" };
+})();

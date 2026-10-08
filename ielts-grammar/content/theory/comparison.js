@@ -1,0 +1,60 @@
+/* content/theory/compare.js: lesson data for this module (edit freely) */
+(() => {
+const CPV=[
+ R_("cp-forms","01","Comparative & superlative","So sánh hơn, so sánh nhất","-er / more · -est / most",
+  "Tính từ ngắn thêm <strong>-er / -est</strong>; tính từ dài dùng <strong>more / most</strong>; một số tính từ bất quy tắc.",
+  [["short","adj + -er (than) / the + adj + -est","tall → <mark>taller</mark> → <mark>the tallest</mark>"],["long","more / the most + adj","expensive → <mark>more expensive</mark> → <mark>the most expensive</mark>"],["y","phụ âm + y → -ier / -iest","happy → <mark>happier</mark> → <mark>the happiest</mark>"],["x2","gấp đôi phụ âm cuối","big → <mark>bigger</mark> → <mark>the biggest</mark>"],["irr","good / bad / far / little / many","<mark>better</mark>, <mark>worse</mark>, <mark>further</mark>, <mark>less</mark>, <mark>more</mark>"]],
+  [["So sánh hai đối tượng","Hanoi is <mark>colder than</mark> Ho Chi Minh City in winter."],["So sánh nhất","It's <mark>the most popular</mark> app in Vietnam."]],
+  ["than","the …est","the most","less","the least"],5,5,"Nền tảng cho Task 1. Sai dạng so sánh rất dễ bị trừ điểm Accuracy.",
+  ["It is more cheaper than before.","It is cheaper than before.","Không dùng more cùng với -er."],
+  {scale:{left:"bình thường",right:"nhất",marks:[[12,"tall"],[55,"taller than"],[95,"the tallest"]]}}),
+ R_("cp-asas","02","as … as","So sánh bằng","as … as · not as … as",
+  "<strong>as + adj / adv + as</strong> để nói hai thứ ngang nhau; not as / so … as để nói kém hơn.",
+  [["=","as + adj + as","My phone is <mark>as expensive as</mark> yours."],["<","not as / not so + adj + as","Buses are <mark>not as fast as</mark> trains."],["N","the same + N + as","She is <mark>the same age as</mark> me."],["≈","similar to / different from","My plan is <mark>similar to</mark> yours."]],
+  [["Speaking: so sánh quê và thành phố","My hometown is <mark>not as busy as</mark> Saigon."],["Task 1","Car sales were <mark>almost as high as</mark> in 2019."]],
+  ["as … as","not as … as","the same as","similar to","different from"],5,4,"not as … as là cách lịch sự để nói “kém hơn”.",
+  ["She is as tall than me.","She is as tall as me.","as … as, không trộn với than."],
+  X_("Hai câu","So sánh","{1:My phone} costs 5 million. {2:Your phone} costs 5 million.","{1:My phone} is as expensive as {2:yours}.")),
+ R_("cp-modifiers","03","Degree modifiers","Mức độ chênh lệch","slightly · considerably · far",
+  "Thêm từ chỉ mức độ trước so sánh hơn để nói <strong>chênh lệch nhiều hay ít</strong>. Rất quan trọng trong Task 1.",
+  [["small","slightly / a little / marginally + -er","Sales were <mark>slightly higher</mark> in May."],["big","considerably / significantly / much / far + -er","Rent is <mark>considerably more expensive</mark> in Hanoi."],["most","by far + the + -est","It was <mark>by far the</mark> biggest increase."]],
+  [["Task 1: mô tả chênh lệch số liệu","The figure for men was <mark>significantly higher</mark> than for women."],["Speaking","Life is <mark>much busier</mark> in the city."]],
+  ["slightly","marginally","considerably","significantly","much","far","by far"],4,5,"Chọn đúng mức độ theo số liệu giúp điểm Task Achievement và Grammar cùng tăng.",
+  ["It is very cheaper.","It is much cheaper.","Không dùng very với so sánh hơn; dùng much, far, a lot."],
+  {scale:{left:"khác ít",right:"khác nhiều",marks:[[8,"marginally"],[22,"slightly"],[55,"considerably"],[78,"much / far"],[97,"by far the …"]]}}),
+ R_("cp-double","04","The more … the more","So sánh kép","the + -er …, the + -er",
+  "Hai thay đổi <strong>tăng hoặc giảm cùng nhau</strong>. Ngoài ra, more and more / -er and -er diễn tả tăng dần.",
+  [["double","The + so sánh hơn + S + V, the + so sánh hơn + S + V","<mark>The more</mark> you practise, <mark>the more fluent</mark> you become."],["grow","so sánh hơn + and + so sánh hơn","Cities are getting <mark>bigger and bigger</mark>."],["more","more and more + adj dài / N","Life is becoming <mark>more and more expensive</mark>."]],
+  [["Task 2: quan hệ nhân quả","<mark>The more</mark> cars there are, <mark>the worse</mark> the air becomes."],["Speaking","<mark>The older</mark> I get, <mark>the more</mark> I value family."]],
+  ["the more … the more","the -er … the -er","more and more"],4,4,"Một câu so sánh kép đúng là điểm cộng rõ cho Grammatical Range.",
+  ["The more you practise, you become more fluent.","The more you practise, the more fluent you become.","Cả hai vế đều bắt đầu bằng the + so sánh hơn."],
+  X_("Thường","So sánh kép","{1:If you practise more}, {2:you become more fluent}.","{1:The more you practise}, {2:the more fluent you become}.")),
+ R_("cp-multiples","05","Multiples & fractions","Gấp bao nhiêu lần","twice as … as · half as many",
+  "Nói <strong>gấp mấy lần</strong> hoặc bằng một phần: twice, three times, half + as … as.",
+  [["x2","twice / three times + as + adj + as","Sales were <mark>twice as high as</mark> in 2010."],["x2","twice / three times + the + N + of","It cost <mark>three times the price</mark> of the old one."],["½","half / a third + as many / much + N + as","Women bought <mark>half as many</mark> cars <mark>as</mark> men."]],
+  [["Task 1: so sánh số liệu chính xác","The number of tourists in 2020 was <mark>three times</mark> that in 2000."]],
+  ["twice","three times","half","a third","double","triple"],2,5,"Dùng thay cho việc lặp lại số liệu, giúp bài Task 1 nghe tự nhiên hơn.",
+  ["Sales were twice higher than in 2010.","Sales were twice as high as in 2010.","Dùng twice as + adj + as."],
+  X_("Số liệu","So sánh","{1:Sales in 2020} were 200. {2:Sales in 2010} were 100.","{1:Sales in 2020} were twice as high as {2:those in 2010}.")),
+ R_("cp-data","06","Comparing data","Ngôn ngữ so sánh số liệu Task 1","whereas · compared with · respectively",
+  "Các cụm giúp <strong>đặt hai số liệu cạnh nhau</strong> trong một câu.",
+  [["≠","…, whereas / while …","Men spent $50, <mark>whereas</mark> women spent $30."],["cmp","compared with / in comparison to + N","<mark>Compared with</mark> 2010, prices doubled."],["resp","…, respectively","Men and women spent $50 and $30, <mark>respectively</mark>."],["share","account for / make up + %","Cars <mark>accounted for</mark> 40% of sales."]],
+  [["Câu so sánh trong thân bài","Japan had the highest rate (20%), <mark>followed by</mark> Korea (15%)."]],
+  ["whereas","compared with","respectively","account for","followed by"],1,5,"Gần như chỉ dùng cho Task 1, nhưng rất quan trọng ở đó.",
+  ["Men and women spent $50 and $30 respectively each.","Men and women spent $50 and $30, respectively.","respectively đứng cuối, có dấu phẩy trước."],
+  X_("Hai câu","Một câu","{1:Men spent $50}. {2:Women spent $30}.","{1:Men spent $50}, whereas {2:women spent $30}.")),
+ R_("cp-superlative","07","Superlative patterns","Mẫu câu so sánh nhất","one of the … + N số nhiều",
+  "Các mẫu thường dùng với so sánh nhất: <strong>one of the + nhất + N số nhiều</strong>, the second + nhất, nhất + I have ever V3.",
+  [["one","one of the + -est + N số nhiều","Hue is <mark>one of the most beautiful cities</mark> in Vietnam."],["2nd","the second / third + -est","It was <mark>the second largest</mark> market."],["ever","the + -est + N + S + have ever V3","It's <mark>the best film I've ever seen</mark>."],["least","the least + adj","It was <mark>the least popular</mark> option."]],
+  [["Speaking Part 2","It was <mark>the most memorable trip I've ever had</mark>."]],
+  ["one of the","the least","the second","I've ever"],5,4,"Mẫu “the best … I've ever …” rất hữu ích cho Speaking Part 2.",
+  ["She is one of the best student in my class.","She is one of the best students in my class.","Sau one of the + nhất là danh từ số nhiều."],
+  X_("Thường","So sánh nhất","Hue is {1:a very beautiful city}.","Hue is {1:one of the most beautiful cities} in Vietnam.")),
+];
+CPV[6].tensesLabel="Thì liên quan"; CPV[6].tenses=[["I've ever","pp"]];
+
+
+
+registerRows("compare", CPV);
+GRAMMAR.theory["compare"] = { rows: CPV, first: "cp-forms" };
+})();

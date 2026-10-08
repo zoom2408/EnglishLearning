@@ -1,0 +1,18 @@
+/* =====================================================================
+   tokens.css
+   Design tokens: color (light + dark), type, motion, layout grid.
+   Swiss style: one accent (red), neutrals, Be Vietnam Pro + JetBrains Mono.
+   ===================================================================== */
+
+/* Layout: every page uses a 3-column grid  index | name | content  (--cols). */
+:root{
+  --bg:#FFFFFF; --fg:#111111; --muted:#6E6E6E; --hair:#E4E4E4; --surface:#F5F5F3; --accent:#E2231A; --accent-soft:#FCE8E6; --ok:#1F7A4D; --ok-soft:#E3F2EA;
+  --sans:"Be Vietnam Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --ease:cubic-bezier(.22,.8,.2,1); --spring:cubic-bezier(.34,1.5,.5,1);
+  --cols:64px minmax(180px,250px) 1fr;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E0E0E; --fg:#F1F1EF; --muted:#9C9C9A; --hair:#2A2A2A; --surface:#181818; --accent:#FF4A3D; --accent-soft:#3A1411; --ok:#52C98B; --ok-soft:#15301F; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0E0E0E; --fg:#F1F1EF; --muted:#9C9C9A; --hair:#2A2A2A; --surface:#181818; --accent:#FF4A3D; --accent-soft:#3A1411; --ok:#52C98B; --ok-soft:#15301F; color-scheme:dark;}

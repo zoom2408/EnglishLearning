@@ -1,0 +1,18 @@
+/* =====================================================================
+   finder.css
+   Signal-word finder (tenses page).
+   ===================================================================== */
+/* ---------- Finder ---------- */
+.finder{display:grid;grid-template-columns:var(--cols);padding-top:20px}
+.finder>*{grid-column:2 / -1;min-width:0}
+.search{width:100%;font:inherit;font-size:clamp(22px,3.5vw,34px);font-weight:600;letter-spacing:-.02em;padding:8px 0;border:0;border-bottom:2px solid var(--fg);background:transparent;color:var(--fg);outline:none}
+.search::placeholder{color:var(--hair)}
+.search:focus{border-bottom-color:var(--accent)}
+.found{margin:18px 0 6px}
+.frow{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:16px;width:100%;padding:10px 0;border-bottom:1px solid var(--hair);align-items:center;animation:enter .4s var(--ease) both;animation-delay:calc(var(--i)*40ms)}
+.frow b{display:block;font-weight:600} .frow small{color:var(--muted);font-size:13px}
+.frow:hover b{color:var(--accent)}
+.frow:hover .m{fill:var(--accent)}
+.hint{color:var(--muted);margin:10px 0 0;max-width:62ch}
+.allsig{margin-top:32px}
+.allsig .lbl{display:block;margin-bottom:10px}

@@ -1,0 +1,135 @@
+/* content/theory/tenses.js
+   12 tenses. Loaded on every page because other modules link to tenses.
+   tl = marks on the timeline (x from 20 to 700, NOW at 360). */
+const TN={ps:"present-simple",pc:"present-continuous",pp:"present-perfect",ppc:"present-perfect-continuous",pas:"past-simple",pac:"past-continuous",pap:"past-perfect",papc:"past-perfect-continuous",fs:"future-simple",fc:"future-continuous",fp:"future-perfect",fpc:"future-perfect-continuous"};
+const CODES=Object.keys(TN);
+(() => {
+const T = [
+ {id:"present-simple",g:"present",a:0,en:"Present Simple",vi:"Hiện tại đơn",short:"V / V(s,es)",
+  core:"Diễn tả <strong>thói quen, sự thật, lịch trình</strong>: những điều đúng nói chung, không gắn với một lúc cụ thể.",
+  forms:[["+","S + V(s/es)  |  S + am/is/are + N/Adj","She <mark>works</mark> at a bank."],["−","S + do/does + not + V","She <mark>doesn't work</mark> on Sundays."],["?","Do/Does + S + V?","<mark>Does</mark> she <mark>work</mark> here?"]],
+  uses:[["Thói quen, việc lặp lại","I <mark>drink</mark> coffee every morning."],["Sự thật hiển nhiên, chân lý","Water <mark>boils</mark> at 100°C."],["Lịch trình, thời gian biểu cố định","The train <mark>leaves</mark> at 7 p.m. tonight."],["Trạng thái, cảm xúc, sở hữu (know, like, want, own…)","I <mark>know</mark> the answer."]],
+  signals:["always","usually","often","sometimes","rarely","never","every day","every week","once a week","on Mondays"],
+  speak:5,write:5,
+  reg:"Thì phổ biến nhất ở cả hai. Văn viết học thuật, báo cáo và hướng dẫn dùng để nêu sự thật, kết quả nghiên cứu, các bước thực hiện.",
+  mistake:["He go to school by bus.","He goes to school by bus.","Chủ ngữ he/she/it phải thêm s/es."],
+  tl:[{t:"dots",xs:[70,140,210,280,360,440,510,580,650]},{t:"label",x:360,y:130,s:"every day / always"}]},
+
+ {id:"present-continuous",g:"present",a:1,en:"Present Continuous",vi:"Hiện tại tiếp diễn",short:"am/is/are + V-ing",
+  core:"Diễn tả hành động <strong>đang diễn ra ngay lúc nói</strong> hoặc tạm thời quanh thời điểm hiện tại.",
+  forms:[["+","S + am/is/are + V-ing","I <mark>am studying</mark> English now."],["−","S + am/is/are + not + V-ing","They <mark>aren't watching</mark> TV."],["?","Am/Is/Are + S + V-ing?","<mark>Are</mark> you <mark>listening</mark>?"]],
+  uses:[["Đang xảy ra lúc nói","Look! It <mark>is raining</mark>."],["Tình huống tạm thời","I <mark>am living</mark> with my parents this month."],["Kế hoạch tương lai gần đã sắp xếp","We <mark>are meeting</mark> the client tomorrow."],["Phàn nàn với always","He <mark>is always losing</mark> his keys."]],
+  signals:["now","right now","at the moment","at present","currently","Look!","Listen!","this week","today"],
+  speak:5,write:3,
+  reg:"Rất tự nhiên trong hội thoại và tin nhắn. Văn viết trang trọng dùng ít hơn, chủ yếu để mô tả xu hướng đang diễn ra: “Prices are rising.”",
+  mistake:["I am knowing him.","I know him.","Động từ trạng thái (know, like, believe, own) thường không chia tiếp diễn."],
+  tl:[{t:"bar",x1:290,x2:430},{t:"label",x:360,y:130,s:"now / at the moment"}]},
+
+ {id:"present-perfect",g:"present",a:2,en:"Present Perfect",vi:"Hiện tại hoàn thành",short:"have/has + V3",
+  core:"Nối <strong>quá khứ với hiện tại</strong>: hành động đã xảy ra (không nói rõ lúc nào) và kết quả, trải nghiệm vẫn còn ý nghĩa bây giờ.",
+  forms:[["+","S + have/has + V3/ed","I <mark>have finished</mark> my report."],["−","S + have/has + not + V3/ed","She <mark>hasn't called</mark> yet."],["?","Have/Has + S + V3/ed?","<mark>Have</mark> you ever <mark>been</mark> to Japan?"]],
+  uses:[["Trải nghiệm, không rõ thời điểm","I <mark>have visited</mark> Paris twice."],["Vừa xảy ra, kết quả còn ở hiện tại","I <mark>have lost</mark> my keys. I can't get in."],["Bắt đầu trong quá khứ, kéo dài đến nay","We <mark>have known</mark> each other for 10 years."],["Đếm số lần tính đến hiện tại","This is the third time I <mark>have watched</mark> it."]],
+  signals:["just","already","yet","ever","never","recently","lately","so far","up to now","since","for","this is the first time"],
+  speak:4,write:5,
+  reg:"Văn viết như email công việc, báo chí, báo cáo dùng rất nhiều để nói về kết quả: “Sales have increased by 10%.” Trong văn nói, người Mỹ hay thay bằng quá khứ đơn với just, already.",
+  mistake:["I have seen him yesterday.","I saw him yesterday.","Có thời điểm cụ thể đã qua (yesterday, last week, in 2020) thì dùng quá khứ đơn."],
+  tl:[{t:"point",x:190,s:"đã xảy ra"},{t:"arrow",x1:205,x2:352},{t:"label",x:280,y:130,s:"kết quả còn đến bây giờ"}]},
+
+ {id:"present-perfect-continuous",g:"present",a:3,en:"Present Perfect Continuous",vi:"Hiện tại hoàn thành tiếp diễn",short:"have/has been + V-ing",
+  core:"Nhấn mạnh <strong>quá trình kéo dài</strong> từ quá khứ đến hiện tại, có thể vẫn đang tiếp tục hoặc vừa mới dừng.",
+  forms:[["+","S + have/has + been + V-ing","I <mark>have been waiting</mark> for an hour."],["−","S + have/has + not + been + V-ing","He <mark>hasn't been sleeping</mark> well."],["?","Have/Has + S + been + V-ing?","How long <mark>have</mark> you <mark>been learning</mark> English?"]],
+  uses:[["Kéo dài từ quá khứ đến nay, nhấn mạnh độ dài","She <mark>has been working</mark> here since 2020."],["Vừa dừng, còn để lại dấu hiệu","Your eyes are red. <mark>Have</mark> you <mark>been crying</mark>?"],["Hành động lặp lại gần đây","I <mark>have been going</mark> to the gym lately."]],
+  signals:["for","since","all day","all morning","how long","lately","recently"],
+  speak:4,write:2,
+  reg:"Hay dùng khi nói chuyện để giải thích hoặc phàn nàn (“I've been waiting forever!”). Văn viết trang trọng thường chuyển sang hiện tại hoàn thành cho gọn.",
+  mistake:["I have been writing three emails.","I have written three emails.","Khi đếm số lượng đã hoàn thành, dùng hiện tại hoàn thành."],
+  tl:[{t:"bar",x1:150,x2:360},{t:"label",x:255,y:130,s:"for 2 hours / since 9 a.m."}]},
+
+ {id:"past-simple",g:"past",a:0,en:"Past Simple",vi:"Quá khứ đơn",short:"V2/ed",
+  core:"Hành động <strong>đã xảy ra và kết thúc</strong> tại một thời điểm xác định trong quá khứ.",
+  forms:[["+","S + V2/ed","I <mark>visited</mark> Hanoi last year."],["−","S + did not + V","She <mark>didn't go</mark> to work yesterday."],["?","Did + S + V?","<mark>Did</mark> you <mark>see</mark> the match?"]],
+  uses:[["Đã xong, có thời điểm rõ ràng","We <mark>met</mark> in 2019."],["Chuỗi hành động nối tiếp","He <mark>came</mark> in, <mark>sat</mark> down and <mark>opened</mark> his laptop."],["Thói quen trong quá khứ","When I was a child, I <mark>walked</mark> to school."],["Điều kiện loại 2 (giả định hiện tại)","If I <mark>had</mark> more time, I would travel."]],
+  signals:["yesterday","last night","last week","last year","ago","in 2019","when I was a child","then"],
+  speak:5,write:5,
+  reg:"Thì kể chuyện chính. Truyện, tin tức, biên bản, báo cáo sự kiện đều dựa vào thì này.",
+  mistake:["Did you went to the party?","Did you go to the party?","Sau did, động từ trở về nguyên mẫu."],
+  tl:[{t:"point",x:200,s:"yesterday"}]},
+
+ {id:"past-continuous",g:"past",a:1,en:"Past Continuous",vi:"Quá khứ tiếp diễn",short:"was/were + V-ing",
+  core:"Hành động <strong>đang diễn ra tại một thời điểm</strong> trong quá khứ, thường là bối cảnh cho một hành động khác chen vào.",
+  forms:[["+","S + was/were + V-ing","I <mark>was cooking</mark> at 7 p.m. yesterday."],["−","S + was/were + not + V-ing","They <mark>weren't sleeping</mark>."],["?","Was/Were + S + V-ing?","What <mark>were</mark> you <mark>doing</mark> when I called?"]],
+  uses:[["Đang diễn ra tại thời điểm cụ thể","At 8 p.m. last night, I <mark>was studying</mark>."],["Đang diễn ra thì bị chen ngang (when + quá khứ đơn)","I <mark>was watching</mark> TV when the power went out."],["Hai hành động song song (while)","She <mark>was reading</mark> while he <mark>was cooking</mark>."],["Dựng bối cảnh trong câu chuyện","It <mark>was raining</mark> and people <mark>were rushing</mark> home."]],
+  signals:["at this time yesterday","at 8 p.m. last night","when","while","as"],
+  speak:4,write:4,
+  reg:"Dùng nhiều khi kể chuyện, cả nói lẫn viết, để dựng bối cảnh trước khi sự việc chính xảy ra.",
+  mistake:["When I was arriving, she cooked.","When I arrived, she was cooking.","Hành động ngắn chen vào dùng quá khứ đơn; hành động nền dùng tiếp diễn."],
+  tl:[{t:"bar",x1:100,x2:300},{t:"point",x:220,s:"when he called"},{t:"label",x:200,y:130,s:"was cooking"}]},
+
+ {id:"past-perfect",g:"past",a:2,en:"Past Perfect",vi:"Quá khứ hoàn thành",short:"had + V3",
+  core:"Hành động xảy ra <strong>trước một hành động hoặc mốc khác</strong> trong quá khứ. Có thể hiểu là “quá khứ của quá khứ”.",
+  forms:[["+","S + had + V3/ed","When I arrived, the train <mark>had left</mark>."],["−","S + had not + V3/ed","She <mark>hadn't eaten</mark> before the meeting."],["?","Had + S + V3/ed?","<mark>Had</mark> you <mark>met</mark> him before?"]],
+  uses:[["Xảy ra trước một hành động quá khứ khác","By the time we got there, the film <mark>had started</mark>."],["Điều kiện loại 3 (giả định quá khứ)","If I <mark>had known</mark>, I would have come."],["Câu tường thuật lùi thì","She said she <mark>had finished</mark> the report."]],
+  signals:["before","after","by the time","by + mốc quá khứ","already","just","never… before","when"],
+  speak:2,write:4,
+  reg:"Văn nói hay bỏ qua khi thứ tự đã rõ nhờ before/after (“After I ate, I left”). Văn viết, tiểu thuyết và tường thuật dùng để làm rõ việc nào xảy ra trước.",
+  mistake:["I had gone to Da Lat last summer.","I went to Da Lat last summer.","Chỉ dùng quá khứ hoàn thành khi có một mốc quá khứ thứ hai để so sánh."],
+  tl:[{t:"point",x:120,s:"① had left"},{t:"ref",x:260,s:"② I arrived"},{t:"arrow",x1:135,x2:252}]},
+
+ {id:"past-perfect-continuous",g:"past",a:3,en:"Past Perfect Continuous",vi:"Quá khứ hoàn thành tiếp diễn",short:"had been + V-ing",
+  core:"Hành động <strong>kéo dài liên tục đến trước một mốc</strong> trong quá khứ, nhấn mạnh độ dài hoặc nguyên nhân.",
+  forms:[["+","S + had been + V-ing","She <mark>had been working</mark> for 3 hours when he called."],["−","S + had not been + V-ing","I <mark>hadn't been sleeping</mark> well before the trip."],["?","Had + S + been + V-ing?","How long <mark>had</mark> you <mark>been waiting</mark>?"]],
+  uses:[["Kéo dài đến một mốc quá khứ","They <mark>had been talking</mark> for an hour before the boss arrived."],["Giải thích nguyên nhân của kết quả trong quá khứ","The ground was wet because it <mark>had been raining</mark>."]],
+  signals:["for","since","how long","before","by the time","until then","when"],
+  speak:1,write:3,
+  reg:"Ít gặp nhất trong giao tiếp. Chủ yếu xuất hiện trong văn kể chuyện, tiểu thuyết và bài viết tường thuật.",
+  mistake:["I had been knowing her for years.","I had known her for years.","Động từ trạng thái không dùng dạng tiếp diễn."],
+  tl:[{t:"bar",x1:60,x2:250},{t:"ref",x:250,s:"mốc quá khứ"},{t:"label",x:155,y:130,s:"had been working"}]},
+
+ {id:"future-simple",g:"future",a:0,en:"Future Simple",vi:"Tương lai đơn",short:"will + V",
+  core:"Hành động <strong>sẽ xảy ra</strong> trong tương lai, thường là quyết định tức thời, dự đoán hoặc lời hứa.",
+  forms:[["+","S + will + V","I <mark>will call</mark> you later."],["−","S + will not (won't) + V","It <mark>won't take</mark> long."],["?","Will + S + V?","<mark>Will</mark> you <mark>help</mark> me?"]],
+  uses:[["Quyết định ngay lúc nói","I'm thirsty. I<mark>'ll get</mark> some water."],["Dự đoán không có căn cứ rõ","I think it <mark>will rain</mark> tomorrow."],["Lời hứa, đề nghị, đe dọa","I <mark>will</mark> always <mark>love</mark> you."],["Mệnh đề chính của điều kiện loại 1","If you study, you <mark>will pass</mark>."]],
+  signals:["tomorrow","next week","in 2030","soon","I think","probably","perhaps","I'm sure"],
+  speak:5,write:4,
+  reg:"Văn nói hay rút gọn (I'll, won't) và dùng “be going to” (gonna). Văn viết trang trọng như thông báo, hợp đồng, điều khoản dùng will.",
+  extra:"<b>Will hay be going to?</b> Dùng <i>be going to</i> cho kế hoạch đã định trước (“I'm going to buy a car next month”) và dự đoán có căn cứ trước mắt (“Look at those clouds. It's going to rain”).",
+  mistake:["When I will arrive, I'll call you.","When I arrive, I'll call you.","Sau when, if, before, after, as soon as dùng hiện tại đơn dù nói về tương lai."],
+  tl:[{t:"point",x:540,s:"tomorrow"}]},
+
+ {id:"future-continuous",g:"future",a:1,en:"Future Continuous",vi:"Tương lai tiếp diễn",short:"will be + V-ing",
+  core:"Hành động <strong>sẽ đang diễn ra tại một thời điểm</strong> xác định trong tương lai.",
+  forms:[["+","S + will be + V-ing","At 9 a.m. tomorrow, I <mark>will be flying</mark> to Da Nang."],["−","S + will not be + V-ing","I <mark>won't be working</mark> next Friday."],["?","Will + S + be + V-ing?","<mark>Will</mark> you <mark>be using</mark> the car tonight?"]],
+  uses:[["Đang diễn ra tại mốc tương lai","This time next week, we <mark>will be lying</mark> on the beach."],["Hỏi kế hoạch một cách lịch sự","<mark>Will</mark> you <mark>be joining</mark> us for dinner?"],["Việc sẽ xảy ra theo lẽ thường","I<mark>'ll be seeing</mark> him at the meeting anyway."]],
+  signals:["at this time tomorrow","this time next week","at 9 a.m. next Monday","when + hiện tại đơn"],
+  speak:3,write:2,
+  reg:"Hữu ích trong giao tiếp vì nghe lịch sự, không ép buộc. Văn viết gặp trong email thông báo lịch (“We will be closing at 5 p.m.”).",
+  mistake:["At 8 tomorrow I will study.","At 8 tomorrow I will be studying.","Nói việc đang diễn ra tại một mốc giờ, dùng tiếp diễn."],
+  tl:[{t:"bar",x1:460,x2:630},{t:"ref",x:540,s:"9 a.m. tomorrow"},{t:"label",x:545,y:130,s:"will be flying"}]},
+
+ {id:"future-perfect",g:"future",a:2,en:"Future Perfect",vi:"Tương lai hoàn thành",short:"will have + V3",
+  core:"Hành động <strong>sẽ hoàn thành trước một mốc</strong> trong tương lai.",
+  forms:[["+","S + will have + V3/ed","By 2027, I <mark>will have graduated</mark>."],["−","S + will not have + V3/ed","We <mark>won't have finished</mark> by Friday."],["?","Will + S + have + V3/ed?","<mark>Will</mark> you <mark>have finished</mark> by 5 p.m.?"]],
+  uses:[["Hoàn thành trước mốc tương lai","By the end of this year, we <mark>will have launched</mark> the app."],["Trước một hành động tương lai khác","By the time you arrive, I <mark>will have cooked</mark> dinner."]],
+  signals:["by + mốc tương lai","by the time + hiện tại đơn","by then","by the end of","before"],
+  speak:2,write:3,
+  reg:"Gặp trong kế hoạch dự án, mục tiêu, deadline. Văn nói ít dùng, thường diễn đạt đơn giản hơn: “I'll finish it before Friday.”",
+  mistake:["By next week I will finish the report.","By next week I will have finished the report.","Có “by + mốc tương lai” thì ưu tiên tương lai hoàn thành."],
+  tl:[{t:"point",x:510,s:"① will have graduated"},{t:"ref",x:650,s:"② by 2027"},{t:"arrow",x1:525,x2:642}]},
+
+ {id:"future-perfect-continuous",g:"future",a:3,en:"Future Perfect Continuous",vi:"Tương lai hoàn thành tiếp diễn",short:"will have been + V-ing",
+  core:"Nhấn mạnh <strong>khoảng thời gian kéo dài</strong> của một hành động tính đến một mốc trong tương lai.",
+  forms:[["+","S + will have been + V-ing","By next June, I <mark>will have been working</mark> here for 5 years."],["−","S + will not have been + V-ing","She <mark>won't have been waiting</mark> long."],["?","Will + S + have been + V-ing?","How long <mark>will</mark> you <mark>have been studying</mark> by then?"]],
+  uses:[["Độ dài hành động tính đến mốc tương lai","In May, they <mark>will have been living</mark> here for a decade."]],
+  signals:["by + mốc tương lai + for","by the time … for","by then"],
+  speak:1,write:2,
+  reg:"Hiếm nhất. Dùng khi muốn nhấn mạnh thời gian dài, ví dụ trong phát biểu kỷ niệm hoặc bài viết tổng kết.",
+  mistake:["By June I will work here for 5 years.","By June I will have been working here for 5 years.","Cần cả “by + mốc” và “for + khoảng” để nhấn mạnh độ dài."],
+  tl:[{t:"bar",x1:250,x2:620},{t:"ref",x:620,s:"by next June"},{t:"label",x:435,y:130,s:"for 5 years"}]},
+];
+
+const TIME_ORDER = ["past","present","future"].flatMap(g=>T.filter(t=>t.g===g).sort((a,b)=>a.a-b.a));
+const ASPECT_ORDER = [0,1,2,3].flatMap(a=>["past","present","future"].map(g=>T.find(t=>t.g===g&&t.a===a)));
+TIME_ORDER.forEach((t,i)=>t.num=String(i+1).padStart(2,"0"));
+registerRows("tenses", T);
+GRAMMAR.theory.tenses = { rows: TIME_ORDER, aspectOrder: ASPECT_ORDER, first: "present-perfect" };
+})();

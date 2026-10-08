@@ -1,0 +1,51 @@
+/* content/theory/accuracy.js: lesson data for this module (edit freely) */
+(() => {
+const ACV=[
+ R_("ac-articles","01","Articles: a, an, the, Ø","Mạo từ","a / an · the · không mạo từ",
+  "a / an cho danh từ đếm được số ít nhắc lần đầu; <strong>the</strong> cho thứ đã xác định; <strong>không dùng mạo từ</strong> khi nói chung chung về danh từ số nhiều hoặc không đếm được.",
+  [["a","a / an + N đếm được số ít, nhắc lần đầu, nghề nghiệp","She is <mark>an engineer</mark>."],["the","the + N đã biết, duy nhất, so sánh nhất","<mark>The sun</mark> rises in the east."],["Ø","Nói chung: N số nhiều / không đếm được","<mark>Technology</mark> changes fast. <mark>Children</mark> need sleep."],["the","the + nhóm người (the rich, the elderly), tên nước có States / Kingdom","<mark>the elderly</mark>, <mark>the UK</mark>"]],
+  [["Task 2: nói về khái niệm chung","<mark>Education</mark> is the key to <mark>success</mark>."],["Nhắc lần đầu rồi nhắc lại","I bought <mark>a</mark> book. <mark>The</mark> book was cheap."]],
+  ["a","an","the","Ø"],5,5,"Lỗi mạo từ là lỗi phổ biến nhất của người Việt vì tiếng Việt không có mạo từ.",
+  ["The technology is changing our lives.","Technology is changing our lives.","Nói chung chung thì không dùng the."],
+  X_("Lần đầu","Lần sau","I saw {1:a} film yesterday.","{1:The} film was really boring.","Nhắc lần đầu dùng a; người nghe đã biết thì dùng the.")),
+ R_("ac-countable","02","Countable & uncountable","Danh từ đếm được và không đếm được","information · advice · research",
+  "Nhiều danh từ đếm được trong tiếng Việt nhưng <strong>không đếm được</strong> trong tiếng Anh: không thêm s, không dùng a / an.",
+  [["U","information, advice, equipment, research, knowledge, furniture, traffic, homework, news, evidence","<mark>much information</mark>, <mark>a piece of advice</mark>"],["C","many / a number of / few + N số nhiều","<mark>many students</mark>, <mark>a number of problems</mark>"],["U","much / an amount of / little + N không đếm được","<mark>a large amount of</mark> money"]],
+  [["Task 2","There is <mark>a lot of evidence</mark> that exercise helps."],["Task 1","<mark>The number of</mark> cars vs <mark>the amount of</mark> water"]],
+  ["much","many","a number of","an amount of","few","little"],5,5,"Rất hay sai trong Writing: informations, advices, researches.",
+  ["She gave me many advices.","She gave me a lot of advice.","advice không đếm được."],
+  {big:"information · advice · research · knowledge · equipment"}),
+ R_("ac-gerund","03","Gerund or infinitive","V-ing hay to V","enjoy doing · decide to do",
+  "Mỗi động từ đi với một dạng cố định. Một số động từ đi được cả hai nhưng <strong>đổi nghĩa</strong>.",
+  [["ing","enjoy, avoid, finish, mind, suggest, consider, keep, deny, admit, practise + V-ing","I <mark>enjoy reading</mark>."],["to","want, decide, plan, hope, agree, refuse, promise, afford, manage + to V","She <mark>decided to leave</mark>."],["≠","stop, remember, forget, try, regret: cả hai, đổi nghĩa","<mark>stop smoking</mark> (bỏ hút) / <mark>stop to smoke</mark> (dừng lại để hút)"],["prep","giới từ + V-ing (look forward to, be interested in, instead of)","I look forward to <mark>hearing</mark> from you."]],
+  [["Email trang trọng","I look forward to <mark>hearing</mark> from you."],["Speaking","I <mark>enjoy spending</mark> time with my family."]],
+  ["enjoy","avoid","suggest","decide","look forward to","stop","remember"],5,5,"Lỗi V-ing / to V rất dễ thấy với giám khảo.",
+  ["I look forward to hear from you.","I look forward to hearing from you.","to ở đây là giới từ, nên dùng V-ing."],
+  {big:"enjoy doing · decide to do · stop doing ≠ stop to do"}),
+ R_("ac-agreement","04","Subject–verb agreement","Hòa hợp chủ ngữ và động từ","The number of … is",
+  "Động từ chia theo <strong>chủ ngữ chính</strong>, không theo danh từ đứng gần.",
+  [["1","The number of + N số nhiều + V số ít","<mark>The number of students is</mark> rising."],["n","A number of + N số nhiều + V số nhiều","<mark>A number of students are</mark> absent."],["1","Everyone / Each / Every + V số ít","<mark>Everyone has</mark> a phone."],["1","One of the + N số nhiều + V số ít","<mark>One of my friends lives</mark> in Hue."],["U","N không đếm được + V số ít","<mark>Information is</mark> important."]],
+  [["Task 1","<mark>The number of</mark> tourists <mark>has</mark> doubled."],["Task 2","<mark>Each</mark> country <mark>has</mark> its own problems."]],
+  ["The number of","A number of","Everyone","Each","One of"],4,5,"Lỗi The number of … are xuất hiện trong rất nhiều bài Task 1.",
+  ["The number of students are increasing.","The number of students is increasing.","Chủ ngữ chính là The number (số ít)."],
+  X_("Sai","Đúng","{1:The number of students} {2:are} increasing.","{1:The number of students} {2:is} increasing.")),
+ R_("ac-hedging","05","Hedging","Nói giảm, thận trọng","may · tend to · It could be argued",
+  "Văn viết học thuật tránh khẳng định tuyệt đối. Hedging giúp quan điểm <strong>thận trọng và thuyết phục</strong> hơn.",
+  [["modal","may / might / could + V","This <mark>may</mark> lead to problems."],["verb","tend to / appear to / seem to + V","Young people <mark>tend to</mark> spend more online."],["adv","generally / arguably / to some extent","This is <mark>arguably</mark> the best solution."],["it","It could be argued that / It is likely that","<mark>It could be argued that</mark> fees are unfair."]],
+  [["Task 2: tránh khái quát quá mức","<mark>Many</mark> young people <mark>tend to</mark> rely on phones. (thay vì All young people…)"]],
+  ["may","tend to","likely","arguably","to some extent"],3,5,"Band 7 trở lên dùng hedging tự nhiên; khẳng định tuyệt đối dễ bị xem là lập luận yếu.",
+  ["All young people are addicted to phones.","Many young people tend to spend too much time on their phones.","Tránh all, always, never khi không có bằng chứng."],
+  {scale:{left:"thận trọng",right:"khẳng định",marks:[[15,"may / might"],[32,"could"],[52,"tend to / likely"],[75,"probably"],[97,"will / definitely"]]}}),
+ R_("ac-there","06","There is / are","Có: There is hay have","There are … in my city",
+  "Tiếng Việt nói “ở thành phố tôi có…”, nhưng tiếng Anh không dùng nơi chốn làm chủ ngữ của has. Dùng <strong>There is / are</strong> hoặc đổi chủ ngữ.",
+  [["there","There is / are + N + nơi chốn","<mark>There are</mark> many parks in my city."],["has","Chủ ngữ thật + has / have","My city <mark>has</mark> many parks."]],
+  [["Speaking Part 1: mô tả quê","<mark>There are</mark> lots of street food stalls in my area."]],
+  ["There is","There are","has"],5,5,"Lỗi dịch từ tiếng Việt rất phổ biến khi nói.",
+  ["In my city has many parks.","There are many parks in my city. / My city has many parks.","Không dùng In my city làm chủ ngữ."],
+  X_("Sai","Đúng","{1:In my city} {2:has} many parks.","{2:There are} many parks {1:in my city}.")),
+];
+
+
+registerRows("accuracy", ACV);
+GRAMMAR.theory["accuracy"] = { rows: ACV, first: "ac-articles" };
+})();

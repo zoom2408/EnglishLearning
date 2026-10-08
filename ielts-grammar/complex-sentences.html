@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Câu phức · Ngữ pháp tiếng Anh</title>
+  <meta name="description" content="Complex sentences: Tương phản, nguyên nhân, mục đích, mệnh đề danh từ, rút gọn, từ nối. Lý thuyết trực quan, luyện tập và trò chơi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/practice.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script>try{var t=localStorage.getItem("theme12");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body data-module="complex">
+  <div class="wrap">
+    <header class="site" id="site"></header>
+    <main class="mod" id="mod-complex">
+    <header class="mast">
+      <h1 class="long">Complex<span>.</span></h1>
+      <p class="intro">Câu phức là thứ giám khảo tìm khi chấm <b>Grammatical Range</b>. Mỗi dòng cho thấy hai câu đơn được nối thành một câu phức như thế nào.</p>
+      <nav class="tabs" role="tablist">
+        <button role="tab" data-view="learn" aria-selected="true">Lý thuyết</button>
+        <button role="tab" data-view="quiz" aria-selected="false">Luyện tập</button>
+        <i class="ink" aria-hidden="true"></i>
+      </nav>
+    </header>
+
+    <section class="view learnv" id="view-learn">
+      <div class="score" style="margin-top:22px">
+        <div class="shead"><span class="lbl">Nº</span><span class="lbl">Chủ đề</span><div class="zones plain"><span class="zl">Cấu trúc</span><span class="zr"></span></div></div>
+        <div id="rows"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-quiz" hidden><div class="quiz" id="quiz"></div></section>
+    </main>
+  </div>
+  <script src="content/modules.js"></script>
+  <script src="assets/js/core/utils.js"></script>
+  <script src="content/theory/tenses.js"></script>
+  <script src="content/theory/complex-sentences.js"></script>
+  <script src="assets/js/core/nav.js"></script>
+  <script src="assets/js/core/theme.js"></script>
+  <script src="assets/js/core/diagrams.js"></script>
+  <script src="assets/js/core/rows.js"></script>
+  <script src="assets/js/core/practice.js"></script>
+  <script src="content/quiz/complex-sentences.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

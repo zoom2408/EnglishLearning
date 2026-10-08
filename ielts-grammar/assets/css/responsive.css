@@ -1,0 +1,28 @@
+/* =====================================================================
+   responsive.css
+   Phone layout and reduced motion. Load last.
+   ===================================================================== */
+@media (max-width:760px){
+  :root{--cols:40px 1fr}
+  .mast h1{grid-column:1 / -1}
+  .mast .intro{grid-column:1 / -1}
+  .shead{grid-template-columns:1fr}
+  .shead>.lbl{display:none}
+  .rhead{grid-template-columns:40px 1fr;row-gap:0}
+  .rhead .track{grid-column:1 / -1;padding-top:0!important;padding-bottom:12px}
+  .body{grid-template-columns:1fr}
+  .body>*,.dia,.core{grid-column:1;grid-row:auto}
+  .dia{overflow-x:auto} .dia svg{min-width:540px}
+  .core{padding-right:0}
+  .sec{grid-template-columns:1fr;grid-column:1}
+  .sec>.lbl,.sec>.content{grid-column:1}
+  .sec>.lbl{margin-bottom:8px}
+  .form{grid-template-columns:20px 1fr;gap:4px 10px}
+  .form em{grid-column:2}
+  .uses,.reg{grid-template-columns:1fr}
+  .quiz,.finder{grid-template-columns:1fr}
+  .quiz>*,.finder>*{grid-column:1}
+  .frow{grid-template-columns:1fr}
+}
+@media (max-width:460px){.wrap{padding-inline:16px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;transition-delay:0s!important;animation-delay:0s!important}}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Câu điều kiện · Ngữ pháp tiếng Anh</title>
+  <meta name="description" content="Conditionals: Loại 0 đến 3, hỗn hợp, unless, đảo ngữ, từ thay If. Lý thuyết trực quan, luyện tập và trò chơi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/practice.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script>try{var t=localStorage.getItem("theme12");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body data-module="cond">
+  <div class="wrap">
+    <header class="site" id="site"></header>
+    <main class="mod" id="mod-cond">
+    <header class="mast">
+      <h1>If<span>.</span></h1>
+      <p class="intro">Mỗi câu điều kiện là một cặp <b>điều kiện → kết quả</b> đặt trên cùng trục thời gian. Hình tròn là điều kiện, hình vuông là kết quả, nét đứt nghĩa là không có thật.</p>
+      <nav class="tabs" role="tablist">
+        <button role="tab" data-view="learn" aria-selected="true">Lý thuyết</button>
+        <button role="tab" data-view="quiz" aria-selected="false">Luyện tập</button>
+        <i class="ink" aria-hidden="true"></i>
+      </nav>
+    </header>
+
+    <section class="view learnv" id="view-learn">
+      <div class="controls">
+        <div class="seg legend" aria-hidden="true"><span class="lbl">Ký hiệu</span>
+          <span class="lg"><i class="dot"></i>điều kiện</span><span class="lg"><i class="sq"></i>kết quả</span><span class="lg"><i class="dot hollow"></i>không có thật</span>
+        </div>
+        <div class="seg" id="cfilter"><span class="lbl">Lọc</span>
+          <button data-cf="all" aria-pressed="true">Tất cả</button>
+          <button data-cf="real" aria-pressed="false">Có thật</button>
+          <button data-cf="unreal" aria-pressed="false">Không có thật</button>
+        </div>
+      </div>
+      <div class="score">
+        <div class="shead">
+          <span class="lbl">Loại</span><span class="lbl">Câu điều kiện</span>
+          <div class="zones"><span class="zl">← Quá khứ</span><span class="zn">Bây giờ</span><span class="zr">Tương lai →</span></div>
+        </div>
+        <div id="rows"></div>
+      </div>
+      <div class="vhead"><span class="lbl">Biến thể &amp; mở rộng</span></div>
+      <div class="score vscore"><div id="vrows"></div></div>
+    </section>
+
+    <section class="view" id="view-quiz" hidden><div class="quiz" id="quiz"></div></section>
+    </main>
+  </div>
+  <script src="content/modules.js"></script>
+  <script src="assets/js/core/utils.js"></script>
+  <script src="content/theory/tenses.js"></script>
+  <script src="content/theory/conditionals.js"></script>
+  <script src="assets/js/core/nav.js"></script>
+  <script src="assets/js/core/theme.js"></script>
+  <script src="assets/js/core/diagrams.js"></script>
+  <script src="assets/js/core/rows.js"></script>
+  <script src="assets/js/core/practice.js"></script>
+  <script src="content/quiz/conditionals.js"></script>
+  <script src="assets/js/pages/conditionals.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
