@@ -1,149 +1,47 @@
 /* content/quiz/tenses.js: practice questions and game for this module.
-   mcQ(type, prompt, hint, right, [wrong…], lessonId, explanation)
-   inQ(type, prompt, hint, [accepted answers], lessonId, explanation) */
+   Single exercise type: context sentences at an advanced (HSG) level,
+   type the correct form of the verb in brackets. Wrong answers can be
+   retried (retry:true) instead of being revealed immediately. */
 (() => {
-const Q = [
- ["Look! The baby ___ .","sleep",["sleeps","is sleeping","has slept","slept"],1,"present-continuous","“Look!” báo hiệu việc đang diễn ra ngay lúc nói."],
- ["She ___ to Japan three times so far.","be",["went","has been","was going","had been"],1,"present-perfect","“so far” và đếm số lần tính đến hiện tại: hiện tại hoàn thành."],
- ["I ___ my keys yesterday.","lose",["lost","have lost","had lost","was losing"],0,"past-simple","“yesterday” là thời điểm xác định đã qua: quá khứ đơn."],
- ["When I got to the station, the train ___ .","already / leave",["already left","has already left","had already left","was already leaving"],2,"past-perfect","Tàu rời đi trước khi tôi đến (một mốc quá khứ khác): quá khứ hoàn thành."],
- ["Water ___ at 100°C.","boil",["is boiling","boils","will boil","has boiled"],1,"present-simple","Sự thật hiển nhiên: hiện tại đơn."],
- ["By the end of this year, we ___ the app.","launch",["will launch","are launching","will have launched","have launched"],2,"future-perfect","“By the end of this year” là mốc tương lai, việc hoàn thành trước mốc đó."],
- ["I ___ TV when the power went out.","watch",["watched","was watching","have watched","had watched"],1,"past-continuous","Việc đang diễn ra thì bị việc khác chen vào (when + quá khứ đơn)."],
- ["How long ___ for the bus? Over an hour now!","you / wait",["did you wait","are you waiting","have you been waiting","had you waited"],2,"present-perfect-continuous","“How long” + vẫn đang chờ đến bây giờ: nhấn mạnh quá trình kéo dài."],
- ["This time tomorrow, I ___ on the beach.","lie",["will lie","will be lying","will have lain","am lying"],1,"future-continuous","“This time tomorrow”: đang diễn ra tại một mốc tương lai."],
- ["A: The phone is ringing. B: I ___ it.","get",["'ll get","'m going to get","get","got"],0,"future-simple","Quyết định ngay lúc nói: will."],
- ["By next month, she ___ here for ten years.","work",["will work","will have worked","will have been working","has been working"],2,"future-perfect-continuous","“By + mốc tương lai” + “for ten years”: nhấn mạnh độ dài đến mốc đó."],
- ["He was exhausted because he ___ for hours.","run",["ran","had been running","has been running","was running"],1,"past-perfect-continuous","Nguyên nhân kéo dài trước một kết quả trong quá khứ."],
- ["She usually ___ coffee in the morning.","drink",["drinks","is drinking","drank","has drunk"],0,"present-simple","“usually” chỉ thói quen: hiện tại đơn."],
- ["We ___ the client at 10 tomorrow. It's in my calendar.","meet",["meet","will meet","are meeting","will have met"],2,"present-continuous","Kế hoạch đã sắp xếp cụ thể trong tương lai gần: hiện tại tiếp diễn."],
- ["I ___ him since we were at university.","know",["knew","have known","have been knowing","am knowing"],1,"present-perfect","“since” + động từ trạng thái know: hiện tại hoàn thành, không dùng tiếp diễn."],
- ["When I ___ home, I'll call you.","get",["will get","get","got","am getting"],1,"present-simple","Sau when trong mệnh đề thời gian nói về tương lai, dùng hiện tại đơn."],
-];
-
-// 1. Dấu hiệu nhận biết (20): [câu, động từ, đáp án, [nhiễu], giải thích]
-const SIG=[
- ["I ___ (go) to the gym **every Monday**.","go","ps",["pc","pas","pp"],"“every + thời gian” chỉ thói quen lặp lại."],
- ["Be quiet! The baby ___ (sleep) **right now**.","sleep","pc",["ps","pp","fs"],"“right now” là việc đang diễn ra ngay lúc nói."],
- ["We ___ (move) to Da Nang **two years ago**.","move","pas",["pp","ps","pap"],"“ago” gắn với một mốc đã qua và kết thúc."],
- ["She ___ (**just** finish) her homework.","finish","pp",["pas","pc","pap"],"“just” nói việc vừa xong, kết quả còn ở hiện tại."],
- ["**By the time** we arrived, the film ___ (start).","start","pap",["pas","pp","pac"],"“By the time + quá khứ đơn”: việc kia đã xong trước đó."],
- ["**This time tomorrow**, I ___ (fly) to Tokyo.","fly","fc",["fs","pc","fp"],"“This time tomorrow” là một thời điểm tương lai, việc đang diễn ra lúc đó."],
- ["**By 2030**, they ___ (build) the new metro line.","build","fp",["fs","fc","pp"],"“By + mốc tương lai” chỉ việc hoàn thành trước mốc đó."],
- ["I ___ (wait) here **for two hours** and the bus still hasn't come.","wait","ppc",["pac","pas","ps"],"“for two hours” và việc vẫn còn tiếp diễn đến bây giờ."],
- ["**At 8 p.m. last night**, I ___ (watch) a movie.","watch","pac",["pas","pc","pap"],"Một giờ cụ thể trong quá khứ, việc đang diễn ra lúc đó."],
- ["**I think** it ___ (rain) **tomorrow**.","rain","fs",["pc","ps","fc"],"“I think” + tương lai: dự đoán với will."],
- ["He **rarely** ___ (eat) fast food.","eat","ps",["pc","pas","pp"],"Trạng từ tần suất (rarely, often, usually) đi với hiện tại đơn."],
- ["**Look!** The bus ___ (come).","come","pc",["ps","fs","pp"],"“Look!” kéo sự chú ý vào việc đang xảy ra."],
- ["They ___ (not finish) the project **yet**.","finish","pp",["pas","pc","ps"],"“yet” trong câu phủ định: chưa xong tính đến hiện tại."],
- ["**By next June**, I ___ (work) here **for five years**.","work","fpc",["fp","ppc","fc"],"“By + mốc tương lai” cộng “for + khoảng”: nhấn mạnh độ dài đến mốc đó."],
- ["She was tired because she ___ (run) **for an hour**.","run","papc",["pac","ppc","pap"],"Một việc kéo dài trước một kết quả trong quá khứ."],
- ["**Last summer**, we ___ (visit) Hoi An.","visit","pas",["pp","pap","pac"],"“Last summer” là mốc quá khứ xác định."],
- ["**While** I ___ (cook), the phone rang.","cook","pac",["pas","pc","pap"],"“While” đi với hành động nền đang diễn ra, bị một việc khác chen vào."],
- ["**So far**, I ___ (read) three books this month.","read","pp",["pas","ps","ppc"],"“So far” và đếm số lượng tính đến hiện tại."],
- ["Water **always** ___ (boil) at 100°C.","boil","ps",["pc","fs","pp"],"Sự thật hiển nhiên dùng hiện tại đơn."],
- ["**Currently**, she ___ (live) with her aunt.","live","pc",["ps","pp","pas"],"“Currently” chỉ tình huống tạm thời đang diễn ra."],
-];
-
-// 2. Chia thì (20): Q cũ (16) + 4 câu mới
-const CONJ=Q.concat([
- ["If it ___ tomorrow, we will stay home.","rain",["rains","will rain","rained","is raining"],0,"present-simple","Điều kiện loại 1: mệnh đề if dùng hiện tại đơn."],
- ["My father ___ for this company since 2010.","work",["works","worked","has worked","is working"],2,"present-perfect","“since 2010” và vẫn đang làm: hiện tại hoàn thành."],
- ["I ___ dinner when you called me.","have",["had","was having","have had","am having"],1,"past-continuous","Đang ăn thì cuộc gọi chen vào."],
- ["She said she ___ the film before.","see",["saw","has seen","had seen","sees"],2,"past-perfect","Câu tường thuật lùi thì: has seen thành had seen."],
-]);
-
-// 3. Phủ định & câu hỏi (20): [yêu cầu, câu gốc, đáp án đúng, [sai], thì, giải thích]
-const TR=[
- ["N","She works on Sundays.","She doesn't work on Sundays.",["She doesn't works on Sundays.","She don't work on Sundays.","She isn't work on Sundays."],"ps","Sau does/doesn't, động từ về nguyên mẫu."],
- ["Q","They play football every weekend.","Do they play football every weekend?",["Does they play football every weekend?","Are they play football every weekend?","Do they plays football every weekend?"],"ps","They đi với do, động từ giữ nguyên mẫu."],
- ["N","I went to the market yesterday.","I didn't go to the market yesterday.",["I didn't went to the market yesterday.","I wasn't go to the market yesterday.","I don't went to the market yesterday."],"pas","didn't + V nguyên mẫu, không chia went."],
- ["Q","He has finished his report.","Has he finished his report?",["Does he has finished his report?","Have he finished his report?","Did he finished his report?"],"pp","Đảo has lên trước chủ ngữ, giữ V3."],
- ["N","We are watching TV.","We aren't watching TV.",["We don't watching TV.","We aren't watch TV.","We not are watching TV."],"pc","Thêm not sau am/is/are, giữ V-ing."],
- ["Q","She was sleeping at 10 p.m.","Was she sleeping at 10 p.m.?",["Did she sleeping at 10 p.m.?","Were she sleeping at 10 p.m.?","Was she sleep at 10 p.m.?"],"pac","Đảo was lên trước she, giữ V-ing."],
- ["N","They will come to the party.","They won't come to the party.",["They willn't come to the party.","They will not to come to the party.","They don't will come to the party."],"fs","will not viết tắt là won't."],
- ["Where","You live in Hanoi.","Where do you live?",["Where you live?","Where are you live?","Where does you live?"],"ps","Từ để hỏi + do/does + S + V."],
- ["N","He had left before I arrived.","He hadn't left before I arrived.",["He didn't had left before I arrived.","He hadn't leave before I arrived.","He has not left before I arrived."],"pap","had not + V3."],
- ["Q","It is raining outside.","Is it raining outside?",["Does it raining outside?","Is it rain outside?","Do it is raining outside?"],"pc","Đảo is lên đầu câu."],
- ["What","She bought a new phone.","What did she buy?",["What did she bought?","What she bought?","What does she bought?"],"pas","Có did thì động từ chính về nguyên mẫu: buy."],
- ["N","I have been working all day.","I haven't been working all day.",["I haven't being working all day.","I don't have been working all day.","I hasn't been working all day."],"ppc","have not + been + V-ing."],
- ["Q","They will be travelling this time next week.","Will they be travelling this time next week?",["Will they travelling this time next week?","Are they will be travelling this time next week?","Do they will be travelling this time next week?"],"fc","Chỉ đảo will lên đầu, giữ be + V-ing."],
- ["N","My brother likes coffee.","My brother doesn't like coffee.",["My brother don't like coffee.","My brother doesn't likes coffee.","My brother isn't like coffee."],"ps","Chủ ngữ số ít dùng doesn't, động từ bỏ s."],
- ["How long","You have known her for years.","How long have you known her?",["How long do you know her?","How long have you know her?","How long you have known her?"],"pp","How long + have + S + V3."],
- ["N","We were playing chess.","We weren't playing chess.",["We didn't playing chess.","We wasn't playing chess.","We weren't play chess."],"pac","We đi với were, phủ định là weren't."],
- ["Q","She will have finished by 5 p.m.","Will she have finished by 5 p.m.?",["Will she has finished by 5 p.m.?","Has she will finished by 5 p.m.?","Will she have finish by 5 p.m.?"],"fp","Sau will luôn là have (không phải has)."],
- ["N","The train leaves at 7.","The train doesn't leave at 7.",["The train don't leave at 7.","The train doesn't leaves at 7.","The train not leaves at 7."],"ps","The train là số ít: doesn't + V."],
- ["Why","He was late.","Why was he late?",["Why did he was late?","Why he was late?","Why was he lated?"],"pas","Với to be, chỉ cần đảo was lên trước chủ ngữ."],
- ["Who","Somebody called you.","Who called you?",["Who did called you?","Who you called?","Whom called you?"],"pas","Hỏi chủ ngữ thì không dùng trợ động từ, giữ called."],
-];
-
-// 4. Điền vào chỗ trống (20): [câu, gợi ý, [đáp án chấp nhận], thì, giải thích]
+// Điền vào chỗ trống (28): [câu, gợi ý, [đáp án chấp nhận], thì, giải thích]
 const FILL=[
- ["My mother ___ (cook) dinner every evening.","cook",["cooks"],"ps","every evening là thói quen; chủ ngữ số ít thêm s."],
- ["Listen! Someone ___ (knock) at the door.","knock",["is knocking"],"pc","Listen! báo hiệu việc đang xảy ra."],
- ["We ___ (not / see) him since last Christmas.","not / see",["have not seen"],"pp","since + mốc: hiện tại hoàn thành."],
- ["I ___ (buy) this laptop two years ago.","buy",["bought"],"pas","ago: quá khứ đơn. buy là bất quy tắc: bought."],
- ["When I came home, my sister ___ (do) her homework.","do",["was doing"],"pac","Việc đang diễn ra khi tôi về."],
- ["She ___ (study) English for three years now.","study",["has been studying","has studied"],"ppc","for three years now: kéo dài đến hiện tại."],
- ["By the time the police arrived, the thief ___ (escape).","escape",["had escaped"],"pap","Xảy ra trước một mốc quá khứ."],
- ["Don't worry. I ___ (help) you with the boxes.","help",["will help"],"fs","Đề nghị giúp đỡ ngay lúc nói: will."],
- ["This time next month, we ___ (live) in our new flat.","live",["will be living"],"fc","Đang diễn ra tại một mốc tương lai."],
- ["By Friday, I ___ (finish) all my exams.","finish",["will have finished"],"fp","By + mốc tương lai: tương lai hoàn thành."],
- ["Have you ever ___ (be) to Hue?","be",["been"],"pp","Have + V3. be có V3 là been."],
- ["He ___ (not / like) spicy food.","not / like",["does not like"],"ps","Sở thích chung: hiện tại đơn, he đi với doesn't."],
- ["They ___ (play) tennis when it started to rain.","play",["were playing"],"pac","Đang chơi thì mưa chen vào."],
- ["The kids are dirty because they ___ (play) in the garden.","play",["have been playing"],"ppc","Vừa dừng, để lại dấu hiệu ở hiện tại."],
- ["He ___ (work) at the bank for ten years before he retired.","work",["had worked","had been working"],"pap","Kéo dài trước một mốc quá khứ (retired)."],
- ["Look at those dark clouds! It ___ (rain).","rain",["is going to rain"],"fs","Dự đoán có căn cứ trước mắt: be going to."],
- ["The sun ___ (rise) in the east.","rise",["rises"],"ps","Sự thật hiển nhiên."],
- ["So far today, I ___ (write) five emails.","write",["have written"],"pp","So far + đếm số lượng. write có V3 là written."],
- ["By next year, she ___ (teach) here for twenty years.","teach",["will have been teaching","will have taught"],"fpc","By + mốc tương lai + for + khoảng thời gian."],
- ["What were you ___ (do) at 9 p.m. last night?","do",["doing"],"pac","were + V-ing: quá khứ tiếp diễn."],
-];
-
-// 5. Dạng động từ (20): [nhóm, gốc, [đáp án], quy tắc]
-const VF=[
- ["V-s/es (he, she, it)","watch",["watches"],"Tận cùng ch, sh, s, x, o, z: thêm es."],
- ["V-s/es (he, she, it)","go",["goes"],"Tận cùng o: thêm es."],
- ["V-s/es (he, she, it)","study",["studies"],"Phụ âm + y: đổi y thành ies."],
- ["V-s/es (he, she, it)","play",["plays"],"Nguyên âm + y: chỉ thêm s."],
- ["V-s/es (he, she, it)","fix",["fixes"],"Tận cùng x: thêm es."],
- ["V-s/es (he, she, it)","have",["has"],"Bất quy tắc: have thành has."],
- ["V-ing","run",["running"],"Một nguyên âm + một phụ âm ở âm tiết nhấn: gấp đôi phụ âm cuối."],
- ["V-ing","make",["making"],"Tận cùng e câm: bỏ e rồi thêm ing."],
- ["V-ing","lie",["lying"],"Tận cùng ie: đổi thành y rồi thêm ing."],
- ["V-ing","swim",["swimming"],"Gấp đôi m vì có một nguyên âm + một phụ âm."],
- ["V-ing","open",["opening"],"Trọng âm ở âm đầu (O-pen) nên không gấp đôi n."],
- ["V2 có quy tắc","stop",["stopped"],"Gấp đôi phụ âm cuối rồi thêm ed."],
- ["V2 có quy tắc","try",["tried"],"Phụ âm + y: đổi y thành ied."],
- ["V2 có quy tắc","plan",["planned"],"Gấp đôi n rồi thêm ed."],
- ["V2 bất quy tắc","think",["thought"],"think, thought, thought."],
- ["V2 bất quy tắc","buy",["bought"],"buy, bought, bought."],
- ["V2 bất quy tắc","teach",["taught"],"teach, taught, taught."],
- ["V3 bất quy tắc","write",["written"],"write, wrote, written."],
- ["V3 bất quy tắc","be",["been"],"be, was/were, been."],
- ["V3 bất quy tắc","eat",["eaten"],"eat, ate, eaten."],
+ ["A seasoned negotiator rarely ___ (reveal) their true intentions until the final stage of a deal.","reveal",["reveals"],"ps","Chủ ngữ số ít + rarely (trạng từ tần suất): hiện tại đơn, thêm s."],
+ ["Photosynthesis ___ (occur) when plants convert sunlight into chemical energy.","occur",["occurs"],"ps","Quy luật khoa học, sự thật hiển nhiên: hiện tại đơn."],
+ ["The committee is reviewing dozens of applications, so please be patient while the shortlist ___ (take shape).","take shape",["is taking shape"],"pc","Việc đang hình thành ngay trong lúc nói, song song với vế đang diễn ra kia."],
+ ["Owing to the renovation, the school ___ (operate) out of a temporary building this term.","operate",["is operating"],"pc","Tình huống tạm thời quanh hiện tại, giới hạn trong “this term”."],
+ ["Despite repeated warnings from environmentalists, deforestation ___ (not slow down) in the region.","not / slow down",["has not slowed down"],"pp","Kết quả tính đến hiện tại, không có mốc thời gian cụ thể nào được nhắc tới."],
+ ["The research team ___ (publish) three papers on climate resilience so far this year.","publish",["has published"],"pp","“so far this year” và đếm số lượng tính đến hiện tại: hiện tại hoàn thành."],
+ ["Local authorities ___ (negotiate) with the factory owners for months, yet no agreement has been reached.","negotiate",["have been negotiating","have negotiated"],"ppc","“for months” nhấn mạnh một quá trình kéo dài chưa đi đến kết quả."],
+ ["Her eyes are bloodshot because she ___ (stare) at the screen for hours without a break.","stare",["has been staring","has stared"],"ppc","Nguyên nhân là một quá trình kéo dài, dấu hiệu còn thấy rõ ở hiện tại."],
+ ["The two nations ___ (sign) a landmark treaty in 1954 that redrew their shared border.","sign",["signed"],"pas","“in 1954” là mốc thời gian xác định đã kết thúc: quá khứ đơn."],
+ ["Scientists initially ___ (dismiss) the hypothesis before later evidence vindicated it.","dismiss",["dismissed"],"pas","Chuỗi sự việc đã xảy ra và kết thúc trong quá khứ, không liên quan đến hiện tại."],
+ ["While the delegates ___ (debate) the new policy, protesters gathered outside the building.","debate",["were debating"],"pac","Hành động nền đang diễn ra thì một sự việc khác xảy ra song song (while)."],
+ ["At the exact moment the alarm went off, half the staff ___ (still / work) overtime.","still / work",["were still working"],"pac","Đang diễn ra tại một thời điểm cụ thể trong quá khứ, bị việc khác (alarm went off) chen vào."],
+ ["By the time investigators arrived at the scene, the perpetrators ___ (already / flee) the country.","already / flee",["had already fled"],"pap","Xảy ra và hoàn tất trước một mốc quá khứ khác (investigators arrived)."],
+ ["She admitted that she ___ (never / read) the original manuscript before writing her critique.","never / read",["had never read"],"pap","Việc chưa từng xảy ra tính đến trước một hành động quá khứ khác (writing her critique)."],
+ ["The athlete collapsed because she ___ (push) her body beyond its limits for weeks leading up to the race.","push",["had been pushing"],"papc","Một quá trình kéo dài trước một kết quả trong quá khứ (collapsed)."],
+ ["By the time the negotiations finally collapsed, both sides ___ (argue) over the same clause for nearly a year.","argue",["had been arguing"],"papc","“By the time” + “for nearly a year”: nhấn mạnh độ dài kéo dài đến trước mốc quá khứ đó."],
+ ["Given current migration trends, analysts believe urban populations ___ (continue) to rise well into the next decade.","continue",["will continue"],"fs","Dự đoán dựa trên suy luận, lập luận chung chung (không phải bằng chứng trước mắt): will."],
+ ["If the printer jams again, I ___ (sort) it out myself rather than waiting for IT support.","sort",["will sort","'ll sort"],"fs","Mệnh đề điều kiện loại 1: mệnh đề chính dùng will cho quyết định ngay lúc nói."],
+ ["This time next year, graduates from this programme ___ (probably / work) in research labs across the country.","probably / work",["will probably be working"],"fc","“This time next year” là một mốc tương lai, việc đang diễn ra tại mốc đó."],
+ ["At this time tomorrow, the committee ___ (still / deliberate) over the final proposal.","still / deliberate",["will still be deliberating"],"fc","Đang diễn ra tại một thời điểm xác định trong tương lai."],
+ ["By the time this report reaches your desk, the market ___ (already / shift) significantly.","already / shift",["will have already shifted"],"fp","“By the time” + mốc tương lai: việc đã hoàn thành trước mốc đó."],
+ ["She is confident that by December, her startup ___ (secure) its second round of funding.","secure",["will have secured"],"fp","“By + mốc tương lai”: tương lai hoàn thành."],
+ ["By the time she retires next spring, Dr. Linh ___ (teach) at this university for over three decades.","teach",["will have been teaching"],"fpc","“By + mốc tương lai” + khoảng thời gian kéo dài: tương lai hoàn thành tiếp diễn."],
+ ["By next June, the construction crew ___ (work) on this bridge for exactly two years.","work",["will have been working"],"fpc","Nhấn mạnh độ dài công việc tính đến một mốc tương lai cụ thể."],
+ ["Whatever the outcome ___ (be), the board has already committed to the new strategy.","be",["is"],"ps","Mệnh đề nhượng bộ với whatever nói về tương lai vẫn dùng hiện tại đơn, giống mệnh đề if/when."],
+ ["Unless the funding ___ (arrive) by Friday, the project will have to be postponed.","arrive",["arrives"],"ps","Sau unless/if nói về tương lai, dùng hiện tại đơn ở mệnh đề điều kiện."],
+ ["I ___ (meet) the ambassador once, back when he was still a junior diplomat.","meet",["met"],"pas","Có mốc quá khứ xác định (“back when he was still a junior diplomat”) nên dùng quá khứ đơn, không phải hiện tại hoàn thành."],
+ ["This is the first time the committee ___ (consider) such a controversial amendment.","consider",["has considered"],"pp","Cấu trúc “This is the first time” luôn đi với hiện tại hoàn thành."],
 ];
 
 const TYPES={
- sig:{name:"Dấu hiệu nhận biết",desc:"Nhìn từ gạch chân, chọn thì phù hợp"},
- conj:{name:"Chia thì",desc:"Chọn dạng động từ đúng cho câu"},
- tr:{name:"Phủ định & câu hỏi",desc:"Chọn câu biến đổi đúng ngữ pháp"},
- fill:{name:"Điền vào chỗ trống",desc:"Tự gõ động từ đã chia"},
- verb:{name:"Dạng động từ",desc:"V-s/es, V-ing, V2, V3, có và bất quy tắc"},
+ fill:{name:"Điền vào chỗ trống",desc:"Câu ngữ cảnh nâng cao, gõ dạng đúng của động từ"},
 };
 const POOL=[];
-SIG.forEach(([s,v,a,ds,ex])=>POOL.push({type:"sig",kind:"mc",prompt:fmt(s),hint:"Câu này dùng thì nào?",options:[a,...ds].map(c=>tLabel(TN[c])),plain:byId[TN[a]].vi,answer:0,tense:TN[a],expl:ex}));
-CONJ.forEach(q=>POOL.push({type:"conj",kind:"mc",prompt:fmt(q[0]),hint:`Động từ gốc: <b>${esc(q[1])}</b>`,options:q[2].map(o=>`<span class="mono">${esc(o)}</span>`),plain:q[2][q[3]],answer:q[3],tense:q[4],expl:q[5]}));
-TR.forEach(([m,b,r,w,c,ex])=>{
-  const ask=m==="N"?"Chuyển sang phủ định":m==="Q"?"Chuyển sang câu hỏi Yes/No":`Đặt câu hỏi với “${m}”`;
-  POOL.push({type:"tr",kind:"mc",prompt:`<span class="ask">${ask}</span>${esc(b)}`,hint:"Chọn câu đúng ngữ pháp.",options:[r,...w].map(esc),plain:r,answer:0,tense:TN[c],expl:ex});
-});
-FILL.forEach(([s,v,acc,c,ex])=>POOL.push({type:"fill",kind:"input",prompt:fmt(s.replace(/ \(.+?\)/,"")),hint:`Gợi ý: <b>${esc(v)}</b>. Gõ phần điền vào chỗ trống.`,accept:acc,plain:acc[0],tense:TN[c],expl:ex}));
-VF.forEach(([g,b,acc,ex])=>POOL.push({type:"verb",kind:"input",prompt:`<span class="ask">${esc(g)}</span><span class="mono big">${esc(b)}</span> <span class="arrow">→</span> <span class="blank"></span>`,hint:"Gõ dạng đúng của động từ.",accept:acc,plain:acc[0],tense:null,expl:ex}));
-
-
+FILL.forEach(([s,v,acc,c,ex])=>POOL.push({type:"fill",kind:"input",retry:true,prompt:fmt(s.replace(/ \(.+?\)/,"")),hint:`Gợi ý: <b>${esc(v)}</b>. Gõ phần điền vào chỗ trống.`,accept:acc,plain:acc[0],tense:TN[c],expl:ex}));
 POOL.forEach(q=>q.ref=q.tense);
+
 const RUSH=[
  ["usually",["ps"]],["often",["ps"]],["always",["ps"]],["sometimes",["ps"]],["seldom",["ps"]],["every day",["ps"]],["once a week",["ps"]],["on Mondays",["ps"]],["twice a month",["ps"]],
  ["never",["ps","pp"],"never chỉ thói quen (hiện tại đơn) hoặc chưa từng tính đến nay (hiện tại hoàn thành)."],

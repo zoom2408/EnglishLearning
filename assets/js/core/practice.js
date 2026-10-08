@@ -37,7 +37,7 @@ function Practice(cfg){
   }
   function renderQ(){
     const R=P.run; if(R.i>=R.qs.length) return result();
-    const q=R.qs[R.i]; R.done=false;
+    const q=R.qs[R.i]; R.done=false; R.attempts=0;
     R.order=q.kind==="mc"?shuffle(q.options.map((_,k)=>k)):null;
     el.innerHTML=`<div class="qmeta"><button class="back" data-menu>← Dạng bài</button><span>${String(R.i+1).padStart(2,"0")} / ${R.qs.length}</span><div class="bar"><i style="width:${R.i/R.qs.length*100}%"></i></div><span>Đúng ${R.score}</span></div>
      <span class="lbl qtype">${cfg.types[q.type].name}</span>
@@ -51,16 +51,31 @@ function Practice(cfg){
     else { const f=q$(".typein"); f.onsubmit=ev=>{ev.preventDefault(); const v=q$(".ans").value; if(v.trim()) check(v);}; q$(".ans").focus({preventScroll:true}); }
   }
   function check(val){
-    const R=P.run; if(!R||R.done) return; R.done=true;
+    const R=P.run; if(!R||R.done) return;
     const q=R.qs[R.i]; let ok;
+    if(q.kind==="mc") ok=val===q.answer;
+    else ok=q.accept.some(a=>norm(a)===norm(val));
+
+    if(!ok && q.retry){
+      R.attempts++;
+      if(q.kind==="mc"){
+        const b=el.querySelector(`.opt[data-k="${val}"]`); if(b){ b.disabled=true; b.classList.add("wrong"); }
+      } else {
+        const inp=q$(".ans"); inp.classList.add("wrong");
+        setTimeout(()=>{ inp.classList.remove("wrong"); inp.value=""; inp.focus({preventScroll:true}); },350);
+      }
+      q$(".explain-slot").innerHTML=`<div class="explain retry"><div class="verdict no">Chưa đúng, thử lại.</div></div>`;
+      return;
+    }
+    R.done=true;
+
     if(q.kind==="mc"){
-      ok=val===q.answer;
       el.querySelectorAll(".opt").forEach(b=>{ b.disabled=true; const k=+b.dataset.k; if(k===q.answer) b.classList.add("right"); else if(k===val) b.classList.add("wrong"); });
     } else {
-      ok=q.accept.some(a=>norm(a)===norm(val));
       const inp=q$(".ans"); inp.readOnly=true; inp.classList.add(ok?"right":"wrong"); q$(".typein .btn").disabled=true;
     }
-    if(ok) R.score++; else R.missed.push({q,given:q.kind==="mc"?null:val});
+    if(ok){ R.score++; if(R.attempts>0) R.missed.push({q,given:null,retried:true}); }
+    else R.missed.push({q,given:q.kind==="mc"?null:val});
     const t=q.ref?byId[q.ref]:null;
     const ansTxt=q.kind==="input"?q.accept.join(" / "):q.plain;
     q$(".explain-slot").innerHTML=`<div class="explain"><div class="verdict ${ok?'':'no'}">${ok?'Chính xác.':'Chưa đúng. Đáp án: “'+esc(ansTxt)+'”.'}</div>

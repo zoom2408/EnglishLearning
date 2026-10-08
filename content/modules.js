@@ -10,7 +10,7 @@ const MODULES = [
   "en": "Tenses",
   "prefix": "",
   "desc": "Trục thời gian, cấu trúc, dấu hiệu, văn nói và văn viết",
-  "meta": "12 bài · 100 câu · trò chơi"
+  "meta": "12 bài · 28 câu · trò chơi"
  },
  {
   "key": "cond",
