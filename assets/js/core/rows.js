@@ -7,7 +7,7 @@ const LV=["","Hiếm","Ít","Vừa","Nhiều","Rất nhiều"];
 const meter=n=>`<div class="meter" aria-hidden="true">${[1,2,3,4,5].map(i=>`<i class="${i<=n?'on':''}" style="--i:${i}"></i>`).join("")}</div>`;
 
 function rowHTML(t){
-  const cond=t.mod!=="tenses";
+  const cond=t.mod!=="tenses" && !t.timeline;
   let i=0; const st=()=>`class="stage" style="--i:${i++}"`;
   const f0=t.short && cond ? t.short : t.forms[0][1];
   const tenseSec = cond && t.tenses.length ? `<div class="sec stage" style="--i:${i++}"><span class="lbl">${t.tensesLabel||"Thì trong mỗi vế"}</span><div class="content chips">${t.tenses.map(([lab,code])=>{ const id=TN[code]; return id?`<button class="chip" data-review="${id}"><span class="cl">${lab}</span> ${byId[id].vi} →</button>`:`<span class="chip static"><span class="cl">${lab}</span> ${esc(code)}</span>`; }).join("")}</div></div>` : "";

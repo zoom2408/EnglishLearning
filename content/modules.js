@@ -1,6 +1,7 @@
 /* content/modules.js
    Site map: one entry per page. Add a module here, then create its page,
    its theory file and its quiz file. */
+const SITE_BRAND = "Ngữ pháp tiếng Anh";
 const MODULES = [
  {
   "key": "tenses",
