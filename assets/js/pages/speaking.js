@@ -16,7 +16,7 @@ function buildDeck(){
 function renderSpeakShell(){
   spkEl.innerHTML=`
    <div class="sp-top">
-     <div class="sp-intro"><span class="lbl">IELTS · VSTEP · Part 1</span></div>
+     <div class="sp-intro"><span class="lbl">${esc(GRAMMAR.speaking.label||"IELTS · VSTEP · Part 1")}</span></div>
      <div class="sp-stats"><span class="pcount" id="spDone">0<small>/ ${SPK.length} đã luyện</small></span></div>
    </div>
    <div class="sp-bar">
@@ -32,7 +32,7 @@ function renderSpeakShell(){
      <button class="link" id="spNext">Thẻ tiếp →</button>
    </div>
    <p class="hint">Phím tắt: Space để lật thẻ, ← → để chuyển thẻ.</p>
-   <div class="sp-fw"><span class="lbl">8 khung trả lời dùng trong bộ thẻ</span><div class="fwgrid">${Object.entries(FW).map(([k,f])=>`<div class="fwi"><b>${f.name}</b><span>${f.steps.join(" → ")}</span></div>`).join("")}</div></div>`;
+   <div class="sp-fw"><span class="lbl">${Object.keys(FW).length} khung trả lời dùng trong bộ thẻ</span><div class="fwgrid">${Object.entries(FW).map(([k,f])=>`<div class="fwi"><b>${f.name}</b><span>${f.steps.join(" → ")}</span></div>`).join("")}</div></div>`;
   document.getElementById("spTopic").onchange=e=>{ S.topic=e.target.value; buildDeck(); renderCard(1); };
   document.getElementById("spShuffle").onclick=()=>{ buildDeck(); renderCard(1); };
   document.getElementById("spPrev").onclick=()=>move(-1);
@@ -43,7 +43,7 @@ function renderSpeakShell(){
 function updDone(){ const d=document.getElementById("spDone"); d.innerHTML=`${S.done.size}<small>/ ${SPK.length} đã luyện</small>`; }
 function renderCard(dir){
   stopTimer();
-  const i=S.deck[S.pos], [topic,q,fwk,tc,sample]=SPK[i], f=FW[fwk], t=tc?byId[TN[tc]]:null;
+  const i=S.deck[S.pos], [topic,q,fwk,tc,sample,note]=SPK[i], f=FW[fwk], t=tc?byId[TN[tc]]:null;
   S.flipped=false;
   const c=document.getElementById("card");
   c.className="card"+(dir?(dir>0?" in-next":" in-prev"):"");
@@ -57,7 +57,7 @@ function renderCard(dir){
       <div class="fmeta"><span>${esc(topic)}</span><span>${esc(q)}</span></div>
       <div class="bgrid">
         <div><span class="lbl">Khung trả lời</span><ol class="steps">${f.steps.map((s,k)=>`<li><b>${f.name.split(" · ")[k]}</b><span>${s}</span></li>`).join("")}</ol>
-          ${t?`<span class="lbl" style="margin-top:16px;display:block">Thì chính nên dùng</span><button class="chip tchip" data-review="${t.id}">${t.vi} · ${t.en}</button>`:`<span class="lbl" style="margin-top:16px;display:block">Lưu ý</span><p class="small">Dùng would / I'd love to để nói điều mong muốn.</p>`}</div>
+          ${t?`<span class="lbl" style="margin-top:16px;display:block">Thì chính nên dùng</span><button class="chip tchip" data-review="${t.id}">${t.vi} · ${t.en}</button>`:`<span class="lbl" style="margin-top:16px;display:block">Lưu ý</span><p class="small">${esc(note||"Dùng would / I'd love to để nói điều mong muốn.")}</p>`}</div>
         <div><span class="lbl">Mẫu câu nên nói</span><ul class="pats">${f.pat.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>
       </div>
       <div class="sample"><span class="lbl">Câu trả lời mẫu</span><p>${esc(sample)}</p></div>

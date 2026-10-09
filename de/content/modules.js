@@ -103,5 +103,55 @@ const MODULES = [
   "prefix": "de-pass-",
   "desc": "Vorgangspassiv, Zustandspassiv, Modalverben, man",
   "meta": "5 bài · 15 câu"
+ },
+ {
+  "key": "relativsaetze",
+  "num": "11",
+  "page": "relativsaetze.html",
+  "title": "Relativsätze",
+  "en": "Relativ",
+  "prefix": "de-rel-",
+  "desc": "Đại từ quan hệ theo 4 Fälle và với giới từ",
+  "meta": "6 bài · 20 câu"
+ },
+ {
+  "key": "indirekte-rede",
+  "num": "12",
+  "page": "indirekte-rede.html",
+  "title": "Indirekte Rede",
+  "en": "Indirekte Rede",
+  "prefix": "de-ind-",
+  "desc": "Câu tường thuật: dass, ob, W-Fragen, sollen",
+  "meta": "4 bài · 13 câu"
+ },
+ {
+  "key": "inversion",
+  "num": "13",
+  "page": "inversion.html",
+  "title": "Inversion & Betonung",
+  "en": "Betonung",
+  "prefix": "de-emph-",
+  "desc": "Vorfeld, Es-Platzhalter, Nicht nur…sondern auch, nicht/kein",
+  "meta": "4 bài · 12 câu"
+ },
+ {
+  "key": "typische-fehler",
+  "num": "14",
+  "page": "typische-fehler.html",
+  "title": "Typische Fehler",
+  "en": "Fehler",
+  "prefix": "de-fehler-",
+  "desc": "weil/denn, seit/für/vor, trật tự câu, đuôi tính từ, viết hoa",
+  "meta": "5 bài · 20 câu"
+ },
+ {
+  "key": "speaking",
+  "num": "15",
+  "page": "speaking.html",
+  "title": "Sprechen",
+  "en": "Goethe A1–B2",
+  "prefix": "",
+  "desc": "50 câu hỏi theo cấu trúc đề thi nói Goethe-Zertifikat",
+  "meta": "50 thẻ · 10 chủ đề"
  }
 ];
