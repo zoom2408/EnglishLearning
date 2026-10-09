@@ -153,5 +153,15 @@ const MODULES = [
   "prefix": "",
   "desc": "50 câu hỏi theo cấu trúc đề thi nói Norskprøven",
   "meta": "50 thẻ · 10 chủ đề"
+ },
+ {
+  "key": "ordforrad",
+  "num": "16",
+  "page": "ordforrad.html",
+  "title": "Ordforråd",
+  "en": "Từ vựng",
+  "prefix": "",
+  "desc": "Danh từ, động từ, cụm từ cơ bản A1-B2 theo 10 chủ đề",
+  "meta": "120 từ · 10 chủ đề"
  }
 ];
