@@ -22,7 +22,7 @@ const MODULES = [
   "en": "Artikel",
   "prefix": "de-art-",
   "desc": "4 Fälle: Nominativ, Akkusativ, Dativ, Genitiv",
-  "meta": "4 bài · 16 câu"
+  "meta": "4 bài · 60 câu"
  },
  {
   "key": "pronomen",
