@@ -24,7 +24,7 @@ function compact(t){
 // ---------- annotated diagram ----------
 function diagram(t){
   if(!t.tl) return t.scale?scaleDia(t):t.xf?xfDia(t):t.table?tableDia(t):`<div class="bigf">${esc(t.big)}</div>`;
-  const Y=100, A="var(--accent)", isCond=t.mod==="cond";
+  const Y=100, A="var(--accent)", isCond=t.mod==="cond"||t.condStyle===true;
   let s=`<svg viewBox="0 0 720 ${isCond?184:168}" role="img" aria-label="Sơ đồ ${esc(t.vi)}" font-family="Be Vietnam Pro, Helvetica, Arial, sans-serif">`;
   s+=`<text x="20" y="20" font-size="10.5" font-weight="700" letter-spacing="1.4" fill="var(--muted)">QUÁ KHỨ</text>`+
      `<text x="700" y="20" text-anchor="end" font-size="10.5" font-weight="700" letter-spacing="1.4" fill="var(--muted)">TƯƠNG LAI</text>`+

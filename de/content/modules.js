@@ -73,5 +73,35 @@ const MODULES = [
   "prefix": "de-satz-",
   "desc": "V2-Regel, weil, dass, obwohl, damit/um…zu",
   "meta": "5 bài · 16 câu"
+ },
+ {
+  "key": "konditionalsaetze",
+  "num": "08",
+  "page": "konditionalsaetze.html",
+  "title": "Konditionalsätze",
+  "en": "Konditional",
+  "prefix": "de-kond-",
+  "desc": "Loại 1, 2, 3: wenn + Präsens/Konjunktiv II",
+  "meta": "3 bài · 12 câu"
+ },
+ {
+  "key": "wunschsaetze",
+  "num": "09",
+  "page": "wunschsaetze.html",
+  "title": "Wunschsätze",
+  "en": "Wunsch",
+  "prefix": "de-wunsch-",
+  "desc": "Ich wünschte…, ước hiện tại, quá khứ, Wenn…doch…!",
+  "meta": "3 bài · 12 câu"
+ },
+ {
+  "key": "passiv",
+  "num": "10",
+  "page": "passiv.html",
+  "title": "Passiv",
+  "en": "Passiv",
+  "prefix": "de-pass-",
+  "desc": "Vorgangspassiv, Zustandspassiv, Modalverben, man",
+  "meta": "5 bài · 15 câu"
  }
 ];
