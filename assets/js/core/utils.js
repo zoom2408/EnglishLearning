@@ -12,7 +12,7 @@ const byId = {};
 
 /** Register lesson rows for a module and index them by id */
 function registerRows(mod, rows) {
-  rows.forEach(r => { r.mod = mod; byId[r.id] = r; });
+  rows.forEach(r => { r.mod = mod; if (!r.tenses) r.tenses = []; byId[r.id] = r; });
   return rows;
 }
 

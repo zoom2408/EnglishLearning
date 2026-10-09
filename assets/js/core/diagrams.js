@@ -23,7 +23,7 @@ function compact(t){
 
 // ---------- annotated diagram ----------
 function diagram(t){
-  if(!t.tl) return t.scale?scaleDia(t):t.xf?xfDia(t):`<div class="bigf">${esc(t.big)}</div>`;
+  if(!t.tl) return t.scale?scaleDia(t):t.xf?xfDia(t):t.table?tableDia(t):`<div class="bigf">${esc(t.big)}</div>`;
   const Y=100, A="var(--accent)", isCond=t.mod==="cond";
   let s=`<svg viewBox="0 0 720 ${isCond?184:168}" role="img" aria-label="Sơ đồ ${esc(t.vi)}" font-family="Be Vietnam Pro, Helvetica, Arial, sans-serif">`;
   s+=`<text x="20" y="20" font-size="10.5" font-weight="700" letter-spacing="1.4" fill="var(--muted)">QUÁ KHỨ</text>`+
@@ -74,4 +74,9 @@ function scaleDia(t){
 function xfDia(t){
   const tok=s=>esc(s).replace(/\{(\d):([^}]+)\}/g,(m,n,w)=>`<span class="tk tk${n}" style="--i:${n}">${w}<sup>${n}</sup></span>`);
   return `<div class="xf"><div class="xrow"><span class="lbl">${t.xf.la}</span><p>${tok(t.xf.a)}</p></div><div class="xarrow" aria-hidden="true">↓</div><div class="xrow two"><span class="lbl">${t.xf.lb}</span><p>${tok(t.xf.b)}</p></div>${t.xf.note?`<p class="xnote">${t.xf.note}</p>`:""}</div>`;
+}
+
+/* ---------- declension / reference table (articles, pronouns, cases…) ---------- */
+function tableDia(t){
+  return t.table.map(tb=>`<div class="gtable">${tb.title?`<div class="gt-title">${esc(tb.title)}</div>`:""}<table><thead><tr><th></th>${tb.head.map(h=>`<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${tb.rows.map(r=>`<tr><th>${esc(r[0])}</th>${r.slice(1).map(c=>`<td>${fmt(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`).join("");
 }
