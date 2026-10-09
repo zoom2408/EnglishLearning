@@ -20,7 +20,7 @@ const MODULES = [
   "page": "artikel.html",
   "title": "Artikel & Nomen",
   "en": "Artikel",
-  "prefix": "a-",
+  "prefix": "de-art-",
   "desc": "4 Fälle: Nominativ, Akkusativ, Dativ, Genitiv",
   "meta": "4 bài · 16 câu"
  },
@@ -30,7 +30,7 @@ const MODULES = [
   "page": "pronomen.html",
   "title": "Pronomen",
   "en": "Pronomen",
-  "prefix": "p-",
+  "prefix": "de-pron-",
   "desc": "Đại từ nhân xưng, sở hữu, phản thân",
   "meta": "3 bài · 15 câu"
  },
@@ -40,8 +40,38 @@ const MODULES = [
   "page": "modalverben.html",
   "title": "Modalverben",
   "en": "Modalverben",
-  "prefix": "m-",
+  "prefix": "de-modal-",
   "desc": "können, dürfen, müssen, sollen, wollen/möchten, suy đoán",
   "meta": "6 bài · 16 câu"
+ },
+ {
+  "key": "praepositionen",
+  "num": "05",
+  "page": "praepositionen.html",
+  "title": "Präpositionen",
+  "en": "Präpositionen",
+  "prefix": "de-prep-",
+  "desc": "Akkusativ, Dativ, Wechselpräpositionen, Genitiv",
+  "meta": "4 bài · 16 câu"
+ },
+ {
+  "key": "adjektive",
+  "num": "06",
+  "page": "adjektive.html",
+  "title": "Adjektivdeklination",
+  "en": "Adjektive",
+  "prefix": "de-adj-",
+  "desc": "Chia tính từ yếu, hỗn hợp, mạnh",
+  "meta": "3 bài · 12 câu"
+ },
+ {
+  "key": "satzbau",
+  "num": "07",
+  "page": "satzbau.html",
+  "title": "Satzbau & Nebensätze",
+  "en": "Satzbau",
+  "prefix": "de-satz-",
+  "desc": "V2-Regel, weil, dass, obwohl, damit/um…zu",
+  "meta": "5 bài · 16 câu"
  }
 ];
