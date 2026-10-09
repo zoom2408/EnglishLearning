@@ -18,22 +18,29 @@ const mcr=(pool,type,hint,askT,list)=>list.forEach(([a,r,w,ref,ex])=>pool.push(m
 function Practice(cfg){
   const el=cfg.el, q$=s=>el.querySelector(s);
   const P={run:null,G:null,cfg};
+  let savedCount; try{ savedCount=localStorage.getItem("practiceCount"); }catch(e){}
+  P.count = savedCount==="all" ? "all" : (savedCount && +savedCount ? +savedCount : 10);
+  const roundN=n=>n==="all"?cfg.pool.length:Math.min(n,cfg.pool.length);
   function menu(){
     const counts=Object.fromEntries(Object.keys(cfg.types).map(k=>[k,cfg.pool.filter(q=>q.type===k).length]));
+    const total=cfg.pool.length, nOpts=[10,20,50].filter(n=>n<total), n=roundN(P.count);
     el.innerHTML=`<div class="pmenu">
-     <div class="phead"><span class="lbl">Ngân hàng câu hỏi</span><span class="pcount">${cfg.pool.length}<small>câu</small></span></div>
-     <button class="prow feature" data-mode="mix"><span class="pn">⁎</span><span><b>Trộn ngẫu nhiên</b><small>10 câu bất kỳ từ tất cả các dạng</small></span><span class="pc">10</span></button>
-     ${Object.entries(cfg.types).map(([k,t],i)=>`<button class="prow" data-mode="${k}"><span class="pn">${String(i+1).padStart(2,"0")}</span><span><b>${t.name}</b><small>${t.desc}</small></span><span class="pc">${counts[k]}</span></button>`).join("")}
+     <div class="phead"><span class="lbl">Ngân hàng câu hỏi</span><span class="pcount">${total}<small>câu</small></span></div>
+     <div class="pcounts"><span class="plbl">Số câu mỗi lượt</span><div class="pcwrap">${nOpts.map(c=>`<button class="pchip${P.count===c?" on":""}" data-count="${c}">${c}</button>`).join("")}<button class="pchip${P.count==="all"?" on":""}" data-count="all">Tất cả · ${total}</button></div></div>
+     <button class="prow feature" data-mode="mix"><span class="pn">⁎</span><span><b>Trộn ngẫu nhiên</b><small>${n} câu bất kỳ từ tất cả các dạng</small></span><span class="pc">${n}</span></button>
+     ${Object.entries(cfg.types).map(([k,t],i)=>`<button class="prow" data-mode="${k}"><span class="pn">${String(i+1).padStart(2,"0")}</span><span><b>${t.name}</b><small>${t.desc}</small></span><span class="pc">${Math.min(n,counts[k])}</span></button>`).join("")}
      <button class="prow game" data-mode="rush"><span class="pn">▶</span><span><b>Trò chơi: ${cfg.game.title}</b><small>${cfg.game.desc}</small></span><span class="pc">60s</span></button>
     </div>`;
   }
   el.addEventListener("click",e=>{
+    const c=e.target.closest("[data-count]"); if(c){ P.count=c.dataset.count==="all"?"all":+c.dataset.count; try{localStorage.setItem("practiceCount",String(P.count));}catch(err){} menu(); return; }
     const m=e.target.closest("[data-mode]"); if(m){ m.dataset.mode==="rush"?rush():start(m.dataset.mode); return; }
     if(e.target.closest("[data-menu]")){ stopRush(); P.run=null; menu(); }
   });
   function start(mode){
     const src=mode==="mix"?cfg.pool:cfg.pool.filter(q=>q.type===mode);
-    P.run={mode,qs:shuffle(src).slice(0,10),i:0,score:0,missed:[]}; renderQ();
+    const n=P.count==="all"?src.length:Math.min(P.count,src.length);
+    P.run={mode,qs:shuffle(src).slice(0,n),i:0,score:0,missed:[]}; renderQ();
   }
   function renderQ(){
     const R=P.run; if(R.i>=R.qs.length) return result();
