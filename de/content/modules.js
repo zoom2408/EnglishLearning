@@ -12,7 +12,7 @@ const MODULES = [
   "en": "Zeiten",
   "prefix": "",
   "desc": "Trục thời gian, cấu trúc, dấu hiệu, Perfekt và Präteritum",
-  "meta": "6 bài · 24 câu"
+  "meta": "6 bài · 60 câu"
  },
  {
   "key": "artikel",
@@ -32,7 +32,7 @@ const MODULES = [
   "en": "Pronomen",
   "prefix": "de-pron-",
   "desc": "Đại từ nhân xưng, sở hữu, phản thân",
-  "meta": "3 bài · 15 câu"
+  "meta": "3 bài · 60 câu"
  },
  {
   "key": "modalverben",
@@ -42,7 +42,7 @@ const MODULES = [
   "en": "Modalverben",
   "prefix": "de-modal-",
   "desc": "können, dürfen, müssen, sollen, wollen/möchten, suy đoán",
-  "meta": "6 bài · 16 câu"
+  "meta": "6 bài · 60 câu"
  },
  {
   "key": "praepositionen",
@@ -52,7 +52,7 @@ const MODULES = [
   "en": "Präpositionen",
   "prefix": "de-prep-",
   "desc": "Akkusativ, Dativ, Wechselpräpositionen, Genitiv",
-  "meta": "4 bài · 16 câu"
+  "meta": "4 bài · 60 câu"
  },
  {
   "key": "adjektive",
@@ -62,7 +62,7 @@ const MODULES = [
   "en": "Adjektive",
   "prefix": "de-adj-",
   "desc": "Chia tính từ yếu, hỗn hợp, mạnh",
-  "meta": "3 bài · 12 câu"
+  "meta": "3 bài · 60 câu"
  },
  {
   "key": "satzbau",
@@ -72,7 +72,7 @@ const MODULES = [
   "en": "Satzbau",
   "prefix": "de-satz-",
   "desc": "V2-Regel, weil, dass, obwohl, damit/um…zu",
-  "meta": "5 bài · 16 câu"
+  "meta": "5 bài · 60 câu"
  },
  {
   "key": "konditionalsaetze",
@@ -82,7 +82,7 @@ const MODULES = [
   "en": "Konditional",
   "prefix": "de-kond-",
   "desc": "Loại 1, 2, 3: wenn + Präsens/Konjunktiv II",
-  "meta": "3 bài · 12 câu"
+  "meta": "3 bài · 60 câu"
  },
  {
   "key": "wunschsaetze",
@@ -92,7 +92,7 @@ const MODULES = [
   "en": "Wunsch",
   "prefix": "de-wunsch-",
   "desc": "Ich wünschte…, ước hiện tại, quá khứ, Wenn…doch…!",
-  "meta": "3 bài · 12 câu"
+  "meta": "3 bài · 60 câu"
  },
  {
   "key": "passiv",
@@ -102,7 +102,7 @@ const MODULES = [
   "en": "Passiv",
   "prefix": "de-pass-",
   "desc": "Vorgangspassiv, Zustandspassiv, Modalverben, man",
-  "meta": "5 bài · 15 câu"
+  "meta": "5 bài · 60 câu"
  },
  {
   "key": "relativsaetze",
@@ -112,7 +112,7 @@ const MODULES = [
   "en": "Relativ",
   "prefix": "de-rel-",
   "desc": "Đại từ quan hệ theo 4 Fälle và với giới từ",
-  "meta": "6 bài · 20 câu"
+  "meta": "5 bài · 60 câu"
  },
  {
   "key": "indirekte-rede",
@@ -122,7 +122,7 @@ const MODULES = [
   "en": "Indirekte Rede",
   "prefix": "de-ind-",
   "desc": "Câu tường thuật: dass, ob, W-Fragen, sollen",
-  "meta": "4 bài · 13 câu"
+  "meta": "4 bài · 60 câu"
  },
  {
   "key": "inversion",
@@ -132,7 +132,7 @@ const MODULES = [
   "en": "Betonung",
   "prefix": "de-emph-",
   "desc": "Vorfeld, Es-Platzhalter, Nicht nur…sondern auch, nicht/kein",
-  "meta": "4 bài · 12 câu"
+  "meta": "4 bài · 60 câu"
  },
  {
   "key": "typische-fehler",
@@ -142,7 +142,7 @@ const MODULES = [
   "en": "Fehler",
   "prefix": "de-fehler-",
   "desc": "weil/denn, seit/für/vor, trật tự câu, đuôi tính từ, viết hoa",
-  "meta": "5 bài · 20 câu"
+  "meta": "5 bài · 60 câu"
  },
  {
   "key": "speaking",
