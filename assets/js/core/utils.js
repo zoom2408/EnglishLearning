@@ -20,14 +20,17 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
 
-/** **bold** → <mark>, ___ → blank */
-const fmt = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<mark>$1</mark>").replace(/___/g, '<span class="blank"></span>');
+/** Japanese furigana: {漢字|かんじ} → <ruby>漢字<rt>かんじ</rt></ruby> (only in HTML fields, never in text that is escaped later) */
+const rb = s => s.replace(/\{([^{}|]+)\|([^{}|]+)\}/g, "<ruby>$1<rt>$2</rt></ruby>");
+
+/** **bold** → <mark>, ___ → blank, {漢字|かな} → furigana */
+const fmt = s => rb(esc(s).replace(/\*\*(.+?)\*\*/g, "<mark>$1</mark>").replace(/___/g, '<span class="blank"></span>'));
 
 /** Normalise a typed answer (contractions, punctuation, spacing) */
 function norm(s) {
   return s.toLowerCase().replace(/[’‘`´]/g, "'").replace(/won't/g, "will not").replace(/can't/g, "cannot").replace(/n't\b/g, " not")
     .replace(/'m\b/g, " am").replace(/'re\b/g, " are").replace(/'ll\b/g, " will").replace(/'ve\b/g, " have").replace(/'d\b/g, " would")
-    .replace(/[.!?,]/g, "").replace(/\s+/g, " ").trim();
+    .replace(/[.!?,。、！？「」]/g, "").replace(/\s+/g, currentLang() === "ja" ? "" : " ").trim();
 }
 
 /** Two-line label for a tense id (needs content/theory/tenses.js) */

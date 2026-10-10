@@ -8,12 +8,14 @@ const LANGS = [
   { code: "de", flag: "🇩🇪", label: "Deutsch", home: "/de/" },
   { code: "nb", flag: "🇳🇴", label: "Norsk bokmål", home: "/nb/" },
   { code: "es", flag: "🇪🇸", label: "Español", home: "/es/" },
+  { code: "ja", flag: "🇯🇵", label: "日本語", home: "/ja/" },
 ];
 function currentLang() {
   const p = location.pathname;
   if (p.startsWith("/de/")) return "de";
   if (p.startsWith("/nb/")) return "nb";
   if (p.startsWith("/es/")) return "es";
+  if (p.startsWith("/ja/")) return "ja";
   return "en";
 }
 
@@ -42,7 +44,7 @@ function renderSite() {
 /* ---------- text-to-speech (listen buttons) ----------
    Any element with [data-say="text"] plays that text in the page's
    language through the browser's speech engine. [data-slow] reads slower. */
-const SAY_LANG = { en: "en-US", de: "de-DE", nb: "nb-NO", es: "es-ES" };
+const SAY_LANG = { en: "en-US", de: "de-DE", nb: "nb-NO", es: "es-ES", ja: "ja-JP" };
 const hasTTS = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
 if (!hasTTS) document.documentElement.classList.add("no-tts");
 function say(text, slow) {

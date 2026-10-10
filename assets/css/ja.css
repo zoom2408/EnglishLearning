@@ -1,0 +1,14 @@
+/* =====================================================================
+   ja.css
+   Japanese track only: CJK font fallbacks, furigana (ruby) and the
+   muted romaji line under example sentences.
+   ===================================================================== */
+:root{
+  --sans:"Be Vietnam Pro","Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --mono:"JetBrains Mono","Noto Sans JP","Hiragino Sans","Yu Gothic",ui-monospace,Menlo,monospace;
+}
+ruby{ruby-position:over}
+rt{font-size:.5em;font-weight:500;color:var(--muted);letter-spacing:0}
+.ro{display:block;font-family:var(--sans);font-size:12.5px;font-weight:400;color:var(--muted);letter-spacing:0;margin-top:2px}
+.form em,.uses em,.mq{line-height:1.9}
+.qtext{line-height:1.6}
