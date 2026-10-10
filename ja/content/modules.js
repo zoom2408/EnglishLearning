@@ -16,4 +16,8 @@ const MODULES = [
  {key:"hikaku",num:"10",page:"hikaku.html",title:"So sánh & ý định",en:"比較・意志",prefix:"ja-hik-",desc:"より, のほうが, いちばん, つもり, よてい, ようと思う",meta:"4 bài · 60 câu"},
  {key:"shushoku",num:"11",page:"shushoku.html",title:"Mệnh đề bổ nghĩa & danh từ hoá",en:"修飾・名詞化",prefix:"ja-shu-",desc:"Mệnh đề bổ nghĩa danh từ, の và こと, という, んです",meta:"4 bài · 60 câu"},
  {key:"joken",num:"12",page:"joken.html",title:"Điều kiện",en:"条件",prefix:"ja-jok-",desc:"と, ば, たら, なら, và cách chọn mẫu phù hợp",meta:"4 bài · 60 câu"},
+ {key:"kanou",num:"13",page:"kanou.html",title:"Khả năng, ý chí, mệnh lệnh",en:"可能・命令・義務",prefix:"ja-kan-",desc:"Thể khả năng, 見える・聞こえる, mệnh lệnh và cấm, nghĩa vụ và lời khuyên",meta:"4 bài · 60 câu"},
+ {key:"ukemi",num:"14",page:"ukemi.html",title:"Bị động & sai khiến",en:"受身・使役",prefix:"ja-uke-",desc:"Thể bị động, bị động gây phiền, thể sai khiến, sai khiến bị động",meta:"4 bài · 60 câu"},
+ {key:"keigo",num:"15",page:"keigo.html",title:"Keigo",en:"敬語",prefix:"ja-kei2-",desc:"Teineigo, sonkeigo, kenjōgo và cụm công sở",meta:"4 bài · 60 câu"},
+ {key:"ayamari",num:"16",page:"ayamari.html",title:"Lỗi hay gặp",en:"よくある間違い",prefix:"ja-aya-",desc:"Lỗi trợ từ, chia từ, thể て/ない/た và từ dễ nhầm của người Việt",meta:"5 bài · 60 câu"},
 ];
