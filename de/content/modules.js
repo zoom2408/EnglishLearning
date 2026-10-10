@@ -162,6 +162,6 @@ const MODULES = [
   "en": "Từ vựng",
   "prefix": "",
   "desc": "Danh từ, động từ, cụm từ cơ bản A1-B2 theo 10 chủ đề",
-  "meta": "120 từ · 10 chủ đề"
+  "meta": "600 từ · 10 chủ đề"
  }
 ];
