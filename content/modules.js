@@ -31,7 +31,7 @@ const MODULES = [
   "en": "Passive voice",
   "prefix": "p-",
   "desc": "Theo thì, hai tân ngữ, modal, It is said, have something done",
-  "meta": "8 bài · 40 câu · trò chơi"
+  "meta": "8 bài · 60 câu · trò chơi"
  },
  {
   "key": "reported",
@@ -41,7 +41,7 @@ const MODULES = [
   "en": "Reported speech",
   "prefix": "r-",
   "desc": "Lùi thì, say và tell, câu hỏi, mệnh lệnh, động từ tường thuật",
-  "meta": "8 bài · 40 câu · trò chơi"
+  "meta": "8 bài · 60 câu · trò chơi"
  },
  {
   "key": "modal",
@@ -51,7 +51,7 @@ const MODULES = [
   "en": "Modal verbs",
   "prefix": "m-",
   "desc": "Suy đoán, bắt buộc, lời khuyên, khả năng, xin phép, tiếc nuối",
-  "meta": "8 bài · 40 câu · trò chơi"
+  "meta": "8 bài · 60 câu · trò chơi"
  },
  {
   "key": "relative",
@@ -61,7 +61,7 @@ const MODULES = [
   "en": "Relative clauses",
   "prefix": "rc-",
   "desc": "who, which, that, whose, where, dấu phẩy, lược bỏ, rút gọn",
-  "meta": "8 bài · 40 câu · trò chơi"
+  "meta": "8 bài · 60 câu · trò chơi"
  },
  {
   "key": "wish",
@@ -71,7 +71,7 @@ const MODULES = [
   "en": "Wish & If only",
   "prefix": "w-",
   "desc": "Ước hiện tại, quá khứ, would, could, If only, It's time",
-  "meta": "6 bài · 40 câu · trò chơi"
+  "meta": "6 bài · 60 câu · trò chơi"
  },
  {
   "key": "complex",
@@ -81,7 +81,7 @@ const MODULES = [
   "en": "Complex sentences",
   "prefix": "cx-",
   "desc": "Tương phản, nguyên nhân, mục đích, mệnh đề danh từ, rút gọn, từ nối",
-  "meta": "7 bài · 40 câu · trò chơi"
+  "meta": "7 bài · 60 câu · trò chơi"
  },
  {
   "key": "emphasis",
@@ -91,7 +91,7 @@ const MODULES = [
   "en": "Emphasis & inversion",
   "prefix": "em-",
   "desc": "It is … that, What … is, Never, Not only, Only when, No sooner",
-  "meta": "8 bài · 40 câu · trò chơi"
+  "meta": "8 bài · 60 câu · trò chơi"
  },
  {
   "key": "compare",
@@ -101,7 +101,7 @@ const MODULES = [
   "en": "Comparison",
   "prefix": "cp-",
   "desc": "Hơn, nhất, bằng, mức độ, so sánh kép, gấp lần, số liệu Task 1",
-  "meta": "7 bài · 40 câu · trò chơi"
+  "meta": "7 bài · 60 câu · trò chơi"
  },
  {
   "key": "accuracy",
@@ -111,7 +111,7 @@ const MODULES = [
   "en": "Accuracy",
   "prefix": "ac-",
   "desc": "Mạo từ, đếm được, V-ing hay to V, hòa hợp chủ vị, hedging",
-  "meta": "6 bài · 40 câu · trò chơi"
+  "meta": "6 bài · 60 câu · trò chơi"
  },
  {
   "key": "speaking",
@@ -122,5 +122,15 @@ const MODULES = [
   "prefix": "",
   "desc": "Flashcard, khung trả lời, mẫu câu, câu trả lời mẫu, đồng hồ 30 giây",
   "meta": "100 thẻ · 26 chủ đề"
+ },
+ {
+  "key": "vocabulary",
+  "num": "13",
+  "page": "vocabulary.html",
+  "title": "Từ vựng",
+  "en": "Vocabulary",
+  "prefix": "",
+  "desc": "Danh từ, động từ, cụm từ cơ bản A1-B2 theo 10 chủ đề, có IPA và thể động từ",
+  "meta": "600 từ · 10 chủ đề"
  }
 ];
