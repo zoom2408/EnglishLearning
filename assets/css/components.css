@@ -118,14 +118,18 @@ mark{background:transparent;color:var(--fg);font-weight:600;box-shadow:inset 0 -
 
 /* ---------- Site & modules ---------- */
 .site{display:flex;align-items:center;gap:12px 28px;flex-wrap:wrap;padding-bottom:16px}
-.brand{font-weight:800;font-size:15px;letter-spacing:-.01em;margin-right:auto}
+.brand{position:relative;margin-right:auto}
 .brand b{color:var(--accent)}
+.brandbtn{background:none;border:none;padding:0;margin:0;cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:inherit;font:inherit;font-weight:800;font-size:15px;letter-spacing:-.01em;transition:color .25s}
+.brandbtn::after{content:"";width:5px;height:5px;border:1.5px solid var(--muted);border-width:0 1.5px 1.5px 0;transform:rotate(45deg);margin-top:-3px;transition:transform .25s var(--ease),border-color .2s}
+.brand.open .brandbtn::after{transform:rotate(225deg);margin-top:3px}
+.brandbtn:hover::after{border-color:var(--fg)}
 .mods{display:flex;gap:24px}
 .mods a{display:flex;gap:6px;align-items:baseline;font-weight:600;font-size:14px;color:var(--muted);padding:4px 0;border-bottom:2px solid transparent;transition:color .25s,border-color .35s var(--ease)}
 .mods a span{font-family:var(--mono);font-size:11px;font-weight:400}
 .mods a:hover{color:var(--fg)}
 .mods a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
-.site .theme{margin-left:0;font-size:14px;font-weight:600}
+.site .theme{margin-left:auto;font-size:14px;font-weight:600}
 .mod.enter{animation:enter .55s var(--ease)}
 .chip.static{cursor:default}
 .chip .cl{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:4px}
@@ -189,13 +193,10 @@ mark{background:transparent;color:var(--fg);font-weight:600;box-shadow:inset 0 -
 @media (max-width:900px){.mods{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (max-width:760px){.mods{display:flex;overflow-x:auto;gap:18px}.mods a{white-space:nowrap}}
 
-/* language switcher */
-.lang{position:relative;margin-left:auto}
-.langbtn{font-family:var(--mono);font-size:13px;font-weight:600;padding:5px 10px;border:1px solid var(--hair);background:var(--bg);color:var(--fg);display:flex;align-items:center;gap:5px;cursor:pointer;transition:border-color .25s}
-.langbtn:hover{border-color:var(--fg)}
-.langmenu{position:absolute;top:calc(100% + 6px);right:0;min-width:168px;background:var(--surface);border:1px solid var(--hair);box-shadow:0 8px 24px rgba(0,0,0,.14);z-index:30;display:flex;flex-direction:column;padding:4px;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .2s var(--ease),transform .2s var(--ease),visibility .2s}
-.lang.open .langmenu{opacity:1;visibility:visible;transform:translateY(0)}
-.langmenu a{display:flex;align-items:center;gap:8px;padding:8px 10px;font-size:13px;color:var(--fg)!important;text-decoration:none}
+/* language switcher (now hangs off the brand dropdown, top-left) */
+.langmenu{position:absolute;top:calc(100% + 6px);left:0;min-width:168px;background:var(--surface);border:1px solid var(--hair);box-shadow:0 8px 24px rgba(0,0,0,.14);z-index:30;display:flex;flex-direction:column;padding:4px;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .2s var(--ease),transform .2s var(--ease),visibility .2s}
+.brand.open .langmenu{opacity:1;visibility:visible;transform:translateY(0)}
+.langmenu a{display:flex;align-items:center;gap:8px;padding:8px 10px;font-size:13px;color:var(--fg)!important;text-decoration:none;white-space:nowrap}
 .langmenu a:hover{background:var(--hair)}
 .langmenu a[aria-current="true"]{font-weight:700;color:var(--accent)!important}
 

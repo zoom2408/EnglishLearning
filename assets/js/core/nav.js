@@ -20,18 +20,17 @@ function renderSite() {
   const cur = document.body.dataset.module;
   const L = LANGS.find(l => l.code === currentLang()) || LANGS[0];
   el.innerHTML = `
-    <a class="brand" href="index.html">${SITE_BRAND || "Ngữ pháp"}<b>.</b></a>
-    <nav class="mods" aria-label="Chủ đề">
-      ${MODULES.map(m => `<a href="${m.page}"${m.key === cur ? ' aria-current="page"' : ""}${m.key === "speaking" ? ' class="spk"' : ""}><span>${m.num}</span>${m.title}</a>`).join("")}
-    </nav>
-    <div class="lang" id="langswitch">
-      <button class="langbtn" type="button" aria-haspopup="true" aria-expanded="false">${L.flag} ${L.code.toUpperCase()}</button>
+    <div class="brand" id="langswitch">
+      <button class="brandbtn" type="button" aria-haspopup="true" aria-expanded="false">${SITE_BRAND || "Ngữ pháp"}<b>.</b></button>
       <div class="langmenu" role="menu">
         ${LANGS.map(l => `<a href="${l.home}" role="menuitem"${l.code === L.code ? ' aria-current="true"' : ""}>${l.flag} ${l.label}</a>`).join("")}
       </div>
     </div>
+    <nav class="mods" aria-label="Chủ đề">
+      ${MODULES.map(m => `<a href="${m.page}"${m.key === cur ? ' aria-current="page"' : ""}${m.key === "speaking" ? ' class="spk"' : ""}><span>${m.num}</span>${m.title}</a>`).join("")}
+    </nav>
     <button id="themeBtn" class="theme" type="button" aria-label="Đổi giao diện sáng hoặc tối"><i></i><span>Tự động</span></button>`;
-  const ls = document.getElementById("langswitch"), lb = ls.querySelector(".langbtn");
+  const ls = document.getElementById("langswitch"), lb = ls.querySelector(".brandbtn");
   lb.addEventListener("click", e => { e.stopPropagation(); const open = ls.classList.toggle("open"); lb.setAttribute("aria-expanded", open); });
   document.addEventListener("click", () => { ls.classList.remove("open"); lb.setAttribute("aria-expanded", "false"); });
 }
