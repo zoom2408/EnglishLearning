@@ -17,4 +17,8 @@ const MODULES = [
  {key:"subjuntivo",num:"11",page:"subjuntivo.html",title:"Subjuntivo hiện tại",en:"Subjuntivo",prefix:"es-sub-",desc:"Cách tạo, bất quy tắc, mong muốn, cảm xúc, nghi ngờ",meta:"4 bài · 60 câu"},
  {key:"imperativo",num:"12",page:"imperativo.html",title:"Mệnh lệnh & mệnh đề quan hệ",en:"Imperativo",prefix:"es-imp-",desc:"Mệnh lệnh khẳng định, phủ định, que / quien / lo que, relativas với subjuntivo",meta:"4 bài · 60 câu"},
  {key:"si-clauses",num:"13",page:"si-clauses.html",title:"Subjuntivo quá khứ & câu điều kiện",en:"Si-clauses",prefix:"es-si-",desc:"Subjuntivo imperfecto, si + presente, si + imperfecto, si + pluscuamperfecto",meta:"4 bài · 60 câu"},
+ {key:"pasiva",num:"14",page:"pasiva.html",title:"Bị động, se & tường thuật",en:"Pasiva",prefix:"es-pv-",desc:"Pasiva con ser, se bị động, se vô nhân xưng, se vô ý, estilo indirecto",meta:"4 bài · 60 câu"},
+ {key:"errores",num:"15",page:"errores.html",title:"Lỗi hay gặp",en:"Errores",prefix:"es-err-",desc:"Falsos amigos, ser/estar đổi nghĩa, giống ngoại lệ, giới từ, chính tả",meta:"5 bài · 60 câu"},
+ {key:"speaking",num:"16",page:"speaking.html",title:"Hablar",en:"DELE A1–B2",prefix:"",desc:"50 câu hỏi theo cấu trúc bài thi nói DELE",meta:"50 thẻ · 10 chủ đề"},
+ {key:"vocabulario",num:"17",page:"vocabulario.html",title:"Vocabulario",en:"Từ vựng",prefix:"",desc:"Danh từ, động từ, cụm từ cơ bản A1-B2 theo 10 chủ đề",meta:"600 từ · 10 chủ đề"},
 ];
