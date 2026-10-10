@@ -15,6 +15,8 @@
 .vlvl{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);border:1px solid var(--accent);padding:1px 6px;width:fit-content}
 .vtype{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 .vterm{font-weight:700;font-size:16px;letter-spacing:-.01em}
+.vipa{font-family:var(--mono);font-size:12.5px;font-weight:400;color:var(--muted)}
 .vmean{color:var(--fg)}
+.vforms{grid-column:1 / -1;font-family:var(--mono);font-size:12.5px;color:var(--accent);margin-top:-2px}
 .vex{grid-column:1 / -1;color:var(--muted);font-size:13.5px;font-style:italic;margin-top:-4px}
 @media (max-width:760px){.vrow{grid-template-columns:1fr 1fr;gap:4px 16px}.vmeta{flex-direction:row;align-items:center}.vex{grid-column:1 / -1}}
