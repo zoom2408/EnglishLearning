@@ -12,7 +12,7 @@ const MODULES = [
   "en": "Verbtider",
   "prefix": "",
   "desc": "Trục thời gian, cấu trúc, dấu hiệu, Perfektum và Preteritum",
-  "meta": "5 bài · 20 câu"
+  "meta": "5 bài · 60 câu"
  },
  {
   "key": "substantiv",
@@ -22,7 +22,7 @@ const MODULES = [
   "en": "Substantiv",
   "prefix": "nb-sub-",
   "desc": "3 giống: hankjønn, hunkjønn, intetkjønn",
-  "meta": "3 bài · 12 câu"
+  "meta": "3 bài · 60 câu"
  },
  {
   "key": "pronomen",
@@ -32,7 +32,7 @@ const MODULES = [
   "en": "Pronomen",
   "prefix": "nb-pron-",
   "desc": "Đại từ nhân xưng, sở hữu, phản thân",
-  "meta": "3 bài · 15 câu"
+  "meta": "3 bài · 60 câu"
  },
  {
   "key": "modalverb",
@@ -42,7 +42,7 @@ const MODULES = [
   "en": "Modalverb",
   "prefix": "nb-modal-",
   "desc": "kan, får, må, bør, vil/skal",
-  "meta": "5 bài · 14 câu"
+  "meta": "5 bài · 60 câu"
  },
  {
   "key": "preposisjoner",
@@ -52,7 +52,7 @@ const MODULES = [
   "en": "Preposisjoner",
   "prefix": "nb-prep-",
   "desc": "Thời gian, vị trí, hướng di chuyển",
-  "meta": "4 bài · 15 câu"
+  "meta": "4 bài · 60 câu"
  },
  {
   "key": "adjektiv",
@@ -62,7 +62,7 @@ const MODULES = [
   "en": "Adjektiv",
   "prefix": "nb-adj-",
   "desc": "Ubestemt, bestemt, komparasjon",
-  "meta": "3 bài · 12 câu"
+  "meta": "3 bài · 60 câu"
  },
  {
   "key": "setningsbygning",
@@ -72,7 +72,7 @@ const MODULES = [
   "en": "Setningsbygning",
   "prefix": "nb-satz-",
   "desc": "Quy tắc V2, quy tắc BIFF, fordi/for, at, selv om",
-  "meta": "5 bài · 15 câu"
+  "meta": "5 bài · 60 câu"
  },
  {
   "key": "betingelsessetninger",
@@ -82,7 +82,7 @@ const MODULES = [
   "en": "Betingelse",
   "prefix": "nb-kond-",
   "desc": "Loại 1, 2, 3: hvis + presens/preteritum/pluskvamperfektum",
-  "meta": "3 bài · 12 câu"
+  "meta": "3 bài · 60 câu"
  },
  {
   "key": "onskesetninger",
@@ -92,7 +92,7 @@ const MODULES = [
   "en": "Ønske",
   "prefix": "nb-onske-",
   "desc": "Jeg skulle ønske…, ước hiện tại, quá khứ, Hvis bare…!",
-  "meta": "3 bài · 12 câu"
+  "meta": "3 bài · 60 câu"
  },
  {
   "key": "passiv",
@@ -102,7 +102,7 @@ const MODULES = [
   "en": "Passiv",
   "prefix": "nb-pass-",
   "desc": "S-passiv, bli-passiv, modalverb, man",
-  "meta": "4 bài · 12 câu"
+  "meta": "4 bài · 60 câu"
  },
  {
   "key": "relativsetninger",
@@ -112,7 +112,7 @@ const MODULES = [
   "en": "Relativ",
   "prefix": "nb-rel-",
   "desc": "som (chủ ngữ/tân ngữ), der, hvis",
-  "meta": "3 bài · 9 câu"
+  "meta": "3 bài · 60 câu"
  },
  {
   "key": "indirekte-tale",
@@ -122,7 +122,7 @@ const MODULES = [
   "en": "Indirekte tale",
   "prefix": "nb-ind-",
   "desc": "Câu tường thuật: at, om, Hv-spørsmål, skulle",
-  "meta": "4 bài · 9 câu"
+  "meta": "4 bài · 60 câu"
  },
  {
   "key": "topikalisering",
@@ -132,7 +132,7 @@ const MODULES = [
   "en": "Betoning",
   "prefix": "nb-emph-",
   "desc": "Forfelt, Det-Platzhalter, Ikke bare…men også, ikke/ingen",
-  "meta": "4 bài · 12 câu"
+  "meta": "4 bài · 60 câu"
  },
  {
   "key": "vanlige-feil",
@@ -142,7 +142,7 @@ const MODULES = [
   "en": "Feil",
   "prefix": "nb-feil-",
   "desc": "BIFF-regelen, si/fortelle/snakke, i/på, for/siden, stor forbokstav",
-  "meta": "5 bài · 12 câu"
+  "meta": "5 bài · 60 câu"
  },
  {
   "key": "speaking",
