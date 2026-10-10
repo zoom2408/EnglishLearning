@@ -58,10 +58,10 @@
     $("#vList").innerHTML = rows.length ? rows.map((w, i) => `
       <div class="vrow" style="--i:${i % 40}">
         <div class="vmeta"><span class="vlvl">${esc(w.level)}</span><span class="vtype">${esc(w.type)}</span></div>
-        <div class="vterm">${esc(w.term)}${w.ipa ? ` <span class="vipa">${esc(w.ipa)}</span>` : ""}</div>
+        <div class="vterm">${esc(w.term)}${w.ipa ? ` <span class="vipa">${esc(w.ipa)}</span>` : ""}${sayBtn(w.term)}${sayBtn(w.term, w.term, true)}</div>
         <div class="vmean">${esc(w.meaning)}</div>
         ${w.forms ? `<div class="vforms">${esc(w.forms)}</div>` : ""}
-        <div class="vex">${esc(w.example)}</div>
+        <div class="vex">${esc(w.example)}${sayBtn(w.example)}</div>
       </div>`).join("") : `<p class="hint">Không tìm thấy từ nào khớp. Thử từ khóa khác hoặc bỏ bớt bộ lọc.</p>`;
   }
 

@@ -51,7 +51,7 @@ function renderCard(dir){
   c.innerHTML=`<div class="inner">
     <div class="face front">
       <div class="fmeta"><span>${esc(topic)}</span><span>${String(S.pos+1).padStart(2,"0")} / ${S.deck.length}</span></div>
-      <div class="fq">${esc(q)}</div>
+      <div class="fq">${esc(q)}${sayBtn(q)}</div>
       <div class="fmeta"><span>Khung gợi ý: ${f.name}</span><button class="donebtn" id="spMark" aria-pressed="${S.done.has(i)}">${S.done.has(i)?"✓ Đã luyện":"Đánh dấu đã luyện"}</button></div>
     </div>
     <div class="face bk">
@@ -61,7 +61,7 @@ function renderCard(dir){
           ${t?`<span class="lbl" style="margin-top:16px;display:block">Thì chính nên dùng</span><button class="chip tchip" data-review="${t.id}">${t.vi} · ${t.en}</button>`:`<span class="lbl" style="margin-top:16px;display:block">Lưu ý</span><p class="small">${esc(note||"Dùng would / I'd love to để nói điều mong muốn.")}</p>`}</div>
         <div><span class="lbl">Mẫu câu nên nói</span><ul class="pats">${f.pat.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>
       </div>
-      <div class="sample"><span class="lbl">Câu trả lời mẫu</span><p>${esc(sample)}</p></div>
+      <div class="sample"><span class="lbl">Câu trả lời mẫu</span><p>${esc(sample)}${sayBtn(sample)}${sayBtn(sample, sample, true)}</p></div>
     </div></div>`;
   c.querySelector("#spMark").onclick=e=>{ e.stopPropagation(); S.done.has(i)?S.done.delete(i):S.done.add(i); saveDone(); updDone(); const b=e.currentTarget; b.setAttribute("aria-pressed",S.done.has(i)); b.textContent=S.done.has(i)?"✓ Đã luyện":"Đánh dấu đã luyện"; };
   c.querySelector(".front").onclick=flip;

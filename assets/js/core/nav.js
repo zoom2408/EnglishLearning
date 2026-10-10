@@ -39,6 +39,33 @@ function renderSite() {
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeLang(); });
 }
 
+/* ---------- text-to-speech (listen buttons) ----------
+   Any element with [data-say="text"] plays that text in the page's
+   language through the browser's speech engine. [data-slow] reads slower. */
+const SAY_LANG = { en: "en-US", de: "de-DE", nb: "nb-NO", es: "es-ES" };
+const hasTTS = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+if (!hasTTS) document.documentElement.classList.add("no-tts");
+function say(text, slow) {
+  if (!hasTTS || !text) return;
+  const lang = SAY_LANG[currentLang()] || "en-US", synth = window.speechSynthesis;
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang; u.rate = slow ? 0.55 : 0.85;
+  const vs = synth.getVoices();
+  const v = vs.find(x => x.lang === lang) || vs.find(x => x.lang.replace("_", "-").toLowerCase().startsWith(lang.slice(0, 2).toLowerCase()));
+  if (v) u.voice = v;
+  synth.speak(u);
+}
+if (hasTTS) {
+  window.speechSynthesis.getVoices();
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-say]"); if (!b) return;
+    e.stopPropagation(); say(b.dataset.say, b.hasAttribute("data-slow"));
+    b.classList.add("playing"); setTimeout(() => b.classList.remove("playing"), 900);
+  }, true);
+}
+const sayBtn = (text, label, slow) => `<button type="button" class="say${slow ? " slow" : ""}" data-say="${esc(text).replace(/"/g, "&quot;")}"${slow ? " data-slow" : ""} aria-label="${slow ? "Nghe chậm" : "Nghe"}: ${esc(label || text).replace(/"/g, "&quot;")}" title="${slow ? "Nghe chậm" : "Nghe"}">${slow ? "×0.6" : ""}</button>`;
+
 /** Replace each <select> under root with the shared Swiss dropdown (native select stays as source of truth). */
 function enhanceSelects(root = document) {
   root.querySelectorAll("select:not([data-dd])").forEach(sel => {
