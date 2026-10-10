@@ -17,7 +17,7 @@
       (S.level === "all" || w.level === S.level) &&
       (S.type === "all" || w.type === S.type) &&
       (S.topic === "all" || w.topic === S.topic) &&
-      (!q || w.term.toLowerCase().includes(q) || w.meaning.toLowerCase().includes(q))
+      (!q || w.term.toLowerCase().includes(q) || w.meaning.toLowerCase().includes(q) || (w.ipa || "").toLowerCase().includes(q))
     );
   }
 

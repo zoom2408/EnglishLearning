@@ -20,4 +20,6 @@ const MODULES = [
  {key:"ukemi",num:"14",page:"ukemi.html",title:"Bị động & sai khiến",en:"受身・使役",prefix:"ja-uke-",desc:"Thể bị động, bị động gây phiền, thể sai khiến, sai khiến bị động",meta:"4 bài · 60 câu"},
  {key:"keigo",num:"15",page:"keigo.html",title:"Keigo",en:"敬語",prefix:"ja-kei2-",desc:"Teineigo, sonkeigo, kenjōgo và cụm công sở",meta:"4 bài · 60 câu"},
  {key:"ayamari",num:"16",page:"ayamari.html",title:"Lỗi hay gặp",en:"よくある間違い",prefix:"ja-aya-",desc:"Lỗi trợ từ, chia từ, thể て/ない/た và từ dễ nhầm của người Việt",meta:"5 bài · 60 câu"},
+ {key:"speaking",num:"17",page:"speaking.html",title:"Speaking",en:"JLPT N5–N3",prefix:"",desc:"50 câu hỏi nói theo chủ đề N5 đến N3",meta:"50 thẻ · 10 chủ đề"},
+ {key:"vocab",num:"18",page:"vocab.html",title:"Từ vựng",en:"語彙",prefix:"",desc:"Danh từ, động từ, tính từ, cụm từ N5-N3 theo 10 chủ đề",meta:"600 từ · 10 chủ đề"},
 ];
