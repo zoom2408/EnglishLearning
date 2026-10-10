@@ -12,4 +12,8 @@ const MODULES = [
  {key:"adjetivos",num:"06",page:"adjetivos.html",title:"Tính từ",en:"Adjetivos",prefix:"es-adj-",desc:"Hòa hợp giống và số, vị trí, sở hữu, chỉ định",meta:"4 bài · 60 câu"},
  {key:"preguntas",num:"07",page:"preguntas.html",title:"Câu hỏi, phủ định & giới từ",en:"Preguntas",prefix:"es-preg-",desc:"Từ để hỏi, phủ định kép, giới từ chỉ vị trí, a / de / en",meta:"4 bài · 60 câu"},
  {key:"reflexivos",num:"08",page:"reflexivos.html",title:"Phản thân & gustar",en:"Reflexivos",prefix:"es-ref-",desc:"Động từ phản thân, vị trí đại từ, gustar, también / tampoco",meta:"4 bài · 60 câu"},
+ {key:"pasado",num:"09",page:"pasado.html",title:"Quá khứ",en:"Pasado",prefix:"es-pas-",desc:"Indefinido, imperfecto và cách chọn giữa hai thì",meta:"4 bài · 60 câu"},
+ {key:"pronombres",num:"10",page:"pronombres.html",title:"Đại từ tân ngữ & por/para",en:"Pronombres",prefix:"es-obj-",desc:"Lo/la, le/les, se lo, por và para",meta:"4 bài · 60 câu"},
+ {key:"comparativos",num:"11",page:"comparativos.html",title:"So sánh & tương lai gần",en:"Comparativos",prefix:"es-comp-",desc:"Más/menos que, mejor/peor, el más, ir a + inf.",meta:"4 bài · 60 câu"},
+ {key:"perfecto",num:"12",page:"perfecto.html",title:"Thì hoàn thành",en:"Perfecto",prefix:"es-perf-",desc:"Phân từ, he hablado, había hablado, perfecto vs indefinido",meta:"4 bài · 60 câu"},
 ];
