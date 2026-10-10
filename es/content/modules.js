@@ -16,4 +16,8 @@ const MODULES = [
  {key:"pronombres",num:"10",page:"pronombres.html",title:"Đại từ tân ngữ & por/para",en:"Pronombres",prefix:"es-obj-",desc:"Lo/la, le/les, se lo, por và para",meta:"4 bài · 60 câu"},
  {key:"comparativos",num:"11",page:"comparativos.html",title:"So sánh & tương lai gần",en:"Comparativos",prefix:"es-comp-",desc:"Más/menos que, mejor/peor, el más, ir a + inf.",meta:"4 bài · 60 câu"},
  {key:"perfecto",num:"12",page:"perfecto.html",title:"Thì hoàn thành",en:"Perfecto",prefix:"es-perf-",desc:"Phân từ, he hablado, había hablado, perfecto vs indefinido",meta:"4 bài · 60 câu"},
+ {key:"futuro",num:"13",page:"futuro.html",title:"Tương lai & điều kiện",en:"Futuro",prefix:"es-fut-",desc:"Futuro, condicional, phỏng đoán, tường thuật",meta:"4 bài · 60 câu"},
+ {key:"subjuntivo",num:"14",page:"subjuntivo.html",title:"Subjuntivo hiện tại",en:"Subjuntivo",prefix:"es-sub-",desc:"Cách tạo, bất quy tắc, mong muốn, cảm xúc, nghi ngờ",meta:"4 bài · 60 câu"},
+ {key:"imperativo",num:"15",page:"imperativo.html",title:"Mệnh lệnh & mệnh đề quan hệ",en:"Imperativo",prefix:"es-imp-",desc:"Mệnh lệnh khẳng định, phủ định, que / quien / lo que, relativas với subjuntivo",meta:"4 bài · 60 câu"},
+ {key:"si-clauses",num:"16",page:"si-clauses.html",title:"Subjuntivo quá khứ & câu điều kiện",en:"Si-clauses",prefix:"es-si-",desc:"Subjuntivo imperfecto, si + presente, si + imperfecto, si + pluscuamperfecto",meta:"4 bài · 60 câu"},
 ];
