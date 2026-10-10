@@ -8,7 +8,6 @@
 .sp-top{display:flex;justify-content:space-between;gap:24px;align-items:end;flex-wrap:wrap;border-bottom:1px solid var(--fg);padding-bottom:14px}
 .sp-intro p{margin:6px 0 0;max-width:60ch}
 .sp-bar{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:14px 0}
-.sp-bar select{font:inherit;font-size:14px;font-weight:600;padding:6px 4px;border:0;border-bottom:1px solid var(--fg);background:var(--bg);color:var(--fg);border-radius:0;max-width:100%}
 .card{perspective:1800px}
 .inner{display:grid;transition:transform .8s var(--ease);transform-style:preserve-3d}
 .card.flipped .inner{transform:rotateY(180deg)}

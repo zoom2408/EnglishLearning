@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Style guide · Input &amp; Dropdown</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <style>.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:36px 32px;margin:24px 0 48px}.sg h2{font-size:12px;font-family:var(--mono);color:var(--accent);font-weight:500;margin:40px 0 0;border-top:1px solid var(--fg);padding-top:10px}</style>
+  <script>try{var t=localStorage.getItem("theme12");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body data-module="styleguide">
+  <div class="wrap">
+    <header class="site" id="site"></header>
+    <main class="mod">
+      <header class="mast"><h1 class="long">Inputs<span>.</span></h1>
+        <p class="intro">Chỉ có <b>border-bottom</b>. Không nền, không viền bốn cạnh. Dropdown dùng chung cùng nhịp.</p></header>
+
+      <h2>01 · STATES</h2>
+      <div class="sg">
+        <div class="field"><label class="lbl" for="a1">Default</label><input class="input" id="a1" placeholder="Nhập nội dung"><span class="fhint">Helper text</span></div>
+        <div class="field"><label class="lbl" for="a2">Hover (rê chuột)</label><input class="input" id="a2" placeholder="Rê chuột vào đây"><span class="fhint">Đường kẻ đậm lên</span></div>
+        <div class="field"><label class="lbl" for="a3">Focus</label><input class="input" id="a3" placeholder="Bấm vào đây"><span class="fhint">Đường kẻ đổi sang accent</span></div>
+        <div class="field"><label class="lbl" for="a4">Filled</label><input class="input" id="a4" value="Giá trị đã nhập"><span class="fhint"></span></div>
+        <div class="field is-disabled"><label class="lbl" for="a5">Disabled</label><input class="input" id="a5" placeholder="Không thể nhập" disabled><span class="fhint">Không khả dụng</span></div>
+        <div class="field"><label class="lbl" for="a6">Read-only</label><input class="input" id="a6" value="Chỉ đọc" readonly><span class="fhint">Đường kẻ nét đứt</span></div>
+        <div class="field is-error"><label class="lbl" for="a7">Error</label><input class="input" id="a7" value="abc" aria-invalid="true"><span class="fhint">Định dạng chưa đúng</span></div>
+        <div class="field is-success"><label class="lbl" for="a8">Success</label><input class="input" id="a8" value="Hợp lệ"><span class="fhint">Đã xác nhận</span></div>
+      </div>
+
+      <h2>02 · SIZES &amp; VARIANTS</h2>
+      <div class="sg">
+        <div class="field"><label class="lbl" for="b1">Small</label><input class="input input--sm" id="b1" placeholder="input--sm"></div>
+        <div class="field"><label class="lbl" for="b2">Medium (mặc định)</label><input class="input" id="b2" placeholder="input"></div>
+        <div class="field"><label class="lbl" for="b3">Large</label><input class="input input--lg" id="b3" type="search" placeholder="Tìm từ hoặc nghĩa…"></div>
+        <div class="field"><label class="lbl" for="b4">Mono (đáp án)</label><input class="input input--lg input--mono" id="b4" placeholder="gõ đáp án"></div>
+        <div class="field"><label class="lbl" for="b5">Textarea</label><textarea class="input" id="b5" rows="3" placeholder="Nhiều dòng"></textarea></div>
+        <div class="field"><label class="lbl" for="b6">Dropdown</label><select id="b6"><option>Tất cả (100)</option><option>Hometown (6)</option><option>Shopping (8)</option></select></div>
+      </div>
+    </main>
+  </div>
+  <script src="content/modules.js"></script>
+  <script src="assets/js/core/utils.js"></script>
+  <script src="content/theory/tenses.js"></script>
+  <script src="assets/js/core/nav.js"></script>
+  <script src="assets/js/core/theme.js"></script>
+  <script>renderSite();enhanceSelects();</script>
+</body>
+</html>

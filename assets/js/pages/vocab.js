@@ -34,11 +34,12 @@
        </div>
      </div>
      <div class="vbar">
-       <input class="search" id="vSearch" type="search" placeholder="Tìm từ hoặc nghĩa…" autocomplete="off">
+       <input class="input input--lg" id="vSearch" type="search" placeholder="Tìm từ hoặc nghĩa…" autocomplete="off">
        <select id="vTopic"><option value="all">Tất cả chủ đề (${list.length})</option>${topics.map(t => `<option value="${esc(t)}">${esc(t)} (${list.filter(w => w.topic === t).length})</option>`).join("")}</select>
      </div>
      <div class="vcount" id="vCount"></div>
      <div class="vlist" id="vList"></div>`;
+    enhanceSelects(el);
     $("#vSearch").oninput = e => { S.q = e.target.value; renderList(); };
     $("#vTopic").onchange = e => { S.topic = e.target.value; renderList(); };
     el.addEventListener("click", e => {

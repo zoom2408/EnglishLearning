@@ -33,6 +33,7 @@ function renderSpeakShell(){
    </div>
    <p class="hint">Phím tắt: Space để lật thẻ, ← → để chuyển thẻ.</p>
    <div class="sp-fw"><span class="lbl">${Object.keys(FW).length} khung trả lời dùng trong bộ thẻ</span><div class="fwgrid">${Object.entries(FW).map(([k,f])=>`<div class="fwi"><b>${f.name}</b><span>${f.steps.join(" → ")}</span></div>`).join("")}</div></div>`;
+  enhanceSelects(spkEl);
   document.getElementById("spTopic").onchange=e=>{ S.topic=e.target.value; buildDeck(); renderCard(1); };
   document.getElementById("spShuffle").onclick=()=>{ buildDeck(); renderCard(1); };
   document.getElementById("spPrev").onclick=()=>move(-1);

@@ -6,8 +6,7 @@
 .vocab>*{grid-column:2 / -1;min-width:0}
 .vtop{display:flex;flex-wrap:wrap;gap:24px 32px;padding-bottom:16px;border-bottom:1px solid var(--fg)}
 .vbar{display:flex;flex-wrap:wrap;gap:16px;align-items:center;padding:16px 0}
-.vbar .search{flex:1;min-width:200px;font-size:clamp(18px,2.6vw,24px);padding:6px 0}
-.vbar select{font:inherit;font-size:14px;font-weight:600;padding:6px 4px;border:0;border-bottom:1px solid var(--fg);background:var(--bg);color:var(--fg);border-radius:0;max-width:100%}
+.vbar .input{flex:1;min-width:200px;width:auto}
 .vcount{font-family:var(--mono);font-size:12px;color:var(--muted);padding-bottom:8px}
 .vlist{border-top:1px solid var(--hair)}
 .vrow{display:grid;grid-template-columns:120px 1fr 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--hair);align-items:baseline;animation:enter .4s var(--ease) both;animation-delay:calc(var(--i)*25ms)}
