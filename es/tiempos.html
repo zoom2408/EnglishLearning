@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>7 Tiempos · Ngữ pháp tiếng Tây Ban Nha</title>
+  <meta name="description" content="7 thì của tiếng Tây Ban Nha: presente, indefinido, imperfecto, perfecto, pluscuamperfecto, futuro, condicional. Trục thời gian, cấu trúc, dấu hiệu, luyện tập.">
+  <link rel="icon" type="image/png" href="../assets/img/avatar.png">
+  <link rel="apple-touch-icon" href="../assets/img/avatar.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/practice.css">
+  <link rel="stylesheet" href="../assets/css/finder.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+  <script>try{var t=localStorage.getItem("theme12");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body data-module="tiempos">
+  <div class="wrap">
+    <header class="site" id="site"></header>
+    <main class="mod" id="mod-tiempos">
+    <header class="mast">
+      <h1 class="long">7 Tiempos<span>.</span></h1>
+      <p class="intro">Tiếng Tây Ban Nha có 7 thì chính ở thức chỉ định. Điểm khó nhất là chọn giữa <b>indefinido</b> (kể sự kiện) và <b>imperfecto</b> (kể bối cảnh). <b>Bấm vào một dòng</b> để mở sơ đồ, cấu trúc và cách dùng.</p>
+      <nav class="tabs" role="tablist">
+        <button role="tab" data-view="learn" aria-selected="true">Lý thuyết</button>
+        <button role="tab" data-view="quiz" aria-selected="false">Luyện tập</button>
+        <button role="tab" data-view="find" aria-selected="false">Tra dấu hiệu</button>
+        <i class="ink" aria-hidden="true"></i>
+      </nav>
+    </header>
+
+    <section class="view learnv" id="view-learn">
+      <div class="controls">
+        <div class="seg" id="filter"><span class="lbl">Lọc</span>
+          <button data-f="all" aria-pressed="true">Tất cả</button>
+          <button data-f="past" aria-pressed="false">Quá khứ</button>
+          <button data-f="present" aria-pressed="false">Hiện tại</button>
+          <button data-f="future" aria-pressed="false">Tương lai</button>
+        </div>
+      </div>
+      <div class="score">
+        <div class="shead">
+          <span class="lbl">Nº</span><span class="lbl">Tiempo</span>
+          <div class="zones">
+            <button class="zp" data-f="past">← Quá khứ</button>
+            <span class="zn">Bây giờ</span>
+            <button class="zf" data-f="future">Tương lai →</button>
+          </div>
+        </div>
+        <div id="rows"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-quiz" hidden><div class="quiz" id="quiz"></div></section>
+    <section class="view" id="view-find" hidden>
+      <div class="finder">
+        <label class="lbl" for="q" style="margin-bottom:6px">Gặp từ này thì dùng thì nào?</label>
+        <input class="search" id="q" type="search" placeholder="ayer, siempre, ya…" autocomplete="off">
+        <div class="found" id="found"></div>
+        <p class="hint">Một dấu hiệu có thể thuộc nhiều thì, ví dụ <b>ya</b>. Hãy đọc cả câu để chọn đúng.</p>
+        <div class="allsig"><span class="lbl">Tất cả dấu hiệu</span><div class="chips" id="allsignals"></div></div>
+      </div>
+    </section>
+    </main>
+  </div>
+  <script src="content/modules.js"></script>
+  <script src="../assets/js/core/utils.js"></script>
+  <script src="content/theory/tiempos.js"></script>
+  <script src="../assets/js/core/nav.js"></script>
+  <script src="../assets/js/core/theme.js"></script>
+  <script src="../assets/js/core/diagrams.js"></script>
+  <script src="../assets/js/core/rows.js"></script>
+  <script src="../assets/js/core/practice.js"></script>
+  <script src="content/quiz/tiempos.js"></script>
+  <script src="../assets/js/pages/timeline.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
