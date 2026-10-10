@@ -7,11 +7,13 @@ const LANGS = [
   { code: "en", flag: "🇬🇧", label: "English", home: "/" },
   { code: "de", flag: "🇩🇪", label: "Deutsch", home: "/de/" },
   { code: "nb", flag: "🇳🇴", label: "Norsk bokmål", home: "/nb/" },
+  { code: "es", flag: "🇪🇸", label: "Español", home: "/es/" },
 ];
 function currentLang() {
   const p = location.pathname;
   if (p.startsWith("/de/")) return "de";
   if (p.startsWith("/nb/")) return "nb";
+  if (p.startsWith("/es/")) return "es";
   return "en";
 }
 
