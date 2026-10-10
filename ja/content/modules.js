@@ -12,4 +12,8 @@ const MODULES = [
  {key:"keiyoushi",num:"06",page:"keiyoushi.html",title:"Tính từ い & な",en:"形容詞",prefix:"ja-kei-",desc:"Tính từ い, tính từ な, bổ nghĩa danh từ, nối câu và phó từ",meta:"4 bài · 60 câu"},
  {key:"tekei",num:"07",page:"tekei.html",title:"Thể て",en:"て形",prefix:"ja-te-",desc:"Cách chia thể て, ください, ています, てから, ても いい",meta:"4 bài · 60 câu"},
  {key:"futsukei",num:"08",page:"futsukei.html",title:"Thể thường, ない, た, たい",en:"普通形",prefix:"ja-fut-",desc:"Thể từ điển, ない, た, ~たい, ~ことができる, ~たことがある",meta:"4 bài · 60 câu"},
+ {key:"sonzai",num:"09",page:"sonzai.html",title:"あります・います & đếm",en:"存在・数え方",prefix:"ja-son-",desc:"あります/います, vị trí, đếm đồ vật và người, hỏi số lượng",meta:"4 bài · 60 câu"},
+ {key:"hikaku",num:"10",page:"hikaku.html",title:"So sánh & ý định",en:"比較・意志",prefix:"ja-hik-",desc:"より, のほうが, いちばん, つもり, よてい, ようと思う",meta:"4 bài · 60 câu"},
+ {key:"shushoku",num:"11",page:"shushoku.html",title:"Mệnh đề bổ nghĩa & danh từ hoá",en:"修飾・名詞化",prefix:"ja-shu-",desc:"Mệnh đề bổ nghĩa danh từ, の và こと, という, んです",meta:"4 bài · 60 câu"},
+ {key:"joken",num:"12",page:"joken.html",title:"Điều kiện",en:"条件",prefix:"ja-jok-",desc:"と, ば, たら, なら, và cách chọn mẫu phù hợp",meta:"4 bài · 60 câu"},
 ];
