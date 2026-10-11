@@ -58,10 +58,10 @@
     $("#vList").innerHTML = rows.length ? rows.map((w, i) => `
       <div class="vrow" style="--i:${i % 40}">
         <div class="vmeta"><span class="vlvl">${esc(w.level)}</span><span class="vtype">${esc(w.type)}</span></div>
-        <div class="vterm">${esc(w.term)}${w.ipa ? ` <span class="vipa">${esc(w.ipa)}</span>` : ""}${sayBtn(w.term)}${sayBtn(w.term, w.term, true)}</div>
+        <div class="vterm">${w.tf ? rb(esc(w.tf)) : esc(w.term)}${w.ipa ? (w.tf || w.er ? ` <span class="vipa vro">${esc(w.ipa.split(" · ").slice(1).join(" · "))}</span>` : ` <span class="vipa">${esc(w.ipa)}</span>`) : ""}${sayBtn(w.term)}${sayBtn(w.term, w.term, true)}</div>
         <div class="vmean">${esc(w.meaning)}</div>
         ${w.forms ? `<div class="vforms">${esc(w.forms)}</div>` : ""}
-        <div class="vex">${esc(w.example)}${sayBtn(w.example)}</div>
+        <div class="vex">${w.ef ? rb(esc(w.ef)) : esc(w.example)}${sayBtn(w.example)}${w.er ? `<span class="ro">${esc(w.er)}</span>` : ""}</div>
       </div>`).join("") : `<p class="hint">Không tìm thấy từ nào khớp. Thử từ khóa khác hoặc bỏ bớt bộ lọc.</p>`;
   }
 

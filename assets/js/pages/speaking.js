@@ -4,6 +4,9 @@
    Content: content/speaking/part1.js
    ===================================================================== */
 const { FW, SPK } = GRAMMAR.speaking;
+const FURI = GRAMMAR.speaking.FURI || {}, ROMA = GRAMMAR.speaking.ROMA || {};
+/** text with furigana (if known) and optional romaji line */
+const J = (t, ro) => (FURI[t] ? rb(esc(FURI[t])) : esc(t)) + (ro && ROMA[t] ? `<span class="ro">${esc(ROMA[t])}</span>` : "");
 const spkEl=document.getElementById("speak");
 const TOPICS=[...new Set(SPK.map(s=>s[0]))];
 let S={topic:"all",deck:[],pos:0,flipped:false,done:new Set(),timer:null};
@@ -32,7 +35,7 @@ function renderSpeakShell(){
      <button class="link" id="spNext">Thẻ tiếp →</button>
    </div>
    <p class="hint">Phím tắt: Space để lật thẻ, ← → để chuyển thẻ.</p>
-   <div class="sp-fw"><span class="lbl">${Object.keys(FW).length} khung trả lời dùng trong bộ thẻ</span><div class="fwgrid">${Object.entries(FW).map(([k,f])=>`<div class="fwi"><b>${f.name}</b><span>${f.steps.join(" → ")}</span></div>`).join("")}</div></div>`;
+   <div class="sp-fw"><span class="lbl">${Object.keys(FW).length} khung trả lời dùng trong bộ thẻ</span><div class="fwgrid">${Object.entries(FW).map(([k,f])=>`<div class="fwi"><b>${J(f.name)}</b><span>${f.steps.join(" → ")}</span></div>`).join("")}</div></div>`;
   enhanceSelects(spkEl);
   document.getElementById("spTopic").onchange=e=>{ S.topic=e.target.value; buildDeck(); renderCard(1); };
   document.getElementById("spShuffle").onclick=()=>{ buildDeck(); renderCard(1); };
@@ -50,18 +53,18 @@ function renderCard(dir){
   c.className="card"+(dir?(dir>0?" in-next":" in-prev"):"");
   c.innerHTML=`<div class="inner">
     <div class="face front">
-      <div class="fmeta"><span>${esc(topic)}</span><span>${String(S.pos+1).padStart(2,"0")} / ${S.deck.length}</span></div>
-      <div class="fq">${esc(q)}${sayBtn(q)}</div>
-      <div class="fmeta"><span>Khung gợi ý: ${f.name}</span><button class="donebtn" id="spMark" aria-pressed="${S.done.has(i)}">${S.done.has(i)?"✓ Đã luyện":"Đánh dấu đã luyện"}</button></div>
+      <div class="fmeta"><span>${J(topic)}</span><span>${String(S.pos+1).padStart(2,"0")} / ${S.deck.length}</span></div>
+      <div class="fq">${J(q,true)}${sayBtn(q)}</div>
+      <div class="fmeta"><span>Khung gợi ý: ${J(f.name)}</span><button class="donebtn" id="spMark" aria-pressed="${S.done.has(i)}">${S.done.has(i)?"✓ Đã luyện":"Đánh dấu đã luyện"}</button></div>
     </div>
     <div class="face bk">
-      <div class="fmeta"><span>${esc(topic)}</span><span>${esc(q)}</span></div>
+      <div class="fmeta"><span>${J(topic)}</span><span>${J(q)}</span></div>
       <div class="bgrid">
-        <div><span class="lbl">Khung trả lời</span><ol class="steps">${f.steps.map((s,k)=>`<li><b>${f.name.split(" · ")[k]}</b><span>${s}</span></li>`).join("")}</ol>
+        <div><span class="lbl">Khung trả lời</span><ol class="steps">${f.steps.map((s,k)=>`<li><b>${J(f.name.split(" · ")[k])}</b><span>${s}</span></li>`).join("")}</ol>
           ${t?`<span class="lbl" style="margin-top:16px;display:block">Thì chính nên dùng</span><button class="chip tchip" data-review="${t.id}">${t.vi} · ${t.en}</button>`:`<span class="lbl" style="margin-top:16px;display:block">Lưu ý</span><p class="small">${esc(note||"Dùng would / I'd love to để nói điều mong muốn.")}</p>`}</div>
-        <div><span class="lbl">Mẫu câu nên nói</span><ul class="pats">${f.pat.map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div>
+        <div><span class="lbl">Mẫu câu nên nói</span><ul class="pats">${f.pat.map(p=>`<li>${J(p,true)}</li>`).join("")}</ul></div>
       </div>
-      <div class="sample"><span class="lbl">Câu trả lời mẫu</span><p>${esc(sample)}${sayBtn(sample)}${sayBtn(sample, sample, true)}</p></div>
+      <div class="sample"><span class="lbl">Câu trả lời mẫu</span><p>${J(sample,true)}${sayBtn(sample)}${sayBtn(sample, sample, true)}</p></div>
     </div></div>`;
   c.querySelector("#spMark").onclick=e=>{ e.stopPropagation(); S.done.has(i)?S.done.delete(i):S.done.add(i); saveDone(); updDone(); const b=e.currentTarget; b.setAttribute("aria-pressed",S.done.has(i)); b.textContent=S.done.has(i)?"✓ Đã luyện":"Đánh dấu đã luyện"; };
   c.querySelector(".front").onclick=flip;

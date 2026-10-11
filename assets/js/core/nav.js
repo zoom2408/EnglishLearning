@@ -33,7 +33,15 @@ function renderSite() {
     <nav class="mods" aria-label="Chủ đề">
       ${MODULES.map(m => `<a href="${m.page}"${m.key === cur ? ' aria-current="page"' : ""}${m.key === "speaking" ? ' class="spk"' : ""}><span>${m.num}</span>${m.title}</a>`).join("")}
     </nav>
+    ${currentLang() === "ja" ? '<button id="roBtn" class="theme ro-toggle" type="button" aria-pressed="true" aria-label="Bật hoặc tắt romaji"><i></i><span>Romaji: Bật</span></button>' : ""}
     <button id="themeBtn" class="theme" type="button" aria-label="Đổi giao diện sáng hoặc tối"><i></i><span>Tự động</span></button>`;
+  const roBtn = document.getElementById("roBtn");
+  if (roBtn) {
+    const apply = on => { document.documentElement.dataset.romaji = on ? "on" : "off"; roBtn.setAttribute("aria-pressed", on); roBtn.dataset.mode = on ? "dark" : "light"; roBtn.querySelector("span").textContent = on ? "Romaji: Bật" : "Romaji: Tắt"; };
+    let on = true; try { on = localStorage.getItem("romaji12") !== "off"; } catch (e) {}
+    apply(on);
+    roBtn.addEventListener("click", () => { on = !on; try { localStorage.setItem("romaji12", on ? "on" : "off"); } catch (e) {} apply(on); });
+  }
   const ls = document.getElementById("langswitch"), lb = ls.querySelector(".brandbtn");
   lb.addEventListener("click", e => { e.stopPropagation(); const was = ls.classList.contains("open"); document.dispatchEvent(new Event("dd:close")); const open = !was; ls.classList.toggle("open", open); lb.setAttribute("aria-expanded", open); });
   const closeLang = () => { ls.classList.remove("open"); lb.setAttribute("aria-expanded", "false"); };

@@ -12,3 +12,9 @@ rt{font-size:.5em;font-weight:500;color:var(--muted);letter-spacing:0}
 .ro{display:block;font-family:var(--sans);font-size:12.5px;font-weight:400;color:var(--muted);letter-spacing:0;margin-top:2px}
 .form em,.uses em,.mq{line-height:1.9}
 .qtext{line-height:1.6}
+html[data-romaji="off"] .ro,html[data-romaji="off"] .vro{display:none}
+.site .ro-toggle{margin-left:auto;font-size:14px;font-weight:600;margin-right:14px}
+.site .ro-toggle + .theme{margin-left:0}
+.vterm ruby{ruby-position:over}
+.vro{font-family:var(--sans)}
+.fq .ro,.sample .ro,.pats .ro{font-size:13px}
