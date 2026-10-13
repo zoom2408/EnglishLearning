@@ -1,6 +1,6 @@
 # Ngữ pháp tiếng Anh
 
-Trang web học ngữ pháp tiếng Anh cho IELTS band 6.5 đến 7.5. Có 11 chủ đề ngữ pháp, mỗi chủ đề gồm lý thuyết trực quan, luyện tập và một trò chơi 60 giây. Ngoài ra có 100 flashcard Speaking Part 1.
+Trang web học ngữ pháp tiếng Anh cho IELTS band 6.5 đến 7.5. Có 11 chủ đề ngữ pháp, mỗi chủ đề gồm lý thuyết trực quan, luyện tập và một trò chơi 60 giây. Ngoài ra có 150 flashcard Speaking Part 1.
 
 Trang web là HTML, CSS và JavaScript thuần: không cần build, không cần cài thư viện.
 
@@ -65,7 +65,7 @@ content/
   modules.js               Danh sách 12 trang (thứ tự, tên, mô tả)
   theory/*.js              Nội dung lý thuyết của từng chủ đề
   quiz/*.js                Câu hỏi luyện tập và trò chơi của từng chủ đề
-  speaking/part1.js        100 câu hỏi Speaking Part 1
+  speaking/part1.js        150 câu hỏi Speaking Part 1 (50 đề VSTEP)
 ```
 
 Mỗi trang module load các file theo thứ tự: `content/modules.js` → `core/utils.js` → `content/theory/tenses.js` (luôn có, vì các chủ đề khác link sang thì) → file lý thuyết của trang → `core/*` → file quiz của trang → `main.js`.
