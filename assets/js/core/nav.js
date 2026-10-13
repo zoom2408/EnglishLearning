@@ -55,23 +55,69 @@ function renderSite() {
 const SAY_LANG = { en: "en-US", de: "de-DE", nb: "nb-NO", es: "es-ES", ja: "ja-JP" };
 const hasTTS = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
 if (!hasTTS) document.documentElement.classList.add("no-tts");
-function say(text, slow) {
+const NOVELTY = /albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|jester|junior|organ|superstar|trinoids|whisper|wobble|zarvox|fred|ralph|kathy|eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley/i;
+let ttsVoices = [], ttsLang = "", ttsPick = null;
+/** score a voice for the page language: exact locale, then neural / premium engines, then plain system voices */
+function voiceScore(v, lang) {
+  const vl = v.lang.replace("_", "-"), ll = lang.toLowerCase();
+  let n = 0;
+  if (vl.toLowerCase() === ll) n += 100; else if (vl.toLowerCase().startsWith(ll.slice(0, 2))) n += 40; else return -1;
+  if (/natural|online/i.test(v.name)) n += 60;
+  if (/premium|enhanced|neural|siri/i.test(v.name)) n += 50;
+  if (/google/i.test(v.name)) n += 30;
+  if (/samantha|ava|allison|evan|nicky|aria|jenny|guy|zira|daniel|karen|moira|serena|tessa/i.test(v.name)) n += 15;
+  if (NOVELTY.test(v.name)) n -= 80;
+  if (!v.localService) n += 5;
+  return n;
+}
+function pickVoice(lang) {
+  if (ttsPick && ttsLang === lang) return ttsPick;
+  const vs = ttsVoices.length ? ttsVoices : window.speechSynthesis.getVoices();
+  ttsVoices = vs;
+  let best = null, top = -1;
+  for (const v of vs) { const sc = voiceScore(v, lang); if (sc > top) { top = sc; best = v; } }
+  if (best) { ttsPick = best; ttsLang = lang; }
+  return best;
+}
+/** long text is read sentence by sentence: Chrome silently stops utterances longer than about 15 seconds */
+function speechChunks(text) {
+  const parts = text.match(/[^.!?。！？]+[.!?。！？]*\s*/g) || [text];
+  const out = [];
+  for (const p of parts) { const t = p.trim(); if (t) out.push(t); }
+  return out;
+}
+let sayToken = 0, sayTimer = 0;
+function stopSay() { sayToken++; clearTimeout(sayTimer); if (hasTTS) window.speechSynthesis.cancel(); }
+function say(text, slow, done) {
   if (!hasTTS || !text) return;
   const lang = SAY_LANG[currentLang()] || "en-US", synth = window.speechSynthesis;
-  synth.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = lang; u.rate = slow ? 0.55 : 0.85;
-  const vs = synth.getVoices();
-  const v = vs.find(x => x.lang === lang) || vs.find(x => x.lang.replace("_", "-").toLowerCase().startsWith(lang.slice(0, 2).toLowerCase()));
-  if (v) u.voice = v;
-  synth.speak(u);
+  stopSay();
+  const token = sayToken, v = pickVoice(lang), chunks = speechChunks(text);
+  const rate = slow ? 0.6 : 0.9;
+  // Chrome needs a short gap after cancel() or the next utterance is dropped
+  sayTimer = setTimeout(() => {
+    chunks.forEach((c, i) => {
+      const u = new SpeechSynthesisUtterance(c);
+      u.lang = (v && v.lang) || lang; u.rate = rate; u.pitch = 1;
+      if (v) u.voice = v;
+      if (i === chunks.length - 1 && done) { u.onend = u.onerror = () => { if (token === sayToken) done(); }; }
+      synth.speak(u);
+    });
+    if (synth.paused) synth.resume();
+  }, 60);
 }
 if (hasTTS) {
-  window.speechSynthesis.getVoices();
+  const load = () => { ttsVoices = window.speechSynthesis.getVoices(); ttsPick = null; };
+  load();
+  if (window.speechSynthesis.addEventListener) window.speechSynthesis.addEventListener("voiceschanged", load);
+  else window.speechSynthesis.onvoiceschanged = load;
+  window.addEventListener("pagehide", stopSay);
   document.addEventListener("click", e => {
     const b = e.target.closest("[data-say]"); if (!b) return;
-    e.stopPropagation(); say(b.dataset.say, b.hasAttribute("data-slow"));
-    b.classList.add("playing"); setTimeout(() => b.classList.remove("playing"), 900);
+    e.stopPropagation();
+    document.querySelectorAll(".say.playing").forEach(x => x.classList.remove("playing"));
+    b.classList.add("playing");
+    say(b.dataset.say, b.hasAttribute("data-slow"), () => b.classList.remove("playing"));
   }, true);
 }
 const sayBtn = (text, label, slow) => `<button type="button" class="say${slow ? " slow" : ""}" data-say="${esc(text).replace(/"/g, "&quot;")}"${slow ? " data-slow" : ""} aria-label="${slow ? "Nghe chậm" : "Nghe"}: ${esc(label || text).replace(/"/g, "&quot;")}" title="${slow ? "Nghe chậm" : "Nghe"}">${slow ? "×0.6" : ""}</button>`;

@@ -46,6 +46,7 @@ function renderSpeakShell(){
 }
 function updDone(){ const d=document.getElementById("spDone"); d.innerHTML=`${S.done.size}<small>/ ${SPK.length} đã luyện</small>`; }
 function renderCard(dir){
+  if(typeof stopSay==="function") stopSay();
   stopTimer();
   const i=S.deck[S.pos], [topic,q,fwk,tc,sample,note]=SPK[i], f=FW[fwk], t=tc?byId[TN[tc]]:null;
   S.flipped=false;
