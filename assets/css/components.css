@@ -281,3 +281,24 @@ textarea.input{resize:vertical;min-height:72px;font-weight:500;line-height:1.55}
 .hdesc{font-size:14px;margin-top:6px;max-width:34ch}
 .hmeta{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:10px}
 .hcard.spk .htitle{color:var(--accent)}
+
+/* header: speech settings popover */
+.ttswrap{position:relative;margin-left:auto}
+.ttswrap[hidden]{display:none}
+.site .ttswrap .theme{margin-left:0;font-size:14px;font-weight:600;background:none;border:0;padding:0;cursor:pointer;font-family:inherit}
+.site .ro-toggle + .ttswrap{margin-left:0}
+.site .ttswrap + .theme{margin-left:0}
+.tts-toggle svg{flex:none}
+.ttsmenu{position:absolute;top:calc(100% + 10px);right:0;width:min(300px,86vw);display:flex;flex-direction:column;gap:8px;padding:16px;background:var(--bg);border:1px solid var(--hair);border-top:2px solid var(--fg);box-shadow:0 6px 18px rgba(0,0,0,.08);z-index:40;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .2s,transform .2s var(--ease),visibility .2s}
+.ttswrap.open .ttsmenu{opacity:1;visibility:visible;transform:translateY(0)}
+.ttsmenu .lbl{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px}
+.ttsmenu .lbl:first-child{margin-top:0}
+.ttsmenu .lbl b{font-family:var(--mono);font-weight:500;color:var(--fg)}
+.ttsmenu select{width:100%;font:inherit;font-size:13px;padding:8px 10px;color:var(--fg);background:var(--bg);border:1px solid var(--hair);border-radius:0}
+.ttsmenu input[type=range]{width:100%;accent-color:var(--accent)}
+.ttspresets{display:flex;gap:6px}
+.ttspresets button{flex:1;padding:7px 0;font:inherit;font-size:12.5px;font-weight:600;color:var(--muted);background:transparent;border:1px solid var(--hair);border-radius:0;cursor:pointer;transition:color .2s,border-color .2s}
+.ttspresets button:hover,.ttspresets button[aria-pressed="true"]{color:var(--accent);border-color:var(--accent)}
+.ttstest{margin-top:6px;width:100%}
+.no-tts .ttswrap{display:none}
+@media (max-width:760px){.ttsmenu{right:auto;left:0}.ttswrap{margin-left:auto}}

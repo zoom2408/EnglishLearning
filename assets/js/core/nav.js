@@ -34,6 +34,17 @@ function renderSite() {
       ${MODULES.map(m => `<a href="${m.page}"${m.key === cur ? ' aria-current="page"' : ""}${m.key === "speaking" ? ' class="spk"' : ""}><span>${m.num}</span>${m.title}</a>`).join("")}
     </nav>
     ${currentLang() === "ja" ? '<button id="roBtn" class="theme ro-toggle" type="button" aria-pressed="true" aria-label="Bật hoặc tắt romaji"><i></i><span>Romaji: Bật</span></button>' : ""}
+    <div class="ttswrap" id="ttsWrap">
+      <button id="ttsBtn" class="theme tts-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Tuỳ chỉnh giọng đọc và tốc độ"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg><span>Giọng đọc</span></button>
+      <div class="ttsmenu" id="ttsMenu" role="dialog" aria-label="Giọng đọc">
+        <label class="lbl" for="ttsVoice">Giọng</label>
+        <select id="ttsVoice"></select>
+        <label class="lbl" for="ttsRate">Tốc độ <b id="ttsRateVal">0.9×</b></label>
+        <input id="ttsRate" type="range" min="0.5" max="1.3" step="0.05" value="0.9">
+        <div class="ttspresets" role="group" aria-label="Tốc độ nhanh"><button type="button" data-r="0.7">Chậm</button><button type="button" data-r="0.9">Vừa</button><button type="button" data-r="1.1">Nhanh</button></div>
+        <button type="button" class="btn ghost ttstest" id="ttsTest">Nghe thử</button>
+      </div>
+    </div>
     <button id="themeBtn" class="theme" type="button" aria-label="Đổi giao diện sáng hoặc tối"><i></i><span>Tự động</span></button>`;
   const roBtn = document.getElementById("roBtn");
   if (roBtn) {
@@ -57,6 +68,9 @@ const hasTTS = "speechSynthesis" in window && "SpeechSynthesisUtterance" in wind
 if (!hasTTS) document.documentElement.classList.add("no-tts");
 const NOVELTY = /albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|jester|junior|organ|superstar|trinoids|whisper|wobble|zarvox|fred|ralph|kathy|eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley/i;
 let ttsVoices = [], ttsLang = "", ttsPick = null;
+let ttsPrefs = { voice: "", rate: 0.9 };
+try { const p = JSON.parse(localStorage.getItem("tts12") || "{}"); if (p && typeof p === "object") ttsPrefs = { voice: String(p.voice || ""), rate: Math.min(1.3, Math.max(0.5, +p.rate || 0.9)) }; } catch (e) {}
+function saveTtsPrefs() { try { localStorage.setItem("tts12", JSON.stringify(ttsPrefs)); } catch (e) {} }
 /** score a voice for the page language: exact locale, then neural / premium engines, then plain system voices */
 function voiceScore(v, lang) {
   const vl = v.lang.replace("_", "-"), ll = lang.toLowerCase();
@@ -74,6 +88,7 @@ function pickVoice(lang) {
   if (ttsPick && ttsLang === lang) return ttsPick;
   const vs = ttsVoices.length ? ttsVoices : window.speechSynthesis.getVoices();
   ttsVoices = vs;
+  if (ttsPrefs.voice) { const chosen = vs.find(v => v.voiceURI === ttsPrefs.voice && voiceScore(v, lang) >= 0); if (chosen) { ttsPick = chosen; ttsLang = lang; return chosen; } }
   let best = null, top = -1;
   for (const v of vs) { const sc = voiceScore(v, lang); if (sc > top) { top = sc; best = v; } }
   if (best) { ttsPick = best; ttsLang = lang; }
@@ -93,7 +108,7 @@ function say(text, slow, done) {
   const lang = SAY_LANG[currentLang()] || "en-US", synth = window.speechSynthesis;
   stopSay();
   const token = sayToken, v = pickVoice(lang), chunks = speechChunks(text);
-  const rate = slow ? 0.6 : 0.9;
+  const rate = slow ? Math.max(0.4, +(ttsPrefs.rate * 0.65).toFixed(2)) : ttsPrefs.rate;
   // Chrome needs a short gap after cancel() or the next utterance is dropped
   sayTimer = setTimeout(() => {
     chunks.forEach((c, i) => {
@@ -174,6 +189,38 @@ function show(view) {
   placeInk();
 }
 
+/** header popover: voice + speed for the listen buttons, remembered per browser */
+function initTtsPanel() {
+  const wrap = document.getElementById("ttsWrap"); if (!wrap) return;
+  if (!hasTTS) { wrap.hidden = true; return; }
+  const btn = document.getElementById("ttsBtn"), sel = document.getElementById("ttsVoice"), rng = document.getElementById("ttsRate"), val = document.getElementById("ttsRateVal"), test = document.getElementById("ttsTest");
+  const lang = SAY_LANG[currentLang()] || "en-US";
+  const fill = () => {
+    const vs = (ttsVoices.length ? ttsVoices : window.speechSynthesis.getVoices()).map(v => [v, voiceScore(v, lang)]).filter(x => x[1] >= 0).sort((a, b) => b[1] - a[1]);
+    const auto = pickVoiceAuto(lang);
+    sel.innerHTML = `<option value="">Tự động${auto ? " (" + esc(auto.name) + ")" : ""}</option>` + vs.map(([v]) => `<option value="${esc(v.voiceURI)}">${esc(v.name)} · ${esc(v.lang)}</option>`).join("");
+    sel.value = vs.some(([v]) => v.voiceURI === ttsPrefs.voice) ? ttsPrefs.voice : "";
+  };
+  const paintRate = () => { rng.value = ttsPrefs.rate; val.textContent = ttsPrefs.rate.toFixed(2).replace(/0$/, "") + "×"; wrap.querySelectorAll(".ttspresets button").forEach(b => b.setAttribute("aria-pressed", Math.abs(+b.dataset.r - ttsPrefs.rate) < 0.01)); };
+  const close = () => { wrap.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); };
+  const demo = () => say(lang.startsWith("en") ? "Hello! This is how I sound. Let's practise speaking together." : "Hello, this is a test.", false);
+  btn.addEventListener("click", e => { e.stopPropagation(); const was = wrap.classList.contains("open"); document.dispatchEvent(new Event("dd:close")); if (!was) { fill(); paintRate(); wrap.classList.add("open"); btn.setAttribute("aria-expanded", "true"); } });
+  wrap.querySelector(".ttsmenu").addEventListener("click", e => e.stopPropagation());
+  document.addEventListener("click", close); document.addEventListener("dd:close", close);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
+  sel.addEventListener("change", () => { ttsPrefs.voice = sel.value; ttsPick = null; saveTtsPrefs(); demo(); });
+  rng.addEventListener("input", () => { ttsPrefs.rate = +rng.value; paintRate(); });
+  rng.addEventListener("change", () => { saveTtsPrefs(); demo(); });
+  wrap.querySelectorAll(".ttspresets button").forEach(b => b.addEventListener("click", () => { ttsPrefs.rate = +b.dataset.r; paintRate(); saveTtsPrefs(); demo(); }));
+  test.addEventListener("click", demo);
+  if (window.speechSynthesis.addEventListener) window.speechSynthesis.addEventListener("voiceschanged", () => { if (wrap.classList.contains("open")) fill(); });
+}
+function pickVoiceAuto(lang) {
+  const saved = ttsPrefs.voice; ttsPrefs.voice = ""; const keep = ttsPick, keepLang = ttsLang; ttsPick = null;
+  const v = pickVoice(lang); ttsPrefs.voice = saved; ttsPick = keep; ttsLang = keepLang; return v;
+}
+
 renderSite();
+initTtsPanel();
 addEventListener("resize", placeInk);
 document.fonts && document.fonts.ready.then(placeInk);
