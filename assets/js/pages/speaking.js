@@ -35,11 +35,9 @@ function renderSpeakShell(){
      <button class="btn ghost" id="spTimer"><span>Bắt đầu nói · 30s</span><i></i></button>
      <button class="link" id="spNext">Thẻ tiếp →</button>
      <div class="sp-cd" id="spCd" role="group" aria-label="Đếm ngược chuẩn bị">
-       <span class="lbl">Chuẩn bị</span>
        <div class="sp-cd-pre">${[1,2,3].map(m=>`<button type="button" data-m="${m}" aria-pressed="${m===S.cdMin}">${m} phút</button>`).join("")}</div>
        <output class="sp-cd-time" id="spCdTime" aria-live="off">00:00</output>
        <button class="btn ghost" id="spCdGo">Bắt đầu</button>
-       <div class="sp-cd-snd"><label class="lbl" for="spCdSnd">Âm báo</label><select id="spCdSnd"></select><button type="button" class="link sm" id="spCdTest">Nghe thử</button></div>
      </div>
    </div>
    <p class="hint">Phím tắt: Space để lật thẻ, ← → để chuyển thẻ.</p>
@@ -52,10 +50,6 @@ function renderSpeakShell(){
   document.getElementById("spTimer").onclick=toggleTimer;
   document.querySelectorAll("#spCd .sp-cd-pre button").forEach(b=>b.onclick=()=>{ stopCd(); S.cdMin=+b.dataset.m; S.cdLeft=S.cdMin*60; try{ localStorage.setItem("spkCdMin",S.cdMin); }catch(e){} drawCd(); });
   document.getElementById("spCdGo").onclick=()=>(S.cd||S.bell)?stopCd():startCd();
-  const sel=document.getElementById("spCdSnd");
-  sel.innerHTML=Object.entries(SND).map(([k,v])=>`<option value="${k}"${k===sndKey?" selected":""}>${v.name}</option>`).join("");
-  sel.onchange=()=>{ sndKey=sel.value; try{ localStorage.setItem("spkCdSnd",sndKey); }catch(e){} ring(); };
-  document.getElementById("spCdTest").onclick=ring;
   enhanceSelects(spkEl);
   drawCd();
 }
@@ -114,17 +108,11 @@ const tone=(t,d,f,type,vol,f2)=>{
   g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+.01); g.gain.setValueAtTime(vol,t+d-.02); g.gain.linearRampToValueAtTime(0,t+d);
   o.start(t); o.stop(t+d+.02);
 };
-const SND={
-  beep:{name:"Báo thức (bíp bíp)",gap:1.3,play:t=>{ for(let k=0;k<4;k++) tone(t+k*.2,.1,1000,"square",.22); }},
-  siren:{name:"Còi hú",gap:2.4,play:t=>{ for(let k=0;k<2;k++){ tone(t+k*1.2,.6,650,"sawtooth",.2,1250); tone(t+k*1.2+.6,.6,1250,"sawtooth",.2,650); } }},
-  phone:{name:"Chuông điện thoại",gap:2,play:t=>{ for(let k=0;k<20;k++) tone(t+k*.045,.045,k%2?1100:1450,"square",.16); for(let k=0;k<20;k++) tone(t+.5+k*.045,.045,k%2?1100:1450,"square",.16); }},
-  chime:{name:"Chuông nhẹ",gap:1.8,play:t=>{ for(let r=0;r<2;r++) [880,1175].forEach((f,k)=>tone(t+r*.5+k*.2,.7,f,"sine",.35)); }}
-};
-let sndKey="beep"; try{ const k=localStorage.getItem("spkCdSnd"); if(SND[k]) sndKey=k; }catch(e){}
+const BEEP_GAP=1.3; /* giây giữa các chu kỳ */
 function ring(){
   try{
     AC=AC||new (window.AudioContext||window.webkitAudioContext)(); if(AC.state==="suspended") AC.resume();
-    SND[sndKey].play(AC.currentTime+0.05);
+    { const t=AC.currentTime+0.05; for(let k=0;k<4;k++) tone(t+k*.2,.1,1000,"square",.22); }
   }catch(e){}
 }
 function drawCd(){
@@ -140,7 +128,7 @@ function startCd(){
   const end=performance.now()+S.cdLeft*1000;
   S.cd=setInterval(()=>{
     const left=Math.max(0,Math.ceil((end-performance.now())/1000));
-    if(left!==S.cdLeft){ S.cdLeft=left; if(left===0){ clearInterval(S.cd); S.cd=null; ring(); S.bell=setInterval(ring,SND[sndKey].gap*1000); } drawCd(); }
+    if(left!==S.cdLeft){ S.cdLeft=left; if(left===0){ clearInterval(S.cd); S.cd=null; ring(); S.bell=setInterval(ring,BEEP_GAP*1000); } drawCd(); }
   },200);
   drawCd();
 }
