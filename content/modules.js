@@ -131,6 +131,6 @@ const MODULES = [
   "en": "Vocabulary",
   "prefix": "",
   "desc": "Danh từ, động từ, cụm từ cơ bản A1-B2 theo 10 chủ đề, có IPA và thể động từ",
-  "meta": "600 từ · 10 chủ đề"
+  "meta": "2000 từ · 15 chủ đề"
  }
 ];
