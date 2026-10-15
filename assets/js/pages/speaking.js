@@ -9,7 +9,8 @@ const FURI = GRAMMAR.speaking.FURI || {}, ROMA = GRAMMAR.speaking.ROMA || {};
 const J = (t, ro) => (FURI[t] ? rb(esc(FURI[t])) : esc(t)) + (ro && ROMA[t] ? `<span class="ro">${esc(ROMA[t])}</span>` : "");
 const spkEl=document.getElementById("speak");
 const TOPICS=[...new Set(SPK.map(s=>s[0]))];
-let S={topic:"all",deck:[],pos:0,flipped:false,done:new Set(),timer:null};
+let S={topic:"all",deck:[],pos:0,flipped:false,done:new Set(),timer:null,cd:null,cdMin:1,cdLeft:60};
+try{ const m=+localStorage.getItem("spkCdMin"); if([1,2,3].includes(m)){ S.cdMin=m; S.cdLeft=m*60; } }catch(e){}
 try{ S.done=new Set(JSON.parse(localStorage.getItem("spkDone")||"[]")); }catch(e){}
 function saveDone(){ try{ localStorage.setItem("spkDone",JSON.stringify([...S.done])); }catch(e){} }
 function buildDeck(){
@@ -33,6 +34,12 @@ function renderSpeakShell(){
      <button class="btn" id="spFlip">Lật thẻ</button>
      <button class="btn ghost" id="spTimer"><span>Bắt đầu nói · 30s</span><i></i></button>
      <button class="link" id="spNext">Thẻ tiếp →</button>
+     <div class="sp-cd" id="spCd" role="group" aria-label="Đếm ngược chuẩn bị">
+       <span class="lbl">Chuẩn bị</span>
+       <div class="sp-cd-pre">${[1,2,3].map(m=>`<button type="button" data-m="${m}" aria-pressed="${m===S.cdMin}">${m} phút</button>`).join("")}</div>
+       <output class="sp-cd-time" id="spCdTime" aria-live="off">00:00</output>
+       <button class="btn ghost" id="spCdGo">Bắt đầu</button>
+     </div>
    </div>
    <p class="hint">Phím tắt: Space để lật thẻ, ← → để chuyển thẻ.</p>
    <div class="sp-fw"><span class="lbl">${Object.keys(FW).length} khung trả lời dùng trong bộ thẻ</span><div class="fwgrid">${Object.entries(FW).map(([k,f])=>`<div class="fwi"><b>${J(f.name)}</b><span>${f.steps.join(" → ")}</span></div>`).join("")}</div></div>`;
@@ -43,11 +50,14 @@ function renderSpeakShell(){
   document.getElementById("spNext").onclick=()=>move(1);
   document.getElementById("spFlip").onclick=flip;
   document.getElementById("spTimer").onclick=toggleTimer;
+  document.querySelectorAll("#spCd .sp-cd-pre button").forEach(b=>b.onclick=()=>{ stopCd(); S.cdMin=+b.dataset.m; S.cdLeft=S.cdMin*60; try{ localStorage.setItem("spkCdMin",S.cdMin); }catch(e){} drawCd(); });
+  document.getElementById("spCdGo").onclick=()=>S.cd?stopCd():startCd();
+  drawCd();
 }
 function updDone(){ const d=document.getElementById("spDone"); d.innerHTML=`${S.done.size}<small>/ ${SPK.length} đã luyện</small>`; }
 function renderCard(dir){
   if(typeof stopSay==="function") stopSay();
-  stopTimer();
+  stopTimer(); stopCd();
   const i=S.deck[S.pos], [topic,q,fwk,tc,sample,note]=SPK[i], f=FW[fwk], t=tc?byId[TN[tc]]:null;
   S.flipped=false;
   const c=document.getElementById("card");
@@ -89,6 +99,38 @@ function startTimer(){
   S.timer=requestAnimationFrame(step);
 }
 function stopTimer(){ if(S.timer) cancelAnimationFrame(S.timer); S.timer=null; const b=document.getElementById("spTimer"); if(b){ b.classList.remove("running","over"); b.querySelector("span").textContent="Bắt đầu nói · 30s"; b.querySelector("i").style.width="0"; } }
+/* Countdown chuẩn bị: preset 1/2/3 phút, chuông khi hết giờ (Web Audio, không cần file âm thanh) */
+let AC=null;
+function ring(){
+  try{
+    AC=AC||new (window.AudioContext||window.webkitAudioContext)(); if(AC.state==="suspended") AC.resume();
+    const t0=AC.currentTime+0.05;
+    for(let r=0;r<3;r++) [880,1175].forEach((f,k)=>{
+      const o=AC.createOscillator(), g=AC.createGain(), t=t0+r*0.9+k*0.22;
+      o.type="sine"; o.frequency.value=f; o.connect(g); g.connect(AC.destination);
+      g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.35,t+.02); g.gain.exponentialRampToValueAtTime(.001,t+.7);
+      o.start(t); o.stop(t+.75);
+    });
+  }catch(e){}
+}
+function drawCd(){
+  const t=document.getElementById("spCdTime"), g=document.getElementById("spCdGo"); if(!t) return;
+  t.textContent=String(Math.floor(S.cdLeft/60)).padStart(2,"0")+":"+String(S.cdLeft%60).padStart(2,"0");
+  const box=document.getElementById("spCd"); box.classList.toggle("running",!!S.cd); box.classList.toggle("over",S.cdLeft===0);
+  g.textContent=S.cd?"Dừng lại":(S.cdLeft===0?"Làm lại":"Bắt đầu");
+  box.querySelectorAll(".sp-cd-pre button").forEach(b=>{ b.setAttribute("aria-pressed",+b.dataset.m===S.cdMin); b.disabled=!!S.cd; });
+}
+function startCd(){
+  if(S.cdLeft===0) S.cdLeft=S.cdMin*60;
+  try{ AC=AC||new (window.AudioContext||window.webkitAudioContext)(); if(AC.state==="suspended") AC.resume(); }catch(e){} /* mở khoá âm thanh bằng thao tác bấm */
+  const end=performance.now()+S.cdLeft*1000;
+  S.cd=setInterval(()=>{
+    const left=Math.max(0,Math.ceil((end-performance.now())/1000));
+    if(left!==S.cdLeft){ S.cdLeft=left; if(left===0){ clearInterval(S.cd); S.cd=null; ring(); } drawCd(); }
+  },200);
+  drawCd();
+}
+function stopCd(){ if(S.cd) clearInterval(S.cd); S.cd=null; S.cdLeft=S.cdMin*60; drawCd(); }
 document.addEventListener("keydown",e=>{
   if(document.getElementById("view-speak").hidden||e.target.matches("input,select,textarea")) return;
   if(e.key===" "){ e.preventDefault(); flip(); }
