@@ -46,12 +46,13 @@
 #spTimer.over span{color:var(--accent)}
 .sp-cd{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-left:auto;padding:8px 14px;border:1px solid var(--fg)}
 .sp-cd-pre{display:flex}
+.sp-cd-snd{display:flex;gap:10px;align-items:center;flex-basis:100%;border-top:1px solid var(--hair);padding-top:8px}
 .sp-cd-pre button{background:transparent;color:var(--fg);border:1px solid var(--hair);padding:6px 10px;font:inherit;font-size:13px;cursor:pointer;margin-left:-1px}
 .sp-cd-pre button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg);position:relative}
 .sp-cd-pre button:disabled{cursor:not-allowed;opacity:.5}
 .sp-cd-time{font-family:var(--mono);font-size:26px;font-weight:600;min-width:3.4ch;font-variant-numeric:tabular-nums}
 .sp-cd.running .sp-cd-time{color:var(--accent)}
-.sp-cd.over .sp-cd-time{color:var(--accent);animation:cdblink .6s steps(2) 6}
+.sp-cd.over .sp-cd-time{color:var(--accent);animation:cdblink .6s steps(2) infinite}
 @keyframes cdblink{50%{opacity:.25}}
 @media (max-width:720px){.sp-cd{margin-left:0;width:100%}}
 .sp-fw{margin-top:44px}

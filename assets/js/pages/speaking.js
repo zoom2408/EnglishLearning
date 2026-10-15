@@ -9,7 +9,7 @@ const FURI = GRAMMAR.speaking.FURI || {}, ROMA = GRAMMAR.speaking.ROMA || {};
 const J = (t, ro) => (FURI[t] ? rb(esc(FURI[t])) : esc(t)) + (ro && ROMA[t] ? `<span class="ro">${esc(ROMA[t])}</span>` : "");
 const spkEl=document.getElementById("speak");
 const TOPICS=[...new Set(SPK.map(s=>s[0]))];
-let S={topic:"all",deck:[],pos:0,flipped:false,done:new Set(),timer:null,cd:null,cdMin:1,cdLeft:60};
+let S={topic:"all",deck:[],pos:0,flipped:false,done:new Set(),timer:null,cd:null,bell:null,cdMin:1,cdLeft:60};
 try{ const m=+localStorage.getItem("spkCdMin"); if([1,2,3].includes(m)){ S.cdMin=m; S.cdLeft=m*60; } }catch(e){}
 try{ S.done=new Set(JSON.parse(localStorage.getItem("spkDone")||"[]")); }catch(e){}
 function saveDone(){ try{ localStorage.setItem("spkDone",JSON.stringify([...S.done])); }catch(e){} }
@@ -39,11 +39,11 @@ function renderSpeakShell(){
        <div class="sp-cd-pre">${[1,2,3].map(m=>`<button type="button" data-m="${m}" aria-pressed="${m===S.cdMin}">${m} phút</button>`).join("")}</div>
        <output class="sp-cd-time" id="spCdTime" aria-live="off">00:00</output>
        <button class="btn ghost" id="spCdGo">Bắt đầu</button>
+       <div class="sp-cd-snd"><label class="lbl" for="spCdSnd">Âm báo</label><select id="spCdSnd"></select><button type="button" class="link sm" id="spCdTest">Nghe thử</button></div>
      </div>
    </div>
    <p class="hint">Phím tắt: Space để lật thẻ, ← → để chuyển thẻ.</p>
    <div class="sp-fw"><span class="lbl">${Object.keys(FW).length} khung trả lời dùng trong bộ thẻ</span><div class="fwgrid">${Object.entries(FW).map(([k,f])=>`<div class="fwi"><b>${J(f.name)}</b><span>${f.steps.join(" → ")}</span></div>`).join("")}</div></div>`;
-  enhanceSelects(spkEl);
   document.getElementById("spTopic").onchange=e=>{ S.topic=e.target.value; buildDeck(); renderCard(1); };
   document.getElementById("spShuffle").onclick=()=>{ buildDeck(); renderCard(1); };
   document.getElementById("spPrev").onclick=()=>move(-1);
@@ -51,7 +51,12 @@ function renderSpeakShell(){
   document.getElementById("spFlip").onclick=flip;
   document.getElementById("spTimer").onclick=toggleTimer;
   document.querySelectorAll("#spCd .sp-cd-pre button").forEach(b=>b.onclick=()=>{ stopCd(); S.cdMin=+b.dataset.m; S.cdLeft=S.cdMin*60; try{ localStorage.setItem("spkCdMin",S.cdMin); }catch(e){} drawCd(); });
-  document.getElementById("spCdGo").onclick=()=>S.cd?stopCd():startCd();
+  document.getElementById("spCdGo").onclick=()=>(S.cd||S.bell)?stopCd():startCd();
+  const sel=document.getElementById("spCdSnd");
+  sel.innerHTML=Object.entries(SND).map(([k,v])=>`<option value="${k}"${k===sndKey?" selected":""}>${v.name}</option>`).join("");
+  sel.onchange=()=>{ sndKey=sel.value; try{ localStorage.setItem("spkCdSnd",sndKey); }catch(e){} ring(); };
+  document.getElementById("spCdTest").onclick=ring;
+  enhanceSelects(spkEl);
   drawCd();
 }
 function updDone(){ const d=document.getElementById("spDone"); d.innerHTML=`${S.done.size}<small>/ ${SPK.length} đã luyện</small>`; }
@@ -101,24 +106,33 @@ function startTimer(){
 function stopTimer(){ if(S.timer) cancelAnimationFrame(S.timer); S.timer=null; const b=document.getElementById("spTimer"); if(b){ b.classList.remove("running","over"); b.querySelector("span").textContent="Bắt đầu nói · 30s"; b.querySelector("i").style.width="0"; } }
 /* Countdown chuẩn bị: preset 1/2/3 phút, chuông khi hết giờ (Web Audio, không cần file âm thanh) */
 let AC=null;
+/* Âm báo: mỗi kiểu là một chu kỳ ngắn, lặp lại đến khi bấm "Tắt chuông" */
+const tone=(t,d,f,type,vol,f2)=>{
+  const o=AC.createOscillator(), g=AC.createGain();
+  o.type=type; o.frequency.setValueAtTime(f,t); if(f2) o.frequency.linearRampToValueAtTime(f2,t+d);
+  o.connect(g); g.connect(AC.destination);
+  g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+.01); g.gain.setValueAtTime(vol,t+d-.02); g.gain.linearRampToValueAtTime(0,t+d);
+  o.start(t); o.stop(t+d+.02);
+};
+const SND={
+  beep:{name:"Báo thức (bíp bíp)",gap:1.3,play:t=>{ for(let k=0;k<4;k++) tone(t+k*.2,.1,1000,"square",.22); }},
+  siren:{name:"Còi hú",gap:2.4,play:t=>{ for(let k=0;k<2;k++){ tone(t+k*1.2,.6,650,"sawtooth",.2,1250); tone(t+k*1.2+.6,.6,1250,"sawtooth",.2,650); } }},
+  phone:{name:"Chuông điện thoại",gap:2,play:t=>{ for(let k=0;k<20;k++) tone(t+k*.045,.045,k%2?1100:1450,"square",.16); for(let k=0;k<20;k++) tone(t+.5+k*.045,.045,k%2?1100:1450,"square",.16); }},
+  chime:{name:"Chuông nhẹ",gap:1.8,play:t=>{ for(let r=0;r<2;r++) [880,1175].forEach((f,k)=>tone(t+r*.5+k*.2,.7,f,"sine",.35)); }}
+};
+let sndKey="beep"; try{ const k=localStorage.getItem("spkCdSnd"); if(SND[k]) sndKey=k; }catch(e){}
 function ring(){
   try{
     AC=AC||new (window.AudioContext||window.webkitAudioContext)(); if(AC.state==="suspended") AC.resume();
-    const t0=AC.currentTime+0.05;
-    for(let r=0;r<3;r++) [880,1175].forEach((f,k)=>{
-      const o=AC.createOscillator(), g=AC.createGain(), t=t0+r*0.9+k*0.22;
-      o.type="sine"; o.frequency.value=f; o.connect(g); g.connect(AC.destination);
-      g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.35,t+.02); g.gain.exponentialRampToValueAtTime(.001,t+.7);
-      o.start(t); o.stop(t+.75);
-    });
+    SND[sndKey].play(AC.currentTime+0.05);
   }catch(e){}
 }
 function drawCd(){
   const t=document.getElementById("spCdTime"), g=document.getElementById("spCdGo"); if(!t) return;
   t.textContent=String(Math.floor(S.cdLeft/60)).padStart(2,"0")+":"+String(S.cdLeft%60).padStart(2,"0");
-  const box=document.getElementById("spCd"); box.classList.toggle("running",!!S.cd); box.classList.toggle("over",S.cdLeft===0);
-  g.textContent=S.cd?"Dừng lại":(S.cdLeft===0?"Làm lại":"Bắt đầu");
-  box.querySelectorAll(".sp-cd-pre button").forEach(b=>{ b.setAttribute("aria-pressed",+b.dataset.m===S.cdMin); b.disabled=!!S.cd; });
+  const box=document.getElementById("spCd"); box.classList.toggle("running",!!S.cd); box.classList.toggle("over",!!S.bell);
+  g.textContent=S.cd?"Dừng lại":(S.bell?"Tắt chuông":"Bắt đầu");
+  box.querySelectorAll(".sp-cd-pre button").forEach(b=>{ b.setAttribute("aria-pressed",+b.dataset.m===S.cdMin); b.disabled=!!(S.cd||S.bell); });
 }
 function startCd(){
   if(S.cdLeft===0) S.cdLeft=S.cdMin*60;
@@ -126,11 +140,11 @@ function startCd(){
   const end=performance.now()+S.cdLeft*1000;
   S.cd=setInterval(()=>{
     const left=Math.max(0,Math.ceil((end-performance.now())/1000));
-    if(left!==S.cdLeft){ S.cdLeft=left; if(left===0){ clearInterval(S.cd); S.cd=null; ring(); } drawCd(); }
+    if(left!==S.cdLeft){ S.cdLeft=left; if(left===0){ clearInterval(S.cd); S.cd=null; ring(); S.bell=setInterval(ring,SND[sndKey].gap*1000); } drawCd(); }
   },200);
   drawCd();
 }
-function stopCd(){ if(S.cd) clearInterval(S.cd); S.cd=null; S.cdLeft=S.cdMin*60; drawCd(); }
+function stopCd(){ if(S.cd) clearInterval(S.cd); if(S.bell) clearInterval(S.bell); S.cd=S.bell=null; S.cdLeft=S.cdMin*60; drawCd(); }
 document.addEventListener("keydown",e=>{
   if(document.getElementById("view-speak").hidden||e.target.matches("input,select,textarea")) return;
   if(e.key===" "){ e.preventDefault(); flip(); }
