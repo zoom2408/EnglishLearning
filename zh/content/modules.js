@@ -7,4 +7,8 @@ const MODULES = [
  {key:"hanzi",num:"02",page:"hanzi.html",title:"Chữ Hán",en:"汉字",prefix:"zh-hz-",desc:"Nét cơ bản, thứ tự nét, bộ thủ thường gặp, cấu tạo chữ và giản thể",meta:"4 bài · 60 câu"},
  {key:"chaohu",num:"03",page:"chaohu.html",title:"Chào hỏi & số đếm",en:"问候·数字",prefix:"zh-ch-",desc:"Chào hỏi, tự giới thiệu, số 0-10000, tiền, ngày tháng, thứ và giờ",meta:"4 bài · 60 câu"},
  {key:"jiben",num:"04",page:"jiben.html",title:"Câu cơ bản",en:"基本句型",prefix:"zh-jb-",desc:"是, 的, 吗 · 呢 · 吧, từ để hỏi, 有 · 在, 不 và 没",meta:"4 bài · 60 câu"},
+ {key:"liangci",num:"05",page:"liangci.html",title:"Lượng từ & số lượng",en:"量词",prefix:"zh-lc-",desc:"Lượng từ thường gặp, 这 · 那 · 哪 + lượng từ, 次 · 遍 · 下, 多 · 半 · 左右 · 第",meta:"4 bài · 60 câu"},
+ {key:"shixu",num:"06",page:"shixu.html",title:"Trật tự câu & giới từ",en:"语序·介词",prefix:"zh-sx-",desc:"Thứ tự thời gian, nơi chốn, 在 · 从 · 到 · 离, 给 · 跟 · 对, câu mệnh lệnh",meta:"4 bài · 60 câu"},
+ {key:"dongtai",num:"07",page:"dongtai.html",title:"了 · 过 · 着 · 在",en:"动态",prefix:"zh-dt-",desc:"了 hoàn thành và thay đổi, 过 kinh nghiệm, 着 và 正在, 要…了, 就 · 才 · 已经 · 刚",meta:"4 bài · 60 câu"},
+ {key:"nengyuan",num:"08",page:"nengyuan.html",title:"Động từ năng nguyện",en:"能愿动词",prefix:"zh-ny-",desc:"会 · 能 · 可以, 想 · 要 · 愿意 · 打算, 应该 · 得 · 必须, 可能 · 会",meta:"4 bài · 60 câu"},
 ];
