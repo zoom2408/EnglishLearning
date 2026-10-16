@@ -11,13 +11,15 @@
   const el = document.getElementById("vocab"); if (!el) return;
   const S = { level: "all", type: "all", topic: "all", q: "" };
 
+  /** accent-insensitive compare for the reading field (pinyin tones: ni hao finds nǐ hǎo) */
+  const plain = s => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   function filtered() {
     const q = S.q.trim().toLowerCase();
     return list.filter(w =>
       (S.level === "all" || w.level === S.level) &&
       (S.type === "all" || w.type === S.type) &&
       (S.topic === "all" || w.topic === S.topic) &&
-      (!q || w.term.toLowerCase().includes(q) || w.meaning.toLowerCase().includes(q) || (w.ipa || "").toLowerCase().includes(q))
+      (!q || w.term.toLowerCase().includes(q) || w.meaning.toLowerCase().includes(q) || plain(w.ipa).includes(plain(q)))
     );
   }
 

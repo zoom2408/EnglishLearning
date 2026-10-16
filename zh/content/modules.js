@@ -19,4 +19,6 @@ const MODULES = [
  {key:"lianci",num:"14",page:"lianci.html",title:"Câu phức & liên từ",en:"复句",prefix:"zh-lj-",desc:"因为…所以, 虽然…但是, 如果 · 只要 · 只有, 不但…而且, 除了, 一边…一边",meta:"4 bài · 60 câu"},
  {key:"teshu",num:"15",page:"teshu.html",title:"Câu đặc biệt",en:"特殊句式",prefix:"zh-ts-",desc:"是…的, 连…都, 存现句, 兼语句, 连动句, 双宾句, 主谓谓语",meta:"4 bài · 60 câu"},
  {key:"cuowu",num:"16",page:"cuowu.html",title:"Lỗi hay gặp",en:"常见错误",prefix:"zh-cw-",desc:"Lỗi trật tự câu, lượng từ và số, 了 · 过 · 不 · 没, năng nguyện và phó từ, từ dễ nhầm với Hán Việt",meta:"5 bài · 60 câu"},
+ {key:"speaking",num:"17",page:"speaking.html",title:"Speaking",en:"HSK 1–4",prefix:"",desc:"50 câu hỏi nói theo chủ đề HSK 1 đến HSK 4",meta:"50 thẻ · 10 chủ đề"},
+ {key:"vocab",num:"18",page:"vocab.html",title:"Từ vựng",en:"词汇",prefix:"",desc:"Từ vựng HSK 1-4 theo 13 chủ đề, kèm pinyin, lượng từ và câu ví dụ có dịch",meta:"1085 từ · 13 chủ đề"},
 ];

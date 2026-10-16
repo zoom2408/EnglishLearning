@@ -19,3 +19,4 @@ html[data-romaji="off"] rt,html[data-romaji="off"] .vro{display:none}
 .vterm ruby{ruby-position:over}
 .vro{font-family:var(--sans)}
 .fq .tr,.sample .tr,.pats .tr{font-size:13px}
+.ro{display:block;font-family:var(--sans);font-size:12.5px;font-weight:400;color:var(--muted);letter-spacing:0;margin-top:2px}
