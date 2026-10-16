@@ -9,6 +9,7 @@ const LANGS = [
   { code: "nb", flag: "🇳🇴", label: "Norsk bokmål", home: "/nb/" },
   { code: "es", flag: "🇪🇸", label: "Español", home: "/es/" },
   { code: "ja", flag: "🇯🇵", label: "日本語", home: "/ja/" },
+  { code: "zh", flag: "🇨🇳", label: "中文", home: "/zh/" },
 ];
 function currentLang() {
   const p = location.pathname;
@@ -16,8 +17,12 @@ function currentLang() {
   if (p.startsWith("/nb/")) return "nb";
   if (p.startsWith("/es/")) return "es";
   if (p.startsWith("/ja/")) return "ja";
+  if (p.startsWith("/zh/")) return "zh";
   return "en";
 }
+
+/** reading-aid toggle (romaji for ja, pinyin for zh): label + localStorage key */
+const RO = { ja: { name: "Romaji", key: "romaji12" }, zh: { name: "Pinyin", key: "pinyin12" } }[currentLang()] || null;
 
 function renderSite() {
   const el = document.getElementById("site"); if (!el) return;
@@ -33,7 +38,7 @@ function renderSite() {
     <nav class="mods" aria-label="Chủ đề">
       ${MODULES.map(m => `<a href="${m.page}"${m.key === cur ? ' aria-current="page"' : ""}${m.key === "speaking" ? ' class="spk"' : ""}><span>${m.num}</span>${m.title}</a>`).join("")}
     </nav>
-    ${currentLang() === "ja" ? '<button id="roBtn" class="theme ro-toggle" type="button" aria-pressed="true" aria-label="Bật hoặc tắt romaji"><i></i><span>Romaji: Bật</span></button>' : ""}
+    ${RO ? `<button id="roBtn" class="theme ro-toggle" type="button" aria-pressed="true" aria-label="Bật hoặc tắt ${RO.name}"><i></i><span>${RO.name}: Bật</span></button>` : ""}
     <div class="ttswrap" id="ttsWrap">
       <button id="ttsBtn" class="theme tts-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Tuỳ chỉnh giọng đọc và tốc độ"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg><span>Giọng đọc</span></button>
       <div class="ttsmenu" id="ttsMenu" role="dialog" aria-label="Giọng đọc">
@@ -48,10 +53,10 @@ function renderSite() {
     <button id="themeBtn" class="theme" type="button" aria-label="Đổi giao diện sáng hoặc tối"><i></i><span>Tự động</span></button>`;
   const roBtn = document.getElementById("roBtn");
   if (roBtn) {
-    const apply = on => { document.documentElement.dataset.romaji = on ? "on" : "off"; roBtn.setAttribute("aria-pressed", on); roBtn.dataset.mode = on ? "dark" : "light"; roBtn.querySelector("span").textContent = on ? "Romaji: Bật" : "Romaji: Tắt"; };
-    let on = true; try { on = localStorage.getItem("romaji12") !== "off"; } catch (e) {}
+    const apply = on => { document.documentElement.dataset.romaji = on ? "on" : "off"; roBtn.setAttribute("aria-pressed", on); roBtn.dataset.mode = on ? "dark" : "light"; roBtn.querySelector("span").textContent = RO.name + (on ? ": Bật" : ": Tắt"); };
+    let on = true; try { on = localStorage.getItem(RO.key) !== "off"; } catch (e) {}
     apply(on);
-    roBtn.addEventListener("click", () => { on = !on; try { localStorage.setItem("romaji12", on ? "on" : "off"); } catch (e) {} apply(on); });
+    roBtn.addEventListener("click", () => { on = !on; try { localStorage.setItem(RO.key, on ? "on" : "off"); } catch (e) {} apply(on); });
   }
   const ls = document.getElementById("langswitch"), lb = ls.querySelector(".brandbtn");
   lb.addEventListener("click", e => { e.stopPropagation(); const was = ls.classList.contains("open"); document.dispatchEvent(new Event("dd:close")); const open = !was; ls.classList.toggle("open", open); lb.setAttribute("aria-expanded", open); });
@@ -63,7 +68,7 @@ function renderSite() {
 /* ---------- text-to-speech (listen buttons) ----------
    Any element with [data-say="text"] plays that text in the page's
    language through the browser's speech engine. [data-slow] reads slower. */
-const SAY_LANG = { en: "en-US", de: "de-DE", nb: "nb-NO", es: "es-ES", ja: "ja-JP" };
+const SAY_LANG = { en: "en-US", de: "de-DE", nb: "nb-NO", es: "es-ES", ja: "ja-JP", zh: "zh-CN" };
 const hasTTS = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
 if (!hasTTS) document.documentElement.classList.add("no-tts");
 const NOVELTY = /albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|jester|junior|organ|superstar|trinoids|whisper|wobble|zarvox|fred|ralph|kathy|eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley/i;

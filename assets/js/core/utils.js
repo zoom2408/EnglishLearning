@@ -28,9 +28,12 @@ const fmt = s => rb(esc(s).replace(/\*\*(.+?)\*\*/g, "<mark>$1</mark>").replace(
 
 /** Normalise a typed answer (contractions, punctuation, spacing) */
 function norm(s) {
-  return s.toLowerCase().replace(/[’‘`´]/g, "'").replace(/won't/g, "will not").replace(/can't/g, "cannot").replace(/n't\b/g, " not")
+  s = s.toLowerCase();
+  // Chinese: pinyin tone marks, tone digits and spaces are optional (nǐ hǎo = ni hao = ni3hao3), ü may be typed v
+  if (currentLang() === "zh") s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/([a-z])[1-5]/g, "$1").replace(/v/g, "u");
+  return s.replace(/[’‘`´]/g, "'").replace(/won't/g, "will not").replace(/can't/g, "cannot").replace(/n't\b/g, " not")
     .replace(/'m\b/g, " am").replace(/'re\b/g, " are").replace(/'ll\b/g, " will").replace(/'ve\b/g, " have").replace(/'d\b/g, " would")
-    .replace(/[.!?,。、！？「」]/g, "").replace(/\s+/g, currentLang() === "ja" ? "" : " ").trim();
+    .replace(/[.!?,。、！？「」，；：？]/g, "").replace(/\s+/g, currentLang() === "ja" || currentLang() === "zh" ? "" : " ").trim();
 }
 
 /** Two-line label for a tense id (needs content/theory/tenses.js) */

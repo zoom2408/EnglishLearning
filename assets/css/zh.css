@@ -1,0 +1,21 @@
+/* =====================================================================
+   zh.css
+   Chinese track only: CJK font fallbacks, pinyin (ruby) above hanzi and
+   the Vietnamese gloss line (.tr) under example sentences.
+   The header "Pinyin" toggle sets html[data-romaji="off"] to hide rt.
+   ===================================================================== */
+:root{
+  --sans:"Be Vietnam Pro","Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --mono:"JetBrains Mono","Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",ui-monospace,Menlo,monospace;
+}
+ruby{ruby-position:over}
+rt{font-size:.52em;font-weight:500;color:var(--muted);letter-spacing:0;font-family:var(--sans)}
+.tr{display:block;font-family:var(--sans);font-size:12.5px;font-weight:400;color:var(--muted);letter-spacing:0;margin-top:2px}
+.form em,.uses em,.mq{line-height:2.1}
+.qtext{line-height:1.8}
+html[data-romaji="off"] rt,html[data-romaji="off"] .vro{display:none}
+.site .ro-toggle{margin-left:auto;font-size:14px;font-weight:600;margin-right:14px}
+.site .ro-toggle + .theme{margin-left:0}
+.vterm ruby{ruby-position:over}
+.vro{font-family:var(--sans)}
+.fq .tr,.sample .tr,.pats .tr{font-size:13px}
