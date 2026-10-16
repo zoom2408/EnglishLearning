@@ -15,4 +15,8 @@ const MODULES = [
  {key:"bijiao",num:"10",page:"bijiao.html",title:"So sánh",en:"比较",prefix:"zh-bj-",desc:"比, 没有 · 不如 · 一样, 最 · 更 · 越来越, 比 + động từ và số lượng",meta:"4 bài · 60 câu"},
  {key:"buyu",num:"11",page:"buyu.html",title:"Bổ ngữ",en:"补语",prefix:"zh-by-",desc:"Bổ ngữ kết quả, xu hướng, khả năng và giới từ (V在 · V到 · V给)",meta:"4 bài · 60 câu"},
  {key:"bababei",num:"12",page:"bababei.html",title:"Câu 把 và 被",en:"把字句·被字句",prefix:"zh-bb-",desc:"把 xử lý đối tượng, điều kiện dùng 把, câu bị động 被 · 叫 · 让, so sánh 把 và 被",meta:"4 bài · 60 câu"},
+ {key:"fuci",num:"13",page:"fuci.html",title:"Phó từ",en:"副词",prefix:"zh-fc-",desc:"都 · 也 · 只, 一直 · 常常 · 从来, 再 · 又 · 还, 其实 · 终于 · 到底",meta:"4 bài · 60 câu"},
+ {key:"lianci",num:"14",page:"lianci.html",title:"Câu phức & liên từ",en:"复句",prefix:"zh-lj-",desc:"因为…所以, 虽然…但是, 如果 · 只要 · 只有, 不但…而且, 除了, 一边…一边",meta:"4 bài · 60 câu"},
+ {key:"teshu",num:"15",page:"teshu.html",title:"Câu đặc biệt",en:"特殊句式",prefix:"zh-ts-",desc:"是…的, 连…都, 存现句, 兼语句, 连动句, 双宾句, 主谓谓语",meta:"4 bài · 60 câu"},
+ {key:"cuowu",num:"16",page:"cuowu.html",title:"Lỗi hay gặp",en:"常见错误",prefix:"zh-cw-",desc:"Lỗi trật tự câu, lượng từ và số, 了 · 过 · 不 · 没, năng nguyện và phó từ, từ dễ nhầm với Hán Việt",meta:"5 bài · 60 câu"},
 ];

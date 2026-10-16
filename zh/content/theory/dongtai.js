@@ -80,7 +80,6 @@ const T = [
   "table": [
    {
     "head": [
-     "Vị trí",
      "Chức năng",
      "Ví dụ"
     ],
@@ -181,7 +180,6 @@ const T = [
   "table": [
    {
     "head": [
-     "Mẫu",
      "Nghĩa",
      "Ví dụ"
     ],
@@ -282,7 +280,6 @@ const T = [
   "table": [
    {
     "head": [
-     "Mẫu",
      "Nghĩa",
      "Ví dụ"
     ],
@@ -388,7 +385,6 @@ const T = [
   "table": [
    {
     "head": [
-     "Phó từ",
      "Nghĩa",
      "Ví dụ"
     ],

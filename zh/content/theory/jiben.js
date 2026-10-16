@@ -191,7 +191,6 @@ const T = [
   "table": [
    {
     "head": [
-     "Trợ từ",
      "Chức năng",
      "Ví dụ"
     ],
