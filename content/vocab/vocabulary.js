@@ -2029,5 +2029,7 @@ const VOCAB = [
 const TYPES=["Danh từ","Động từ","Tính từ","Cụm từ"];
 const LEVELS=["A1","A2","B1","B2","C1"];
 const TOPICS=[...new Set(VOCAB.map(w=>w.topic))];
-GRAMMAR.vocab = { list: VOCAB, types: TYPES, levels: LEVELS, topics: TOPICS };
+// Link to a real dictionary page (IPA for US and UK + recorded audio). Search URL always resolves, even for words with several entries.
+const DICT = { name: "Oxford", url: w => "https://www.oxfordlearnersdictionaries.com/search/english/?q=" + encodeURIComponent(w) };
+GRAMMAR.vocab = { list: VOCAB, types: TYPES, levels: LEVELS, topics: TOPICS, dict: DICT };
 })();
