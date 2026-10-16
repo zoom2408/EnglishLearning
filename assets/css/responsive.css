@@ -17,8 +17,8 @@
   .sec{grid-template-columns:1fr;grid-column:1}
   .sec>.lbl,.sec>.content{grid-column:1}
   .sec>.lbl{margin-bottom:8px}
-  .form{grid-template-columns:20px 1fr;gap:4px 10px}
-  .form em{grid-column:2}
+  .form{grid-template-columns:1fr;gap:2px}
+  .form em{grid-column:auto}
   .uses,.reg{grid-template-columns:1fr}
   .quiz,.finder{grid-template-columns:1fr}
   .quiz>*,.finder>*{grid-column:1}

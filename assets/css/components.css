@@ -180,11 +180,14 @@ mark{background:transparent;color:var(--fg);font-weight:600;box-shadow:inset 0 -
 .row.open .xrow.two .tk{animation-delay:calc(var(--i)*90ms + .85s)}
 @keyframes tkIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .xnote{margin:10px 0 0;color:var(--muted);font-size:14px;max-width:62ch}
-.form{grid-template-columns:44px minmax(0,1fr) minmax(0,1fr)!important}
+/* Structure rows share three aligned columns: label (sized to its longest label, max 200px), form, example.
+   Subgrid keeps every row aligned so long Vietnamese labels wrap into 2 to 4 words per line instead of one word. */
+.forms{grid-template-columns:fit-content(200px) minmax(0,1fr) minmax(0,1.25fr);column-gap:16px}
+.form{grid-column:1/-1;grid-template-columns:subgrid!important}
 .mods{overflow-x:auto;scrollbar-width:none;max-width:100%}
 .mods::-webkit-scrollbar{display:none}
 .mods a{white-space:nowrap;flex-shrink:0}
-@media (max-width:760px){.site{gap:10px 16px}.mods{order:3;width:100%;gap:18px}.xrow{grid-template-columns:1fr;gap:2px}.xarrow{padding-left:0}.form{grid-template-columns:40px 1fr!important}}
+@media (max-width:760px){.site{gap:10px 16px}.mods{order:3;width:100%;gap:18px}.xrow{grid-template-columns:1fr;gap:2px}.xarrow{padding-left:0}.form{grid-template-columns:1fr!important;gap:2px}}
 /* ---------- index nav (12 modules) ---------- */
 .mods{order:3;width:100%;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px 18px;overflow:visible}
 .mods a{border-bottom:0;border-top:2px solid var(--hair);padding:8px 0 4px;white-space:normal;text-align:left;line-height:1.3;transition:color .25s,border-color .4s var(--ease)}
