@@ -11,4 +11,8 @@ const MODULES = [
  {key:"shixu",num:"06",page:"shixu.html",title:"Trật tự câu & giới từ",en:"语序·介词",prefix:"zh-sx-",desc:"Thứ tự thời gian, nơi chốn, 在 · 从 · 到 · 离, 给 · 跟 · 对, câu mệnh lệnh",meta:"4 bài · 60 câu"},
  {key:"dongtai",num:"07",page:"dongtai.html",title:"了 · 过 · 着 · 在",en:"动态",prefix:"zh-dt-",desc:"了 hoàn thành và thay đổi, 过 kinh nghiệm, 着 và 正在, 要…了, 就 · 才 · 已经 · 刚",meta:"4 bài · 60 câu"},
  {key:"nengyuan",num:"08",page:"nengyuan.html",title:"Động từ năng nguyện",en:"能愿动词",prefix:"zh-ny-",desc:"会 · 能 · 可以, 想 · 要 · 愿意 · 打算, 应该 · 得 · 必须, 可能 · 会",meta:"4 bài · 60 câu"},
+ {key:"xingrong",num:"09",page:"xingrong.html",title:"Tính từ, 的 · 地 · 得",en:"形容词·补语",prefix:"zh-xr-",desc:"Tính từ làm vị ngữ, 的 · 地 · 得, bổ ngữ trạng thái, mức độ",meta:"4 bài · 60 câu"},
+ {key:"bijiao",num:"10",page:"bijiao.html",title:"So sánh",en:"比较",prefix:"zh-bj-",desc:"比, 没有 · 不如 · 一样, 最 · 更 · 越来越, 比 + động từ và số lượng",meta:"4 bài · 60 câu"},
+ {key:"buyu",num:"11",page:"buyu.html",title:"Bổ ngữ",en:"补语",prefix:"zh-by-",desc:"Bổ ngữ kết quả, xu hướng, khả năng và giới từ (V在 · V到 · V给)",meta:"4 bài · 60 câu"},
+ {key:"bababei",num:"12",page:"bababei.html",title:"Câu 把 và 被",en:"把字句·被字句",prefix:"zh-bb-",desc:"把 xử lý đối tượng, điều kiện dùng 把, câu bị động 被 · 叫 · 让, so sánh 把 và 被",meta:"4 bài · 60 câu"},
 ];
