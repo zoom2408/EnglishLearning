@@ -9,7 +9,19 @@
 (() => {
   const { list, types, levels, topics } = GRAMMAR.vocab;
   const el = document.getElementById("vocab"); if (!el) return;
-  const S = { level: "all", type: "all", topic: "all", q: "" };
+  const S = { level: "all", type: "all", topic: "all", q: "", acc: "us" };
+  /** optional per-word extras (GRAMMAR.vocabExtra = { src, base, d: { term: [ipaUK, audioUS, audioUK] } }): UK IPA and recorded audio */
+  const XT = GRAMMAR.vocabExtra || null, X = XT ? XT.d : null;
+  if (X) { try { const a = localStorage.getItem("vocAcc"); if (a === "uk" || a === "us") S.acc = a; } catch (e) {} }
+  const audUrl = f => XT.base + encodeURIComponent(f.replace(/ /g, "_"));
+  const speak = w => {
+    const x = X && X[w.term], f = x && (S.acc === "uk" ? x[2] : x[1]);
+    const btn = (slow) => f
+      ? `<button type="button" class="say${slow ? " slow" : ""}" data-audio="${esc(audUrl(f)).replace(/"/g, "&quot;")}" data-term="${esc(w.term).replace(/"/g, "&quot;")}"${slow ? ' data-rate="0.65"' : ""} aria-label="${slow ? "Nghe chậm" : "Nghe"}: ${esc(w.term).replace(/"/g, "&quot;")}" title="${slow ? "Nghe chậm" : "Nghe giọng thật"}">${slow ? "×0.6" : ""}</button>`
+      : sayBtn(w.term, w.term, slow);
+    return btn(false) + btn(true);
+  };
+  const ipaOf = w => { const x = X && X[w.term]; return S.acc === "uk" && x && x[0] ? x[0] : w.ipa; };
 
   /** accent-insensitive compare for the reading field (pinyin tones: ni hao finds nǐ hǎo) */
   const plain = s => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -33,6 +45,10 @@
          <button data-level="all" aria-pressed="true">Tất cả</button>
          ${levels.map(l => `<button data-level="${esc(l)}" aria-pressed="false">${esc(l)}</button>`).join("")}
        </div>
+       ${X ? `<div class="seg" id="vAcc"><span class="lbl">Giọng</span>
+         <button data-acc="us" aria-pressed="${S.acc === "us"}">Mỹ</button>
+         <button data-acc="uk" aria-pressed="${S.acc === "uk"}">Anh</button>
+       </div>` : ""}
        <div class="seg" id="vType"><span class="lbl">Loại từ</span>
          <button data-type="all" aria-pressed="true">Tất cả</button>
          ${types.map(t => `<button data-type="${esc(t)}" aria-pressed="false">${esc(t)}</button>`).join("")}
@@ -43,16 +59,30 @@
        <select id="vTopic"><option value="all">Tất cả chủ đề (${list.length})</option>${topics.map(t => `<option value="${esc(t)}">${esc(t)} (${list.filter(w => w.topic === t).length})</option>`).join("")}</select>
      </div>
      <div class="vcount" id="vCount"></div>
-     <div class="vlist" id="vList"></div>`;
+     <div class="vlist" id="vList"></div>${X ? `<p class="hint">${esc(XT.note)}</p>` : ""}`;
     enhanceSelects(el);
     $("#vSearch").oninput = e => { S.q = e.target.value; renderList(); };
     $("#vTopic").onchange = e => { S.topic = e.target.value; renderList(); };
     el.addEventListener("click", e => {
       const lb = e.target.closest("#vLevel [data-level]");
       if (lb) { S.level = lb.dataset.level; syncSeg("vLevel", "level"); renderList(); return; }
+      const ab = e.target.closest("#vAcc [data-acc]");
+      if (ab) { S.acc = ab.dataset.acc; try { localStorage.setItem("vocAcc", S.acc); } catch (er) {} syncSeg("vAcc", "acc"); renderList(); return; }
+      const au = e.target.closest("[data-audio]");
+      if (au) { e.stopPropagation(); playAudio(au); return; }
       const tb = e.target.closest("#vType [data-type]");
       if (tb) { S.type = tb.dataset.type; syncSeg("vType", "type"); renderList(); return; }
     });
+  }
+  let AUD = null;
+  function playAudio(b) {
+    if (typeof stopSay === "function") stopSay();
+    if (AUD) { AUD.pause(); document.querySelectorAll("[data-audio].playing").forEach(x => x.classList.remove("playing")); }
+    const a = AUD = new Audio(b.dataset.audio); a.playbackRate = +b.dataset.rate || 1;
+    b.classList.add("playing");
+    const fb = () => { b.classList.remove("playing"); if (typeof say === "function") say(b.dataset.term, !!b.dataset.rate); };
+    a.onended = () => b.classList.remove("playing"); a.onerror = fb;
+    a.play().catch(fb);
   }
   function syncSeg(id, key) {
     document.querySelectorAll(`#${id} button`).forEach(b => b.setAttribute("aria-pressed", b.dataset[key] === S[key] ? "true" : "false"));
@@ -63,7 +93,7 @@
     $("#vList").innerHTML = rows.length ? rows.map((w, i) => `
       <div class="vrow" style="--i:${i % 40}">
         <div class="vmeta"><span class="vlvl">${esc(w.level)}</span><span class="vtype">${esc(w.type)}</span></div>
-        <div class="vterm">${w.tf ? rb(esc(w.tf)) : esc(w.term)}${w.ipa ? (w.tf || w.er ? ` <span class="vipa vro">${esc(w.ipa.split(" · ").slice(1).join(" · "))}</span>` : ` <span class="vipa">${esc(w.ipa)}</span>`) : ""}${sayBtn(w.term)}${sayBtn(w.term, w.term, true)}${dictLink(w.term)}</div>
+        <div class="vterm">${w.tf ? rb(esc(w.tf)) : esc(w.term)}${w.ipa ? (w.tf || w.er ? ` <span class="vipa vro">${esc(w.ipa.split(" · ").slice(1).join(" · "))}</span>` : ` <span class="vipa">${esc(ipaOf(w))}</span>`) : ""}${speak(w)}${dictLink(w.term)}</div>
         <div class="vmean">${esc(w.meaning)}</div>
         ${w.forms ? `<div class="vforms">${esc(w.forms)}</div>` : ""}
         <div class="vex">${w.ef ? rb(esc(w.ef)) : esc(w.example)}${sayBtn(w.example)}${w.er ? `<span class="ro">${esc(w.er)}</span>` : ""}</div>
