@@ -106,8 +106,8 @@ function speechChunks(text) {
   for (const p of parts) { const t = p.trim(); if (t) out.push(t); }
   return out;
 }
-let sayToken = 0, sayTimer = 0;
-function stopSay() { sayToken++; clearTimeout(sayTimer); if (hasTTS) window.speechSynthesis.cancel(); }
+let sayToken = 0, sayTimer = 0, audSeq = 0;
+function stopSay() { audSeq++; sayToken++; clearTimeout(sayTimer); if (hasTTS) window.speechSynthesis.cancel(); }
 function say(text, slow, done) {
   if (!hasTTS || !text) return;
   const lang = SAY_LANG[currentLang()] || "en-US", synth = window.speechSynthesis;
@@ -140,6 +140,26 @@ if (hasTTS) {
     say(b.dataset.say, b.hasAttribute("data-slow"), () => b.classList.remove("playing"));
   }, true);
 }
+/** play recordings one after another (urls = array of audio URLs); cancelled by any other playback */
+function playSeq(urls, rate, done) {
+  stopSay(); const t = audSeq; let i = 0;
+  const next = () => {
+    if (t !== audSeq) return;
+    if (i >= urls.length) { if (done) done(true); return; }
+    const a = new Audio(urls[i++]); a.playbackRate = rate || 1;
+    a.onended = () => setTimeout(next, 80); a.onerror = () => { if (done) done(false); };
+    a.play().catch(() => { if (done) done(false); });
+  };
+  next();
+}
+/** [data-aud="url|url"] buttons: recorded syllables, [data-rate] slows them, [data-say] fallback text is read by machine voice if audio fails */
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-aud]"); if (!b) return;
+  e.stopPropagation();
+  document.querySelectorAll(".say.playing").forEach(x => x.classList.remove("playing"));
+  b.classList.add("playing");
+  playSeq(b.dataset.aud.split("|"), +b.dataset.rate || 1, ok => { b.classList.remove("playing"); if (ok === false && b.dataset.fallback && typeof say === "function") say(b.dataset.fallback, !!b.dataset.rate); });
+}, true);
 const sayBtn = (text, label, slow) => `<button type="button" class="say${slow ? " slow" : ""}" data-say="${esc(text).replace(/"/g, "&quot;")}"${slow ? " data-slow" : ""} aria-label="${slow ? "Nghe chậm" : "Nghe"}: ${esc(label || text).replace(/"/g, "&quot;")}" title="${slow ? "Nghe chậm" : "Nghe"}">${slow ? "×0.6" : ""}</button>`;
 
 /** Replace each <select> under root with the shared Swiss dropdown (native select stays as source of truth). */

@@ -21,6 +21,15 @@
       : sayBtn(w.term, w.term, slow);
     return btn(false) + btn(true);
   };
+  /** recorded syllable-by-syllable playback (GRAMMAR.syl.f[syllable] = file) when every syllable has a recording */
+  const SYL = GRAMMAR.syl || null;
+  const sylBtn = w => {
+    if (!SYL || /…/.test(w.term) || !w.ipa) return "";
+    const parts = w.ipa.split(/\s+/).filter(Boolean), files = parts.map(sy => SYL.f[sy]);
+    if (!files.length || files.some(x => !x)) return "";
+    const urls = files.map(f => SYL.base + encodeURIComponent(f.replace(/ /g, "_"))).join("|");
+    return ` <button type="button" class="say slow" data-aud="${esc(urls).replace(/"/g, "&quot;")}" data-fallback="${esc(w.term).replace(/"/g, "&quot;")}" aria-label="Nghe từng âm thu thật: ${esc(w.term).replace(/"/g, "&quot;")}" title="Nghe từng âm tiết thu âm thật">từng âm</button>`;
+  };
   const ipaOf = w => { const x = X && X[w.term]; return S.acc === "uk" && x && x[0] ? x[0] : w.ipa; };
 
   /** accent-insensitive compare for the reading field (pinyin tones: ni hao finds nǐ hǎo) */
@@ -59,7 +68,7 @@
        <select id="vTopic"><option value="all">Tất cả chủ đề (${list.length})</option>${topics.map(t => `<option value="${esc(t)}">${esc(t)} (${list.filter(w => w.topic === t).length})</option>`).join("")}</select>
      </div>
      <div class="vcount" id="vCount"></div>
-     <div class="vlist" id="vList"></div>${X ? `<p class="hint">${esc(XT.note)}</p>` : ""}`;
+     <div class="vlist" id="vList"></div>${X ? `<p class="hint">${esc(XT.note)}</p>` : ""}${SYL ? `<p class="hint">${esc(SYL.note)}</p>` : ""}`;
     enhanceSelects(el);
     $("#vSearch").oninput = e => { S.q = e.target.value; renderList(); };
     $("#vTopic").onchange = e => { S.topic = e.target.value; renderList(); };
@@ -93,7 +102,7 @@
     $("#vList").innerHTML = rows.length ? rows.map((w, i) => `
       <div class="vrow" style="--i:${i % 40}">
         <div class="vmeta"><span class="vlvl">${esc(w.level)}</span><span class="vtype">${esc(w.type)}</span></div>
-        <div class="vterm">${w.tf ? rb(esc(w.tf)) : esc(w.term)}${w.ipa ? (w.tf || w.er ? ` <span class="vipa vro">${esc(w.ipa.split(" · ").slice(1).join(" · "))}</span>` : ` <span class="vipa">${esc(ipaOf(w))}</span>`) : ""}${speak(w)}${dictLink(w.term)}</div>
+        <div class="vterm">${w.tf ? rb(esc(w.tf)) : esc(w.term)}${w.ipa ? (w.tf || w.er ? ` <span class="vipa vro">${esc(w.ipa.split(" · ").slice(1).join(" · "))}</span>` : ` <span class="vipa">${esc(ipaOf(w))}</span>`) : ""}${speak(w)}${sylBtn(w)}${dictLink(w.term)}</div>
         <div class="vmean">${esc(w.meaning)}</div>
         ${w.forms ? `<div class="vforms">${esc(w.forms)}</div>` : ""}
         <div class="vex">${w.ef ? rb(esc(w.ef)) : esc(w.example)}${sayBtn(w.example)}${w.er ? `<span class="ro">${esc(w.er)}</span>` : ""}</div>
