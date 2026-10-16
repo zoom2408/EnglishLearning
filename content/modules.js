@@ -132,5 +132,15 @@ const MODULES = [
   "prefix": "",
   "desc": "Danh từ, động từ, cụm từ cơ bản A1-B2 theo 10 chủ đề, có IPA và thể động từ",
   "meta": "2000 từ · 15 chủ đề"
+ },
+ {
+  "key": "ipa",
+  "num": "14",
+  "page": "ipa.html",
+  "title": "Phát âm & IPA",
+  "en": "Pronunciation",
+  "prefix": "ipa-",
+  "desc": "Nguyên âm, phụ âm, đuôi -s -ed, trọng âm, nối âm, nhịp câu, ngữ điệu",
+  "meta": "12 bài · 60 câu · nghe mẫu · trò chơi"
  }
 ];
