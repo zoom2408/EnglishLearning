@@ -304,4 +304,5 @@ textarea.input{resize:vertical;min-height:72px;font-weight:500;line-height:1.55}
 .ttspresets button:hover,.ttspresets button[aria-pressed="true"]{color:var(--accent);border-color:var(--accent)}
 .ttstest{margin-top:6px;width:100%}
 .no-tts .ttswrap{display:none}
-@media (max-width:760px){.ttsmenu{right:auto;left:0}.ttswrap{margin-left:auto}}
+/* mobile: the voice panel drops down across the full header width (anchored to .site) so it never pushes the page wider than the screen */
+@media (max-width:760px){.site{position:relative}.ttswrap{position:static;margin-left:auto}.ttsmenu{left:0;right:0;width:auto;top:100%}}
