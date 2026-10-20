@@ -74,7 +74,7 @@ function renderCard(dir){
           ${t?`<span class="lbl" style="margin-top:16px;display:block">Thì chính nên dùng</span><button class="chip tchip" data-review="${t.id}">${t.vi} · ${t.en}</button>`:`<span class="lbl" style="margin-top:16px;display:block">Lưu ý</span><p class="small">${esc(note||"Dùng would / I'd love to để nói điều mong muốn.")}</p>`}</div>
         <div><span class="lbl">Mẫu câu nên nói</span><ul class="pats">${f.pat.map(p=>`<li>${J(p,true)}</li>`).join("")}</ul></div>
       </div>
-      <div class="sample"><span class="lbl">Câu trả lời mẫu</span><p>${J(sample,true)}${sayBtn(sample)}${sayBtn(sample, sample, true)}</p></div>
+      <div class="sample"><span class="lbl">Câu trả lời mẫu</span><p>${J(sample,true)}${sayBtn(sample)}${currentLang() === "zh" ? "" : sayBtn(sample, sample, true)}</p></div>
     </div></div>`;
   c.querySelector("#spMark").onclick=e=>{ e.stopPropagation(); S.done.has(i)?S.done.delete(i):S.done.add(i); saveDone(); updDone(); const b=e.currentTarget; b.setAttribute("aria-pressed",S.done.has(i)); b.textContent=S.done.has(i)?"✓ Đã luyện":"Đánh dấu đã luyện"; };
   c.querySelector(".front").onclick=flip;

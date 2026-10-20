@@ -1,0 +1,32 @@
+/* kewen.css: Bài khóa (zh reading texts) */
+.khint{margin:14px 0 6px}
+.kgloss{position:sticky;top:0;z-index:5;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:10px 0;margin-bottom:6px;background:var(--bg);border-bottom:1px solid var(--fg);font-size:14px}
+.kgloss[hidden]{display:none}
+.kgh{font-size:22px;font-weight:700}
+.ktext{padding:30px 0 8px;border-bottom:1px solid var(--hair)}
+.khead{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 14px;margin-bottom:14px}
+.ktitle{font-size:24px;font-weight:700;letter-spacing:-.01em;margin:0}
+.ktitle small{display:block;font-size:13px;font-weight:400;color:var(--muted);letter-spacing:0;margin-top:2px}
+.kkind{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.kall{margin-left:auto;font-size:13px;font-weight:600;padding:4px 0;border-bottom:1px solid var(--fg);transition:color .25s,border-color .25s}
+.kall:hover,.kall.playing{color:var(--accent);border-bottom-color:var(--accent)}
+.kl{display:grid;grid-template-columns:72px 1fr;gap:12px;padding:8px 0}
+.kl--solo{grid-template-columns:1fr}
+.kwho{font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:22px}
+.kzh{font-size:21px;line-height:2.3;margin:0}
+.kp{font-size:21px}
+.kw{display:inline-block;padding:0 2px;margin:0 1px;font:inherit;color:inherit;border-radius:3px;transition:background .2s,color .2s;cursor:pointer}
+.kw:hover{background:var(--accent-soft)}
+.kw.on{background:var(--accent-soft);color:var(--accent)}
+.kw ruby{ruby-position:over}
+.kvi{font-size:14px;margin-top:0}
+.no-vi .kvi{display:none}
+.kwords{margin:10px 0 18px;font-size:14px}
+.kwords summary{cursor:pointer;font-weight:600;color:var(--muted);padding:6px 0}
+.kwords ul{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2px 24px}
+.kwords li{display:flex;align-items:baseline;gap:10px;padding:5px 0;border-bottom:1px solid var(--hair)}
+.kw--list{display:inline-flex;align-items:baseline;gap:8px;padding:0;margin:0}
+.kwh{font-size:17px;font-weight:600}
+.kwp{font-size:12px;color:var(--muted)}
+.kwm{font-size:12.5px;color:var(--muted);margin-left:auto;text-align:right}
+@media (max-width:640px){.kl{grid-template-columns:1fr;gap:0}.kwho{padding-top:0}.kzh,.kp{font-size:19px}}

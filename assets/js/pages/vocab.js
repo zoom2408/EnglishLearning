@@ -19,7 +19,7 @@
     const btn = (slow) => f
       ? `<button type="button" class="say${slow ? " slow" : ""}" data-audio="${esc(audUrl(f)).replace(/"/g, "&quot;")}" data-term="${esc(w.term).replace(/"/g, "&quot;")}"${slow ? ' data-rate="0.65"' : ""} aria-label="${slow ? "Nghe chậm" : "Nghe"}: ${esc(w.term).replace(/"/g, "&quot;")}" title="${slow ? "Nghe chậm" : "Nghe giọng thật"}">${slow ? "×0.6" : ""}</button>`
       : sayBtn(w.term, w.term, slow);
-    return btn(false) + btn(true);
+    return currentLang() === "zh" ? btn(false) : btn(false) + btn(true);
   };
   /** recorded syllable-by-syllable playback (GRAMMAR.syl.f[syllable] = file) when every syllable has a recording */
   const SYL = GRAMMAR.syl || null;
