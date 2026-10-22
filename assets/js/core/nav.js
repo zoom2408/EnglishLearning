@@ -10,6 +10,7 @@ const LANGS = [
   { code: "es", flag: "🇪🇸", label: "Español", home: "/es/" },
   { code: "ja", flag: "🇯🇵", label: "日本語", home: "/ja/" },
   { code: "zh", flag: "🇨🇳", label: "中文", home: "/zh/" },
+  { code: "th", flag: "🇹🇭", label: "ภาษาไทย", home: "/th/" },
 ];
 function currentLang() {
   const p = location.pathname;
@@ -18,11 +19,12 @@ function currentLang() {
   if (p.startsWith("/es/")) return "es";
   if (p.startsWith("/ja/")) return "ja";
   if (p.startsWith("/zh/")) return "zh";
+  if (p.startsWith("/th/")) return "th";
   return "en";
 }
 
-/** reading-aid toggle (romaji for ja, pinyin for zh): label + localStorage key */
-const RO = { ja: { name: "Romaji", key: "romaji12" }, zh: { name: "Pinyin", key: "pinyin12" } }[currentLang()] || null;
+/** reading-aid toggle (romaji for ja, pinyin for zh, romanization for th): label + localStorage key */
+const RO = { ja: { name: "Romaji", key: "romaji12" }, zh: { name: "Pinyin", key: "pinyin12" }, th: { name: "Phiên âm", key: "rom12" } }[currentLang()] || null;
 
 function renderSite() {
   const el = document.getElementById("site"); if (!el) return;
@@ -68,7 +70,7 @@ function renderSite() {
 /* ---------- text-to-speech (listen buttons) ----------
    Any element with [data-say="text"] plays that text in the page's
    language through the browser's speech engine. [data-slow] reads slower. */
-const SAY_LANG = { en: "en-US", de: "de-DE", nb: "nb-NO", es: "es-ES", ja: "ja-JP", zh: "zh-CN" };
+const SAY_LANG = { en: "en-US", de: "de-DE", nb: "nb-NO", es: "es-ES", ja: "ja-JP", zh: "zh-CN", th: "th-TH" };
 const hasTTS = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
 if (!hasTTS) document.documentElement.classList.add("no-tts");
 const NOVELTY = /albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|jester|junior|organ|superstar|trinoids|whisper|wobble|zarvox|fred|ralph|kathy|eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley/i;

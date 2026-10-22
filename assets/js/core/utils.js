@@ -31,9 +31,11 @@ function norm(s) {
   s = s.toLowerCase();
   // Chinese: pinyin tone marks, tone digits and spaces are optional (nǐ hǎo = ni hao = ni3hao3), ü may be typed v
   if (currentLang() === "zh") s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/([a-z])[1-5]/g, "$1").replace(/v/g, "u");
+  // Thai: romanization tone marks, hyphens, spaces and doubled vowels are optional (sà-wàt-dii = sawatdi)
+  if (currentLang() === "th") s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/-/g, "").replace(/([aeiou])\1/g, "$1");
   return s.replace(/[’‘`´]/g, "'").replace(/won't/g, "will not").replace(/can't/g, "cannot").replace(/n't\b/g, " not")
     .replace(/'m\b/g, " am").replace(/'re\b/g, " are").replace(/'ll\b/g, " will").replace(/'ve\b/g, " have").replace(/'d\b/g, " would")
-    .replace(/[.!?,。、！？「」，；：？]/g, "").replace(/\s+/g, currentLang() === "ja" || currentLang() === "zh" ? "" : " ").trim();
+    .replace(/[.!?,。、！？「」，；：？]/g, "").replace(/\s+/g, ["ja", "zh", "th"].includes(currentLang()) ? "" : " ").trim();
 }
 
 /** Two-line label for a tense id (needs content/theory/tenses.js) */

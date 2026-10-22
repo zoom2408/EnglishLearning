@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chữ cái & thanh điệu · Ngữ pháp tiếng Thái</title>
+  <meta name="description" content="Tiếng Thái có chữ riêng, 5 thanh điệu và 3 nhóm phụ âm quyết định thanh. Học theo nhóm (cao, giữa, thấp) và dấu thanh thì đọc được hầu hết chữ, không cần học thuộc từng từ.">
+  <link rel="icon" type="image/png" href="../assets/img/avatar.png">
+  <link rel="apple-touch-icon" href="../assets/img/avatar.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Thai:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/practice.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+  <link rel="stylesheet" href="../assets/css/th.css">
+  <script>try{var t=localStorage.getItem("theme12");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}try{if(localStorage.getItem("pinyin12")==="off")document.documentElement.dataset.romaji="off"}catch(e){}</script>
+</head>
+<body data-module="akson">
+  <div class="wrap">
+    <header class="site" id="site"></header>
+    <main class="mod" id="mod-akson">
+    <header class="mast">
+      <h1 class="long">อักษรไทย<span>.</span></h1>
+      <p class="intro">Tiếng Thái có chữ riêng, 5 thanh điệu và 3 nhóm phụ âm quyết định thanh. Học theo nhóm (cao, giữa, thấp) và dấu thanh thì đọc được hầu hết chữ, không cần học thuộc từng từ.</p>
+      <nav class="tabs" role="tablist">
+        <button role="tab" data-view="learn" aria-selected="true">Lý thuyết</button>
+        <button role="tab" data-view="quiz" aria-selected="false">Luyện tập</button>
+        <i class="ink" aria-hidden="true"></i>
+      </nav>
+    </header>
+
+    <section class="view learnv" id="view-learn">
+      <div class="score" style="margin-top:22px">
+        <div class="shead"><span class="lbl">Nº</span><span class="lbl">Chủ đề</span><div class="zones plain"><span class="zl">Mục</span><span class="zr"></span></div></div>
+        <div id="rows"></div>
+      </div>
+    <div class="hear" id="hear">
+      <div class="shead"><span class="lbl">Nº</span><span class="lbl">Nghe và lặp lại</span><div class="zones plain"><span class="zl">Bấm vào chữ để nghe</span><span class="zr"></span></div></div>
+      <div class="hrow"><span class="hnum2">01</span><span class="hgrp">Phụ âm giữa (máy)</span><div class="hlist"><span class="hw"><button type="button" class="say txt" data-say="กอ ไก่">กอ ไก่</button></span><span class="hw"><button type="button" class="say txt" data-say="จอ จาน">จอ จาน</button></span><span class="hw"><button type="button" class="say txt" data-say="ดอ เด็ก">ดอ เด็ก</button></span><span class="hw"><button type="button" class="say txt" data-say="ตอ เต่า">ตอ เต่า</button></span><span class="hw"><button type="button" class="say txt" data-say="บอ ใบไม้">บอ ใบไม้</button></span><span class="hw"><button type="button" class="say txt" data-say="ปอ ปลา">ปอ ปลา</button></span><span class="hw"><button type="button" class="say txt" data-say="ออ อ่าง">ออ อ่าง</button></span></div></div>
+      <div class="hrow"><span class="hnum2">02</span><span class="hgrp">Phụ âm cao (máy)</span><div class="hlist"><span class="hw"><button type="button" class="say txt" data-say="ขอ ไข่">ขอ ไข่</button></span><span class="hw"><button type="button" class="say txt" data-say="ฉอ ฉิ่ง">ฉอ ฉิ่ง</button></span><span class="hw"><button type="button" class="say txt" data-say="ถอ ถุง">ถอ ถุง</button></span><span class="hw"><button type="button" class="say txt" data-say="ผอ ผึ้ง">ผอ ผึ้ง</button></span><span class="hw"><button type="button" class="say txt" data-say="ฝอ ฝา">ฝอ ฝา</button></span><span class="hw"><button type="button" class="say txt" data-say="สอ เสือ">สอ เสือ</button></span><span class="hw"><button type="button" class="say txt" data-say="หอ หีบ">หอ หีบ</button></span></div></div>
+      <div class="hrow"><span class="hnum2">03</span><span class="hgrp">Phụ âm thấp (máy)</span><div class="hlist"><span class="hw"><button type="button" class="say txt" data-say="คอ ควาย">คอ ควาย</button></span><span class="hw"><button type="button" class="say txt" data-say="งอ งู">งอ งู</button></span><span class="hw"><button type="button" class="say txt" data-say="ชอ ช้าง">ชอ ช้าง</button></span><span class="hw"><button type="button" class="say txt" data-say="นอ หนู">นอ หนู</button></span><span class="hw"><button type="button" class="say txt" data-say="มอ ม้า">มอ ม้า</button></span><span class="hw"><button type="button" class="say txt" data-say="ยอ ยักษ์">ยอ ยักษ์</button></span><span class="hw"><button type="button" class="say txt" data-say="รอ เรือ">รอ เรือ</button></span><span class="hw"><button type="button" class="say txt" data-say="ลอ ลิง">ลอ ลิง</button></span><span class="hw"><button type="button" class="say txt" data-say="วอ แหวน">วอ แหวน</button></span></div></div>
+      <div class="hrow"><span class="hnum2">04</span><span class="hgrp">5 thanh điệu (máy)</span><div class="hlist"><span class="hw"><button type="button" class="say txt" data-say="มา">มา</button></span><span class="hw"><button type="button" class="say txt" data-say="ม่า">ม่า</button></span><span class="hw"><button type="button" class="say txt" data-say="ม้า">ม้า</button></span><span class="hw"><button type="button" class="say txt" data-say="ม๊า">ม๊า</button></span><span class="hw"><button type="button" class="say txt" data-say="หมา">หมา</button></span></div></div>
+      <div class="hrow"><span class="hnum2">05</span><span class="hgrp">Từ ngắn (máy)</span><div class="hlist"><span class="hw"><button type="button" class="say txt" data-say="สวัสดี">สวัสดี</button></span><span class="hw"><button type="button" class="say txt" data-say="ขอบคุณ">ขอบคุณ</button></span><span class="hw"><button type="button" class="say txt" data-say="ไม่เป็นไร">ไม่เป็นไร</button></span><span class="hw"><button type="button" class="say txt" data-say="ภาษาไทย">ภาษาไทย</button></span><span class="hw"><button type="button" class="say txt" data-say="ประเทศไทย">ประเทศไทย</button></span></div></div>
+      <p class="hint">Giọng đọc do trình duyệt cung cấp (cần có giọng tiếng Thái trên thiết bị), nên chỉ để tham khảo nhịp và thanh điệu; hãy nghe người bản xứ để chuẩn hơn.</p>
+    </div>
+    </section>
+
+    <section class="view" id="view-quiz" hidden><div class="quiz" id="quiz"></div></section>
+    </main>
+  </div>
+  <script src="content/modules.js"></script>
+  <script src="../assets/js/core/utils.js"></script>
+  <script src="content/theory/akson.js"></script>
+  <script src="../assets/js/core/nav.js"></script>
+  <script src="../assets/js/core/theme.js"></script>
+  <script src="../assets/js/core/diagrams.js"></script>
+  <script src="../assets/js/core/rows.js"></script>
+  <script src="../assets/js/core/practice.js"></script>
+  <script src="content/quiz/akson.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
