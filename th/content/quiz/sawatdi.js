@@ -371,10 +371,10 @@ const BANK = {
    "hint": "chữ Thái hoặc phiên âm",
    "accept": [
     "สอง",
-    "sǎawng"
+    "sǎwng"
    ],
    "level": "A1",
-   "expl": "สอง sǎawng = 2."
+   "expl": "สอง sǎwng = 2."
   },
   {
    "kind": "fill",
@@ -436,7 +436,7 @@ const BANK = {
    "q": "3 đọc là",
    "right": "สาม (sǎam)",
    "wrong": [
-    "สอง (sǎawng)",
+    "สอง (sǎwng)",
     "สี่ (sìi)",
     "สิบ (sìp)"
    ],
@@ -450,7 +450,7 @@ const BANK = {
    "wrong": [
     "สี่ (sìi)",
     "เก้า (kâao)",
-    "สอง (sǎawng)"
+    "สอง (sǎwng)"
    ],
    "level": "A1",
    "expl": "สิบ sìp = 10."
@@ -604,7 +604,7 @@ const BANK = {
     "thûm"
    ],
    "level": "A1",
-   "expl": "สองทุ่ม sǎawng-thûm = 8 giờ tối."
+   "expl": "สองทุ่ม sǎwng-thûm = 8 giờ tối."
   },
   {
    "kind": "choose",
@@ -621,11 +621,11 @@ const BANK = {
   {
    "kind": "choose",
    "q": "2 giờ chiều là",
-   "right": "บ่ายสองโมง (bàai-sǎawng-moong)",
+   "right": "บ่ายสองโมง (bàai-sǎwng-moong)",
    "wrong": [
-    "สองทุ่ม (sǎawng-thûm)",
-    "ตีสอง (tii-sǎawng)",
-    "สองโมงเช้า (sǎawng-moong-cháao)"
+    "สองทุ่ม (sǎwng-thûm)",
+    "ตีสอง (tii-sǎwng)",
+    "สองโมงเช้า (sǎwng-moong-cháao)"
    ],
    "level": "A1",
    "expl": "Chiều 1-3 giờ: บ่าย + số + โมง."

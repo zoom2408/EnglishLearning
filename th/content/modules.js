@@ -6,4 +6,8 @@ const MODULES = [
  {key:"sawatdi",num:"02",page:"sawatdi.html",title:"Chào hỏi & số đếm",en:"ทักทาย·ตัวเลข",prefix:"th-sw-",desc:"สวัสดี, ครับ và ค่ะ, tự giới thiệu, số 0 đến hàng triệu, tiền, ngày giờ",meta:"4 bài · 60 câu",level:"A1"},
  {key:"prayok",num:"03",page:"prayok.html",title:"Câu cơ bản",en:"ประโยคพื้นฐาน",prefix:"th-py-",desc:"Chủ ngữ + động từ + tân ngữ, เป็น · อยู่ · คือ · มี, ไหม · หรือเปล่า, ไม่ và ไม่ได้",meta:"4 bài · 60 câu",level:"A1"},
  {key:"laksana",num:"04",page:"laksana.html",title:"Lượng từ & danh từ",en:"ลักษณนาม",prefix:"th-lk-",desc:"Lượng từ thường gặp, số + lượng từ, tính từ đứng sau danh từ, นี่ นั่น โน่น, กี่ và เท่าไหร่",meta:"4 bài · 60 câu",level:"A1"},
+ {key:"khrop",num:"05",page:"khrop.html",title:"Gia đình & nghề nghiệp",en:"ครอบครัว·อาชีพ",prefix:"th-kr-",desc:"Gọi tên người thân, hỏi nghề và nơi làm việc, xưng hô lịch sự, miêu tả người",meta:"4 bài · 60 câu",level:"A1"},
+ {key:"wela",num:"06",page:"wela.html",title:"Thời gian & thể",en:"เวลา·กาล",prefix:"th-tm-",desc:"Từ chỉ thời gian, แล้ว · เพิ่ง · เคย, กำลัง · จะ · ยัง, tần suất",meta:"4 bài · 60 câu",level:"A2"},
+ {key:"sathaan",num:"07",page:"sathaan.html",title:"Nơi chốn & đi lại",en:"สถานที่·การเดินทาง",prefix:"th-st-",desc:"ที่ · ใน · บน · ใต้ · ข้าง, จาก · ถึง · ไป · มา, hỏi đường, phương tiện",meta:"4 bài · 60 câu",level:"A2"},
+ {key:"yaakdai",num:"08",page:"yaakdai.html",title:"Muốn, phải, có thể",en:"อยาก·ต้อง·ได้",prefix:"th-yd-",desc:"ได้ ba cách dùng, อยาก · ต้องการ, ต้อง · ควร · ห้าม, เป็น · สามารถ",meta:"4 bài · 60 câu",level:"A2"},
 ];

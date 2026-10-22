@@ -17,7 +17,7 @@ const BANK = {
   },
   {
    "kind": "fill",
-   "q": "Hai con chó: {หมา|mǎa}{สอง|sǎawng}___",
+   "q": "Hai con chó: {หมา|mǎa}{สอง|sǎwng}___",
    "hint": "chữ Thái hoặc phiên âm",
    "accept": [
     "ตัว",
@@ -39,7 +39,7 @@ const BANK = {
   },
   {
    "kind": "fill",
-   "q": "Hai chiếc xe: {รถ|rót}{สอง|sǎawng}___",
+   "q": "Hai chiếc xe: {รถ|rót}{สอง|sǎwng}___",
    "hint": "chữ Thái hoặc phiên âm",
    "accept": [
     "คัน",
@@ -72,7 +72,7 @@ const BANK = {
   },
   {
    "kind": "fill",
-   "q": "Hai cái cốc: {แก้ว|kâeo}{สอง|sǎawng}___",
+   "q": "Hai cái cốc: {แก้ว|kâeo}{สอง|sǎwng}___",
    "hint": "chữ Thái hoặc phiên âm",
    "accept": [
     "ใบ",
@@ -185,10 +185,10 @@ const BANK = {
    "hint": "chữ Thái hoặc phiên âm",
    "accept": [
     "ของ",
-    "khǎawng"
+    "khǎwng"
    ],
    "level": "A1",
-   "expl": "ของ khǎawng = của."
+   "expl": "ของ khǎwng = của."
   },
   {
    "kind": "fill",
@@ -229,10 +229,10 @@ const BANK = {
    "hint": "chữ Thái hoặc phiên âm",
    "accept": [
     "ของ",
-    "khǎawng"
+    "khǎwng"
    ],
    "level": "A1",
-   "expl": "ของ khǎawng cũng là “đồ vật”."
+   "expl": "ของ khǎwng cũng là “đồ vật”."
   },
   {
    "kind": "fill",

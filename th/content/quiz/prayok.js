@@ -192,7 +192,7 @@ const BANK = {
   },
   {
    "kind": "fill",
-   "q": "Đây là nhà tôi: {นี่|nîi} ___ {บ้าน|bâan}{ของ|khǎawng}{ฉัน|chǎn}",
+   "q": "Đây là nhà tôi: {นี่|nîi} ___ {บ้าน|bâan}{ของ|khǎwng}{ฉัน|chǎn}",
    "hint": "chữ Thái hoặc phiên âm",
    "accept": [
     "คือ",
