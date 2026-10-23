@@ -10,4 +10,8 @@ const MODULES = [
  {key:"wela",num:"06",page:"wela.html",title:"Thời gian & thể",en:"เวลา·กาล",prefix:"th-tm-",desc:"Từ chỉ thời gian, แล้ว · เพิ่ง · เคย, กำลัง · จะ · ยัง, tần suất",meta:"4 bài · 60 câu",level:"A2"},
  {key:"sathaan",num:"07",page:"sathaan.html",title:"Nơi chốn & đi lại",en:"สถานที่·การเดินทาง",prefix:"th-st-",desc:"ที่ · ใน · บน · ใต้ · ข้าง, จาก · ถึง · ไป · มา, hỏi đường, phương tiện",meta:"4 bài · 60 câu",level:"A2"},
  {key:"yaakdai",num:"08",page:"yaakdai.html",title:"Muốn, phải, có thể",en:"อยาก·ต้อง·ได้",prefix:"th-yd-",desc:"ได้ ba cách dùng, อยาก · ต้องการ, ต้อง · ควร · ห้าม, เป็น · สามารถ",meta:"4 bài · 60 câu",level:"A2"},
+ {key:"sosanh",num:"09",page:"sosanh.html",title:"So sánh",en:"เปรียบเทียบ",prefix:"th-cp-",desc:"กว่า, ที่สุด, เท่า · เหมือน · ต่างกัน, ค่อนข้าง · เกินไป · ยิ่ง…ยิ่ง",meta:"4 bài · 60 câu",level:"A2"},
+ {key:"muasam",num:"10",page:"muasam.html",title:"Mua sắm, ăn uống, du lịch",en:"ซื้อ·กิน·เที่ยว",prefix:"th-sh-",desc:"Hỏi giá và mặc cả, gọi món, vị, đặt phòng và mua vé",meta:"4 bài · 60 câu",level:"A2"},
+ {key:"cauphuc",num:"11",page:"cauphuc.html",title:"Câu phức",en:"ประโยคซับซ้อน",prefix:"th-cx-",desc:"เพราะ · จึง · ดังนั้น, ถ้า…ก็, แต่ · แม้ว่า, เมื่อ · ก่อน · หลัง · พอ…ก็",meta:"4 bài · 60 câu",level:"B1"},
+ {key:"quanhe",num:"12",page:"quanhe.html",title:"Mệnh đề quan hệ",en:"ประโยคขยาย",prefix:"th-rc-",desc:"N + ที่, คิดว่า · บอกว่า, สิ่งที่ · ที่ไหนก็, การ · ความ",meta:"4 bài · 60 câu",level:"B1"},
 ];
