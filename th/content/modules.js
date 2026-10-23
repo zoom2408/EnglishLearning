@@ -14,4 +14,6 @@ const MODULES = [
  {key:"muasam",num:"10",page:"muasam.html",title:"Mua sắm, ăn uống, du lịch",en:"ซื้อ·กิน·เที่ยว",prefix:"th-sh-",desc:"Hỏi giá và mặc cả, gọi món, vị, đặt phòng và mua vé",meta:"4 bài · 60 câu",level:"A2"},
  {key:"cauphuc",num:"11",page:"cauphuc.html",title:"Câu phức",en:"ประโยคซับซ้อน",prefix:"th-cx-",desc:"เพราะ · จึง · ดังนั้น, ถ้า…ก็, แต่ · แม้ว่า, เมื่อ · ก่อน · หลัง · พอ…ก็",meta:"4 bài · 60 câu",level:"B1"},
  {key:"quanhe",num:"12",page:"quanhe.html",title:"Mệnh đề quan hệ",en:"ประโยคขยาย",prefix:"th-rc-",desc:"N + ที่, คิดว่า · บอกว่า, สิ่งที่ · ที่ไหนก็, การ · ความ",meta:"4 bài · 60 câu",level:"B1"},
+ {key:"bidong",num:"13",page:"bidong.html",title:"Bị động và sai khiến",en:"กรรมวาจก·การเหนี่ยวนำ",prefix:"th-bd-",desc:"ถูก · โดน, ได้รับ, ให้ ba cách dùng, บอกให้ · สั่งให้ · ปล่อยให้",meta:"4 bài · 60 câu",level:"B1"},
+ {key:"loi",num:"14",page:"loi.html",title:"Lỗi hay gặp",en:"ข้อผิดพลาด",prefix:"th-er-",desc:"Từ gần âm khác thanh, trật tự từ, ครับ · ค่ะ · คะ, ไม่ · ไม่ได้ · ยัง, từ dễ nhầm",meta:"5 bài · 60 câu",level:"Tổng hợp"},
 ];
