@@ -4,7 +4,7 @@
    ===================================================================== */
 /* ---------- Speaking ---------- */
 .speak{display:grid;grid-template-columns:var(--cols);padding-top:20px}
-.speak>*{grid-column:2 / -1;min-width:0}
+.speak>*{grid-column:1 / -1;min-width:0}
 .sp-top{display:flex;justify-content:space-between;gap:24px;align-items:end;flex-wrap:wrap;border-bottom:1px solid var(--fg);padding-bottom:14px}
 .sp-intro p{margin:6px 0 0;max-width:60ch}
 .sp-bar{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:14px 0}
@@ -39,8 +39,6 @@
 .sample{border-top:1px solid var(--hair);padding-top:14px}
 .sample p{margin:6px 0 0;color:var(--fg);font-size:17px;line-height:1.55;max-width:70ch}
 .sp-ctrl{display:flex;gap:20px;align-items:center;flex-wrap:wrap;padding:18px 0 4px}
-.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--fg);position:relative;overflow:hidden}
-.btn.ghost:hover{background:var(--surface)}
 #spTimer span{position:relative}
 #spTimer i{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--accent)}
 #spTimer.over span{color:var(--accent)}

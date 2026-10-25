@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Style guide · Input &amp; Dropdown</title>
+  <title>Style guide · Input, Dropdown &amp; Button</title>
   <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,8 +19,8 @@
   <div class="wrap">
     <header class="site" id="site"></header>
     <main class="mod">
-      <header class="mast"><h1 class="long">Inputs<span>.</span></h1>
-        <p class="intro">Chỉ có <b>border-bottom</b>. Không nền, không viền bốn cạnh. Dropdown dùng chung cùng nhịp.</p></header>
+      <header class="mast"><h1 class="long">Components<span>.</span></h1>
+        <p class="intro">Input chỉ có <b>border-bottom</b>, không nền, không viền bốn cạnh; dropdown dùng chung cùng nhịp. Nút có 3 kiểu dùng chung toàn site: <b>filled</b> cho hành động chính, <b>ghost</b> cho hành động phụ, <b>link</b> cho điều hướng.</p></header>
 
       <h2>01 · STATES</h2>
       <div class="sg">
@@ -42,6 +42,15 @@
         <div class="field"><label class="lbl" for="b4">Mono (đáp án)</label><input class="input input--lg input--mono" id="b4" placeholder="gõ đáp án"></div>
         <div class="field"><label class="lbl" for="b5">Textarea</label><textarea class="input" id="b5" rows="3" placeholder="Nhiều dòng"></textarea></div>
         <div class="field"><label class="lbl" for="b6">Dropdown</label><select id="b6"><option>Tất cả (100)</option><option>Hometown (6)</option><option>Shopping (8)</option></select></div>
+      </div>
+
+      <h2>03 · BUTTONS</h2>
+      <div class="sg">
+        <div class="field"><span class="lbl">Filled (hành động chính)</span><div><button class="btn">Lật thẻ</button></div><span class="fhint">btn · nền đen, hover sang accent</span></div>
+        <div class="field"><span class="lbl">Ghost (hành động phụ)</span><div><button class="btn ghost">Bắt đầu nói · 30s</button></div><span class="fhint">btn ghost · chỉ viền, hover nền nhạt</span></div>
+        <div class="field"><span class="lbl">Link (điều hướng, hành động nhẹ)</span><div style="display:flex;gap:28px;flex-wrap:wrap"><button class="link">← Trước</button><button class="link">Thẻ tiếp →</button></div><span class="fhint">link · chữ đậm, gạch chân</span></div>
+        <div class="field"><span class="lbl">Link nhỏ</span><div><button class="link sm">Âm thanh: bật</button></div><span class="fhint">link sm · 12px, dùng cho tùy chọn phụ</span></div>
+        <div class="field"><span class="lbl">Disabled</span><div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center"><button class="btn" disabled>Nộp bài</button><button class="btn ghost" disabled>Ghost</button><button class="link" disabled>Link</button></div><span class="fhint">Mờ 35%</span></div>
       </div>
     </main>
   </div>

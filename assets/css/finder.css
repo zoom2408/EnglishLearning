@@ -4,7 +4,7 @@
    ===================================================================== */
 /* ---------- Finder ---------- */
 .finder{display:grid;grid-template-columns:var(--cols);padding-top:20px}
-.finder>*{grid-column:2 / -1;min-width:0}
+.finder>*{grid-column:1 / -1;min-width:0}
 .search{width:100%;font:inherit;font-size:clamp(22px,3.5vw,34px);font-weight:600;letter-spacing:-.02em;padding:8px 0;border:0;border-bottom:2px solid var(--fg);background:transparent;color:var(--fg);outline:none}
 .search::placeholder{color:var(--hair)}
 .search:focus{border-bottom-color:var(--accent)}

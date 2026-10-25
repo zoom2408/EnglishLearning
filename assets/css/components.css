@@ -310,3 +310,18 @@ textarea.input{resize:vertical;min-height:72px;font-weight:500;line-height:1.55}
 .hlevel:first-child{margin-top:0}
 .hlevel small{font-family:var(--mono);font-size:11px;font-weight:400;color:var(--muted);letter-spacing:0;text-transform:none}
 .hlevel + .hcard{border-top:0}
+
+/* ---------- Buttons (component library: styleguide.html §03) ----------
+   One set for the whole site (originally from the Speaking flashcards):
+   .link        text action, underline          e.g. "← Trước", "Thẻ tiếp →"
+   .btn         filled action, accent on hover  e.g. "Lật thẻ", "Nộp bài"
+   .btn.ghost   outlined action                 e.g. "Bắt đầu nói · 30s"
+   .link.sm     small text action */
+.btn{font-weight:600;font-size:14px;padding:10px 18px;background:var(--fg);color:var(--bg);transition:background-color .25s}
+.btn:hover{background:var(--accent)}
+.btn:disabled{opacity:.35;cursor:default}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--fg);position:relative;overflow:hidden}
+.btn.ghost:hover{background:var(--surface)}
+.link{font-weight:600;font-size:14px;padding:10px 0;border-bottom:1px solid var(--fg)}
+.link.sm{font-family:var(--sans);font-size:12px;padding:0}
+.link:disabled{opacity:.35;cursor:default}

@@ -1,0 +1,71 @@
+/* =====================================================================
+   vgame.css
+   Word-matching game on the vocabulary page: hearts, board, wires.
+   ===================================================================== */
+.vg-tabs{margin:18px 0 0;grid-column:auto}
+.vgame{display:grid;grid-template-columns:var(--cols);padding-top:20px;padding-bottom:40px}
+.vgame>*{grid-column:1 / -1;min-width:0}
+.vgame[hidden]{display:none}
+.vg-top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid var(--fg)}
+.vg-hearts{display:inline-flex;gap:6px;font-size:22px;line-height:1}
+.vg-hearts i{font-style:normal;color:var(--hair);transition:color .3s,transform .3s var(--spring)}
+.vg-hearts i.on{color:var(--accent)}
+.vg-streak{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.vg-streak.on{color:var(--ok);font-weight:700}
+.vg-card{padding:24px 0}
+.vg-card h2{font-size:clamp(22px,3vw,30px);letter-spacing:-.02em;margin:0 0 8px}
+.vg-card p{color:var(--muted);max-width:60ch;margin:0 0 16px}
+.vg-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:20px}
+.vg-count{font-family:var(--mono);font-size:32px;font-weight:700;display:block;margin:8px 0}
+.vg-wait small{color:var(--muted)}
+.vg-bar{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:baseline;font-size:12.5px;color:var(--muted);margin-bottom:12px}
+.vg-prog{font-family:var(--mono);font-weight:700;color:var(--fg)}
+.vg-board{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(56px,14vw,160px);touch-action:none;user-select:none;-webkit-user-select:none}
+.vg-col{display:flex;flex-direction:column;gap:10px}
+.vg-item{position:relative;display:flex;align-items:center;gap:10px;min-height:54px;padding:10px 14px;border:1px solid var(--hair);background:var(--bg);cursor:pointer;font-size:15px;transition:border-color .2s,background .2s,transform .2s var(--ease)}
+.vg-item:hover{border-color:var(--fg)}
+.vg-item:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.vg-w{font-weight:700;justify-content:space-between}
+.vg-t{min-width:0;overflow-wrap:anywhere}
+.vg-w .say{flex:none}
+.vg-dot{position:absolute;top:50%;width:10px;height:10px;margin-top:-5px;border-radius:50%;background:var(--bg);border:2px solid var(--muted);transition:background .2s,border-color .2s}
+.vg-w .vg-dot{right:-6px}
+.vg-m .vg-dot{left:-6px}
+.vg-item.linked{border-color:hsl(var(--h) 65% 48%)}
+.vg-item.linked .vg-dot{background:hsl(var(--h) 65% 48%);border-color:hsl(var(--h) 65% 48%)}
+.vg-item.sel{border-color:var(--fg);background:var(--surface)}
+.vg-item.ok{border-color:var(--ok);background:var(--ok-soft)}
+.vg-item.ok .vg-dot{background:var(--ok);border-color:var(--ok)}
+.vg-item.bad{border-color:var(--accent);background:var(--accent-soft)}
+.vg-item.bad .vg-dot{background:var(--accent);border-color:var(--accent)}
+.vg-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:2}
+.vg-ln{fill:none;stroke:hsl(var(--h) 65% 48%);stroke-width:3;stroke-linecap:round;stroke-dasharray:1200;stroke-dashoffset:0;animation:vgdraw .5s var(--ease)}
+.vg-ln.tmp{stroke:var(--fg);stroke-width:2.5;stroke-dasharray:6 6;animation:none;opacity:.7}
+.vg-ln.ok{stroke:var(--ok);stroke-width:3.5}
+.vg-ln.bad{stroke:var(--accent);stroke-width:3.5}
+.vg-hit{fill:none;stroke:transparent;stroke-width:14;pointer-events:stroke;cursor:pointer}
+@keyframes vgdraw{from{stroke-dashoffset:1200}to{stroke-dashoffset:0}}
+.vg-board.shake{animation:vgshake .45s}
+@keyframes vgshake{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.vg-ans{list-style:none;padding:0;margin:16px 0 0;border-top:1px solid var(--hair)}
+.vg-ans li{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--hair)}
+.vg-rw{font-weight:700}
+.vg-rm{color:var(--muted)}
+.vg-start .seg{margin-top:8px}
+@media (max-width:640px){
+  .vg-board{gap:0 56px}
+  .vg-item{font-size:14px;padding:8px 10px;min-height:52px}
+  .vg-w .say{display:none}
+}
+@media (prefers-reduced-motion:reduce){.vg-ln,.vg-board.shake{animation:none}}
+.vocab[hidden]{display:none}
+/* drag feedback: source, hovered target, and "this will replace an existing wire" */
+.vg-item.src{border-color:var(--fg);background:var(--surface)}
+.vg-board.dragging .vg-item:not(.hot):not(.src):not(.ok){opacity:.72}
+.vg-item.hot{border-color:var(--fg);background:var(--surface);opacity:1;transform:translateX(0) scale(1.03);box-shadow:0 0 0 3px var(--fg)}
+.vg-w.hot{transform:scale(1.03)}
+.vg-item.hot .vg-dot{background:var(--fg);border-color:var(--fg);transform:scale(1.6)}
+.vg-item.hot.swap{box-shadow:0 0 0 3px var(--accent);border-color:var(--accent)}
+.vg-item.hot.swap .vg-dot{background:var(--accent);border-color:var(--accent)}
+.vg-dot{transition:background .2s,border-color .2s,transform .2s var(--spring)}
+.vg-top-r{display:inline-flex;align-items:center;gap:20px}
