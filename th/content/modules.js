@@ -16,4 +16,5 @@ const MODULES = [
  {key:"quanhe",num:"12",page:"quanhe.html",title:"Mệnh đề quan hệ",en:"ประโยคขยาย",prefix:"th-rc-",desc:"N + ที่, คิดว่า · บอกว่า, สิ่งที่ · ที่ไหนก็, การ · ความ",meta:"4 bài · 60 câu",level:"B1"},
  {key:"bidong",num:"13",page:"bidong.html",title:"Bị động và sai khiến",en:"กรรมวาจก·การเหนี่ยวนำ",prefix:"th-bd-",desc:"ถูก · โดน, ได้รับ, ให้ ba cách dùng, บอกให้ · สั่งให้ · ปล่อยให้",meta:"4 bài · 60 câu",level:"B1"},
  {key:"loi",num:"14",page:"loi.html",title:"Lỗi hay gặp",en:"ข้อผิดพลาด",prefix:"th-er-",desc:"Từ gần âm khác thanh, trật tự từ, ครับ · ค่ะ · คะ, ไม่ · ไม่ได้ · ยัง, từ dễ nhầm",meta:"5 bài · 60 câu",level:"Tổng hợp"},
+ {key:"speaking",num:"15",page:"speaking.html",title:"Speaking",en:"พูด",prefix:"",desc:"50 câu hỏi nói theo chủ đề từ A1 đến B1, kèm khung trả lời, mẫu câu và câu trả lời mẫu",meta:"50 thẻ · 10 chủ đề",level:"Tổng hợp"},
 ];

@@ -23,3 +23,7 @@ ruby:first-child{margin-left:0}
 .fq .tr,.sample .tr,.pats .tr{font-size:13px}
 .ro{display:block;font-family:var(--sans);font-size:12.5px;font-weight:400;color:var(--muted);letter-spacing:0;margin-top:2px}
 .th-big{font-size:2.2em;line-height:1.5}
+
+/* speaking: room for romanization above wrapped question lines */
+.speak .fq{line-height:1.9}
+.speak .sample p{line-height:2.1}
