@@ -18,4 +18,5 @@ const MODULES = [
  {key:"loi",num:"14",page:"loi.html",title:"Lỗi hay gặp",en:"ข้อผิดพลาด",prefix:"th-er-",desc:"Từ gần âm khác thanh, trật tự từ, ครับ · ค่ะ · คะ, ไม่ · ไม่ได้ · ยัง, từ dễ nhầm",meta:"5 bài · 60 câu",level:"Tổng hợp"},
  {key:"speaking",num:"15",page:"speaking.html",title:"Speaking",en:"พูด",prefix:"",desc:"50 câu hỏi nói theo chủ đề từ A1 đến B1, kèm khung trả lời, mẫu câu và câu trả lời mẫu",meta:"50 thẻ · 10 chủ đề",level:"Tổng hợp"},
  {key:"kewen",num:"16",page:"kewen.html",title:"Bài khóa",en:"บทอ่าน",prefix:"",desc:"12 bài hội thoại và đoạn văn A1 đến B1, phiên âm trên từng từ, bấm để nghe và xem nghĩa",meta:"12 bài · 3 trình độ",level:"Tổng hợp"},
+ {key:"vocab",num:"17",page:"vocab.html",title:"Từ vựng",en:"คำศัพท์",prefix:"",desc:"Từ vựng A1 đến B1 theo 12 chủ đề, kèm phiên âm, lượng từ và câu ví dụ có dịch",meta:"809 từ · 12 chủ đề",level:"Tổng hợp"},
 ];
