@@ -27,3 +27,6 @@ ruby:first-child{margin-left:0}
 /* speaking: room for romanization above wrapped question lines */
 .speak .fq{line-height:1.9}
 .speak .sample p{line-height:2.1}
+
+/* kewen: room for romanization above wrapped lines */
+.kzh{line-height:2.4}

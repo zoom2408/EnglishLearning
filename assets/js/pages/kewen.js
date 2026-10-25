@@ -1,13 +1,13 @@
 /* =====================================================================
    pages/kewen.js
-   Bài khóa (zh): reading texts with pinyin over every word, tap a word to
+   Bài khóa (zh, th): reading texts with pinyin / romanization over every word, tap a word to
    hear it and see its meaning, play a line or the whole text, Vietnamese
    translation toggle. Data: GRAMMAR.kewen (content/kewen/kewen.js).
    ===================================================================== */
 (function () {
   const el = document.getElementById("kewen"); if (!el || !GRAMMAR.kewen) return;
-  const T = GRAMMAR.kewen, LEVELS = ["HSK 1", "HSK 2", "HSK 3", "HSK 4"];
-  const S = { level: "HSK 1", vi: true };
+  const T = GRAMMAR.kewen, LEVELS = [...new Set(T.map(t => t.level))];
+  const S = { level: LEVELS[0], vi: true };
   try { const l = localStorage.getItem("kewenLevel"); if (LEVELS.includes(l)) S.level = l; if (localStorage.getItem("kewenVi") === "off") S.vi = false; } catch (e) {}
   const qa = s => esc(s).replace(/"/g, "&quot;");
   const plain = line => line.w.map(t => (Array.isArray(t) ? t[0] : t)).join("");
