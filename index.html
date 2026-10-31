@@ -3,33 +3,66 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Learning Basic English</title>
-  <meta name="description" content="Ngữ pháp tiếng Anh cho IELTS band 6.5 đến 7.5: 11 chủ đề có lý thuyết trực quan, 520 câu luyện tập, trò chơi và 100 flashcard Speaking.">
+  <title>Học mọi thứ</title>
+  <meta name="description" content="Nơi học mọi thứ: ngôn ngữ (Anh, Đức, Na Uy, Tây Ban Nha, Nhật, Trung, Thái), tâm lý học, y tế và nhiều lĩnh vực khác. Lý thuyết trực quan, luyện tập làm lại khi sai.">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;800&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/start.css">
   <script>try{var t=localStorage.getItem("theme12");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
-<body data-module="home">
+<body data-module="start">
   <div class="wrap">
-    <header class="site" id="site"></header>
+    <header class="st-bar">
+      <a class="st-brand" href="/">Học mọi thứ<b>.</b></a>
+      <nav class="st-nav" aria-label="Điều hướng chính">
+        <div class="st-dd" id="st-dd">
+          <button class="st-ddbtn" id="st-ddbtn" type="button" aria-haspopup="true" aria-expanded="false">Học gì?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="st-menu" id="st-menu" role="menu"></div>
+        </div>
+      </nav>
+      <button id="themeBtn" class="theme" type="button" aria-label="Đổi giao diện sáng hoặc tối"><i></i><span>Tự động</span></button>
+    </header>
+
     <main>
-      <header class="mast">
-        <h1 class="long">Ngữ pháp<span>.</span></h1>
-        <p class="intro">Ngữ pháp tiếng Anh cho IELTS band 6.5 đến 7.5. Mỗi chủ đề có <b>lý thuyết trực quan</b>, luyện tập nhiều dạng và một trò chơi 60 giây. Chọn một chủ đề để bắt đầu.</p>
-      </header>
-      <div class="home-grid" id="home-grid"></div>
+      <section class="st-hero" aria-labelledby="st-h1">
+        <div class="st-copy">
+          <p class="st-eyebrow">Learn anything<br>for a brighter tomorrow</p>
+          <h1 id="st-h1" class="st-h1">Học bất kỳ<br>điều gì<br><em>bạn muốn.</em></h1>
+          <p class="st-lead">Ngôn ngữ, tâm lý học, y tế và nhiều lĩnh vực nữa. Mỗi môn có lý thuyết trực quan, luyện tập làm lại khi sai, viết cho người Việt.</p>
+          <div class="st-cta">
+            <a class="st-btn primary" href="#tracks">Khám phá môn học<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+            <a class="st-btn" href="english.html">Bắt đầu với English</a>
+          </div>
+        </div>
+        <div class="st-mosaic" id="st-mosaic" aria-hidden="true"></div>
+      </section>
+
+      <section class="st-facts" aria-label="Tóm tắt">
+        <dl class="st-stats" id="st-stats"></dl>
+      </section>
+
+      <section id="tracks" class="st-sec" aria-label="Môn học">
+        <div class="st-filterbar">
+          <div class="st-chips" id="st-chips" role="group" aria-label="Lọc theo lĩnh vực"></div>
+          <p class="st-count" id="st-count" aria-live="polite"></p>
+        </div>
+        <div class="st-grid" id="st-grid"></div>
+      </section>
     </main>
+
+    <footer class="st-foot">
+      <span>learn_anything.mindmirror.quest</span>
+      <a href="styleguide.html">Styleguide</a>
+    </footer>
   </div>
-  <script src="content/modules.js"></script>
-  <script src="assets/js/core/nav.js"></script>
   <script src="assets/js/core/theme.js"></script>
-  <script src="assets/js/pages/home.js"></script>
+  <script src="assets/js/pages/start.js"></script>
 </body>
 </html>

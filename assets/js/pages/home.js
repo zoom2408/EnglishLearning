@@ -1,6 +1,6 @@
 /* =====================================================================
    pages/home.js
-   Renders the module index on index.html from content/modules.js.
+   Renders the module index on english.html from content/modules.js.
    Modules with a `level` field (zh) are grouped under a level heading.
    ===================================================================== */
 (function () {

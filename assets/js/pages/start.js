@@ -21,7 +21,7 @@
   const cat = k => CATS.find(c => c.key === k);
 
   const SUBJECTS = [
-    { cat: "lang", code: "en", name: "English", home: "/", n: 14 },
+    { cat: "lang", code: "en", name: "English", home: "/english.html", n: 14 },
     { cat: "lang", code: "de", name: "Deutsch", home: "/de/", n: 16 },
     { cat: "lang", code: "nb", name: "Norsk", home: "/nb/", n: 16 },
     { cat: "lang", code: "es", name: "Español", home: "/es/", n: 17 },

@@ -6,7 +6,7 @@ Trang web là HTML, CSS và JavaScript thuần: không cần build, không cần
 
 ## Chạy thử trên máy
 
-Mở `index.html` bằng trình duyệt là chạy được.
+Mở `index.html` (trang landing) bằng trình duyệt là chạy được.
 
 Nếu muốn chạy qua một server nhỏ:
 
@@ -25,7 +25,8 @@ python3 -m http.server 8000
 ## Cấu trúc thư mục
 
 ```
-index.html                 Trang chủ: mục lục 12 phần
+index.html                 Landing: các lĩnh vực và môn học
+english.html               Trang chủ English: mục lục các phần
 tenses.html                01 12 thì (có thêm tab Tra dấu hiệu)
 conditionals.html          02 Câu điều kiện
 passive.html               03 Bị động
