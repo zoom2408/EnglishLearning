@@ -31,6 +31,7 @@ function renderSite() {
   const cur = document.body.dataset.module;
   const L = LANGS.find(l => l.code === currentLang()) || LANGS[0];
   el.innerHTML = `
+    <a class="backlink" href="/start.html" aria-label="Về trang chủ Học mọi thứ"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Học mọi thứ</span></a>
     <div class="brand" id="langswitch">
       <button class="brandbtn" type="button" aria-haspopup="true" aria-expanded="false">${SITE_BRAND || "Ngữ pháp"}<b>.</b></button>
       <div class="langmenu" role="menu">
