@@ -5,62 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-  <title>Style guide · Input, Dropdown &amp; Button</title>
+  <title>Design system</title>
   <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;800&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/responsive.css">
-  <style>.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:36px 32px;margin:24px 0 48px}.sg h2{font-size:12px;font-family:var(--mono);color:var(--accent);font-weight:500;margin:40px 0 0;border-top:1px solid var(--fg);padding-top:10px}</style>
+  <link rel="stylesheet" href="assets/css/styleguide.css">
   <script>try{var t=localStorage.getItem("theme12");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body data-module="styleguide">
-  <div class="wrap">
-    <header class="site" id="site"></header>
-    <main class="mod">
-      <header class="mast"><h1 class="long">Components<span>.</span></h1>
-        <p class="intro">Input chỉ có <b>border-bottom</b>, không nền, không viền bốn cạnh; dropdown dùng chung cùng nhịp. Nút có 3 kiểu dùng chung toàn site: <b>filled</b> cho hành động chính, <b>ghost</b> cho hành động phụ, <b>link</b> cho điều hướng.</p></header>
+  <div class="sg-app">
+    <header class="sg-top">
+      <a class="sg-logo" href="/" aria-label="Về trang chủ">Học mọi thứ<b>.</b><span>Design system</span></a>
+      <div class="sg-tools">
+        <div class="sg-seg" id="sg-vp" role="group" aria-label="Độ rộng canvas">
+          <button type="button" data-w="100%" aria-pressed="true">Desktop</button>
+          <button type="button" data-w="768px" aria-pressed="false">Tablet</button>
+          <button type="button" data-w="375px" aria-pressed="false">Mobile</button>
+        </div>
+        <div class="sg-seg" id="sg-bg" role="group" aria-label="Nền canvas">
+          <button type="button" data-bg="var(--bg)" aria-pressed="true">Nền</button>
+          <button type="button" data-bg="var(--surface)" aria-pressed="false">Surface</button>
+        </div>
+        <button id="themeBtn" class="theme" type="button" aria-label="Đổi giao diện sáng hoặc tối"><i></i><span>Tự động</span></button>
+      </div>
+    </header>
 
-      <h2>01 · STATES</h2>
-      <div class="sg">
-        <div class="field"><label class="lbl" for="a1">Default</label><input class="input" id="a1" placeholder="Nhập nội dung"><span class="fhint">Helper text</span></div>
-        <div class="field"><label class="lbl" for="a2">Hover (rê chuột)</label><input class="input" id="a2" placeholder="Rê chuột vào đây"><span class="fhint">Đường kẻ đậm lên</span></div>
-        <div class="field"><label class="lbl" for="a3">Focus</label><input class="input" id="a3" placeholder="Bấm vào đây"><span class="fhint">Đường kẻ đổi sang accent</span></div>
-        <div class="field"><label class="lbl" for="a4">Filled</label><input class="input" id="a4" value="Giá trị đã nhập"><span class="fhint"></span></div>
-        <div class="field is-disabled"><label class="lbl" for="a5">Disabled</label><input class="input" id="a5" placeholder="Không thể nhập" disabled><span class="fhint">Không khả dụng</span></div>
-        <div class="field"><label class="lbl" for="a6">Read-only</label><input class="input" id="a6" value="Chỉ đọc" readonly><span class="fhint">Đường kẻ nét đứt</span></div>
-        <div class="field is-error"><label class="lbl" for="a7">Error</label><input class="input" id="a7" value="abc" aria-invalid="true"><span class="fhint">Định dạng chưa đúng</span></div>
-        <div class="field is-success"><label class="lbl" for="a8">Success</label><input class="input" id="a8" value="Hợp lệ"><span class="fhint">Đã xác nhận</span></div>
+    <aside class="sg-side">
+      <details class="sg-menu" id="sg-menu" open>
+        <summary>Danh mục</summary>
+        <label class="sg-search"><span class="lbl">Tìm</span><input class="input input--sm" id="sg-q" type="search" placeholder="Tên component"></label>
+        <nav id="sg-nav" aria-label="Stories"></nav>
+      </details>
+    </aside>
+
+    <main class="sg-main" id="sg-main">
+      <div class="sg-head">
+        <div>
+          <p class="sg-crumb" id="sg-crumb"></p>
+          <h1 id="sg-title"></h1>
+          <p class="sg-desc" id="sg-desc"></p>
+        </div>
+        <div class="sg-tabs" id="sg-tabs" role="tablist" aria-label="Chế độ xem">
+          <button type="button" role="tab" data-t="canvas" aria-selected="true">Canvas</button>
+          <button type="button" role="tab" data-t="docs" aria-selected="false">Docs</button>
+        </div>
       </div>
 
-      <h2>02 · SIZES &amp; VARIANTS</h2>
-      <div class="sg">
-        <div class="field"><label class="lbl" for="b1">Small</label><input class="input input--sm" id="b1" placeholder="input--sm"></div>
-        <div class="field"><label class="lbl" for="b2">Medium (mặc định)</label><input class="input" id="b2" placeholder="input"></div>
-        <div class="field"><label class="lbl" for="b3">Large</label><input class="input input--lg" id="b3" type="search" placeholder="Tìm từ hoặc nghĩa…"></div>
-        <div class="field"><label class="lbl" for="b4">Mono (đáp án)</label><input class="input input--lg input--mono" id="b4" placeholder="gõ đáp án"></div>
-        <div class="field"><label class="lbl" for="b5">Textarea</label><textarea class="input" id="b5" rows="3" placeholder="Nhiều dòng"></textarea></div>
-        <div class="field"><label class="lbl" for="b6">Dropdown</label><select id="b6"><option>Tất cả (100)</option><option>Hometown (6)</option><option>Shopping (8)</option></select></div>
-      </div>
+      <section class="sg-canvas" id="sg-canvas">
+        <div class="sg-stage"><iframe id="sg-frame" title="Canvas" class="sg-frame"></iframe></div>
+        <div class="sg-panel" id="sg-panel">
+          <div class="sg-ptabs" role="tablist" aria-label="Bảng phụ">
+            <button type="button" role="tab" data-p="controls" aria-selected="true">Controls</button>
+            <button type="button" role="tab" data-p="code" aria-selected="false">Code</button>
+            <button type="button" class="sg-reset" id="sg-reset">Đặt lại</button>
+          </div>
+          <div class="sg-pbody" id="sg-pbody"></div>
+        </div>
+      </section>
 
-      <h2>03 · BUTTONS</h2>
-      <div class="sg">
-        <div class="field"><span class="lbl">Filled (hành động chính)</span><div><button class="btn">Lật thẻ</button></div><span class="fhint">btn · nền đen, hover sang accent</span></div>
-        <div class="field"><span class="lbl">Ghost (hành động phụ)</span><div><button class="btn ghost">Bắt đầu nói · 30s</button></div><span class="fhint">btn ghost · chỉ viền, hover nền nhạt</span></div>
-        <div class="field"><span class="lbl">Link (điều hướng, hành động nhẹ)</span><div style="display:flex;gap:28px;flex-wrap:wrap"><button class="link">← Trước</button><button class="link">Thẻ tiếp →</button></div><span class="fhint">link · chữ đậm, gạch chân</span></div>
-        <div class="field"><span class="lbl">Link nhỏ</span><div><button class="link sm">Âm thanh: bật</button></div><span class="fhint">link sm · 12px, dùng cho tùy chọn phụ</span></div>
-        <div class="field"><span class="lbl">Disabled</span><div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center"><button class="btn" disabled>Nộp bài</button><button class="btn ghost" disabled>Ghost</button><button class="link" disabled>Link</button></div><span class="fhint">Mờ 35%</span></div>
-      </div>
+      <section class="sg-docs" id="sg-docs" hidden></section>
     </main>
   </div>
-  <script src="content/modules.js"></script>
-  <script src="assets/js/core/utils.js"></script>
-  <script src="content/theory/tenses.js"></script>
-  <script src="assets/js/core/nav.js"></script>
   <script src="assets/js/core/theme.js"></script>
-  <script>renderSite();enhanceSelects();</script>
+  <script src="assets/js/styleguide.js"></script>
 </body>
 </html>

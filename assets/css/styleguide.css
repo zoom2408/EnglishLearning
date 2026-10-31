@@ -1,0 +1,101 @@
+/* =====================================================================
+   styleguide.css
+   Storybook-style shell for the design system page (/styleguide.html):
+   top toolbar, story tree, canvas (iframe), controls/code panel, docs.
+   Shell only: components render inside the iframe with the real site CSS.
+   ===================================================================== */
+
+html,body{height:100%}
+body{margin:0}
+.sg-app{display:grid;grid-template-columns:260px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);grid-template-areas:"top top" "side main";height:100vh;height:100dvh}
+
+/* ---------- toolbar ---------- */
+.sg-top{grid-area:top;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;padding:10px 20px;border-bottom:1px solid var(--hair)}
+.sg-logo{display:flex;align-items:baseline;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.03em;color:var(--fg);text-decoration:none}
+.sg-logo b{color:var(--accent);margin-left:-8px}
+.sg-logo span{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding-left:10px;border-left:1px solid var(--hair)}
+.sg-tools{display:flex;align-items:center;flex-wrap:wrap;gap:10px 20px}
+.sg-seg{display:inline-flex;border:1px solid var(--hair)}
+.sg-seg button{min-height:34px;padding:0 12px;font-size:12px;font-weight:600;color:var(--muted);transition:background-color .2s,color .2s}
+.sg-seg button+button{border-left:1px solid var(--hair)}
+.sg-seg button:hover{color:var(--fg)}
+.sg-seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+
+/* ---------- sidebar ---------- */
+.sg-side{grid-area:side;overflow-y:auto;border-right:1px solid var(--hair);padding:16px 12px 32px}
+.sg-menu summary{display:none;cursor:pointer;font-weight:700;min-height:44px;align-items:center}
+.sg-search{display:grid;gap:4px;margin:0 8px 16px}
+.sg-group{margin:0 0 18px}
+.sg-group h2{margin:0 8px 6px;font:600 11px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.sg-group a{display:flex;align-items:center;gap:8px;min-height:36px;padding:0 8px;font-size:14px;color:var(--fg);text-decoration:none;border-left:2px solid transparent;transition:background-color .15s}
+.sg-group a:hover{background:var(--surface)}
+.sg-group a[aria-current="page"]{font-weight:700;border-left-color:var(--accent);background:var(--surface)}
+.sg-group a small{margin-left:auto;font:500 10px/1 var(--mono);color:var(--muted)}
+.sg-empty{margin:8px;color:var(--muted);font-size:13px}
+
+/* ---------- main ---------- */
+.sg-main{grid-area:main;display:grid;grid-template-rows:auto minmax(0,1fr);min-width:0;min-height:0}
+.sg-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding:18px 24px 12px;border-bottom:1px solid var(--hair)}
+.sg-crumb{margin:0 0 6px;font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.sg-head h1{margin:0;font-size:clamp(26px,3vw,38px);font-weight:800;letter-spacing:-.04em;line-height:1.05}
+.sg-desc{margin:8px 0 0;max-width:62ch;color:var(--muted)}
+.sg-tabs{display:flex;gap:20px}
+.sg-tabs button{min-height:40px;font-size:14px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.sg-tabs button:hover{color:var(--fg)}
+.sg-tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+
+/* ---------- canvas ---------- */
+.sg-canvas{display:grid;grid-template-rows:minmax(0,1fr) auto;min-height:0}
+.sg-stage{display:flex;justify-content:center;min-height:0;background:repeating-conic-gradient(var(--surface) 0 25%,var(--bg) 0 50%) 0 0/16px 16px;overflow:auto}
+.sg-frame{width:100%;height:100%;min-height:260px;border:0;background:var(--bg);transition:width .3s var(--ease)}
+.sg-panel{border-top:2px solid var(--fg);background:var(--bg);max-height:36vh;display:grid;grid-template-rows:auto minmax(0,1fr)}
+.sg-ptabs{display:flex;align-items:center;gap:20px;padding:0 20px;border-bottom:1px solid var(--hair)}
+.sg-ptabs button{min-height:40px;font-size:13px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent}
+.sg-ptabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+.sg-ptabs .sg-reset{margin-left:auto;font-weight:500;text-decoration:underline;text-underline-offset:3px}
+.sg-pbody{overflow:auto;padding:14px 20px 18px}
+
+/* controls table */
+.sg-ctl{display:grid;grid-template-columns:minmax(120px,200px) minmax(0,1fr);gap:0;margin:0;border:1px solid var(--hair)}
+.sg-ctl>*{padding:8px 12px;border-bottom:1px solid var(--hair);display:flex;align-items:center;min-height:44px}
+.sg-ctl>:nth-last-child(-n+2){border-bottom:0}
+.sg-ctl dt{font:500 12px/1.3 var(--mono);background:var(--surface);color:var(--fg)}
+.sg-ctl dd{margin:0;gap:12px;flex-wrap:wrap}
+.sg-ctl select,.sg-ctl input[type="text"]{font:inherit;font-size:13px;color:var(--fg);background:var(--bg);border:1px solid var(--hair);padding:6px 8px;min-height:32px;min-width:160px}
+.sg-ctl input[type="checkbox"]{width:18px;height:18px;accent-color:var(--accent)}
+.sg-none{margin:0;color:var(--muted);font-size:13px}
+
+/* code */
+.sg-code{position:relative}
+.sg-code pre{margin:0;padding:14px;background:var(--surface);border:1px solid var(--hair);overflow:auto;font:400 12.5px/1.6 var(--mono);color:var(--fg);tab-size:2}
+.sg-copy{position:absolute;top:8px;right:8px;min-height:32px;padding:0 12px;border:1px solid var(--fg);background:var(--bg);font-size:12px;font-weight:600;transition:background-color .2s}
+.sg-copy:hover{background:var(--surface)}
+
+/* ---------- docs ---------- */
+.sg-docs{overflow:auto;padding:24px;min-height:0}
+.sg-docs[hidden]{display:none}
+.sg-doc{display:grid;gap:28px;max-width:880px}
+.sg-doc h2{margin:0 0 10px;font:600 11px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.sg-doc ul{margin:0;padding:0;list-style:none;display:grid;gap:0}
+.sg-doc li{padding:9px 0;border-bottom:1px solid var(--hair)}
+.sg-doc li code,.sg-doc p code{font:500 12.5px/1 var(--mono);background:var(--surface);padding:2px 6px}
+.sg-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.sg-do li::before{content:"Nên: ";font-weight:700;color:var(--ok)}
+.sg-dont li::before{content:"Tránh: ";font-weight:700;color:var(--accent)}
+.sg-toks{display:flex;flex-wrap:wrap;gap:8px}
+.sg-toks code{font:500 12px/1 var(--mono);padding:6px 8px;border:1px solid var(--hair)}
+
+/* ---------- responsive shell ---------- */
+@media (max-width:900px){
+  .sg-app{grid-template-columns:1fr;grid-template-areas:"top" "side" "main";grid-template-rows:auto auto minmax(0,1fr);height:auto;min-height:100vh}
+  .sg-side{border-right:0;border-bottom:1px solid var(--hair);padding:0 12px;overflow:visible}
+  .sg-menu summary{display:flex}
+  .sg-menu[open]{padding-bottom:16px}
+  .sg-main{min-height:80vh}
+  .sg-frame{min-height:340px}
+  .sg-cols{grid-template-columns:1fr}
+  .sg-ctl{grid-template-columns:1fr}
+  .sg-ctl dt{border-bottom:0;min-height:32px}
+  .sg-panel{max-height:none}
+}
+@media (prefers-reduced-motion:reduce){.sg-frame{transition:none}}
